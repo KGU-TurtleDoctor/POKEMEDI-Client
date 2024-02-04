@@ -1,0 +1,109 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-order"],
+  "customSyntax": "postcss-styled-syntax",
+  "rules": {
+    "declaration-empty-line-before": [
+      "always",
+      {
+        "ignore": ["after-comment", "after-declaration", "inside-single-line-block"]
+      }
+    ],
+    "order/order": ["custom-properties", "declarations"],
+    "order/properties-order": [
+      {
+        "groupName": "Layout",
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "properties": [
+          "display",
+          "gap",
+          "justify-content",
+          "align-items",
+          "flex-direction",
+          "flex-wrap",
+          "flex-flow",
+          "flex-grow",
+          "flex-shrink",
+          "flex-basis",
+          "grid-template-columns",
+          "grid-area",
+          "grid-template-rows",
+          "grid-column",
+          "grid-template-areas",
+          "grid-gap",
+          "position",
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "float",
+          "clear",
+          "visibility",
+          "overflow",
+          "z-index"
+        ]
+      },
+      {
+        "groupName": "Box",
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "properties": [
+          "width",
+          "height",
+          "padding",
+          "padding-top",
+          "padding-right",
+          "padding-bottom",
+          "padding-left",
+          "margin",
+          "margin-top",
+          "margin-right",
+          "margin-bottom",
+          "margin-left"
+        ]
+      },
+      {
+        "groupName": "Background",
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "properties": [
+          "border",
+          "border-radius",
+          "border-top",
+          "border-right",
+          "border-bottom",
+          "border-left",
+          "border-color",
+          "border-width",
+          "border-style",
+          "background",
+          "background-color",
+          "background-position",
+          "background-size",
+          "color",
+          "font-style",
+          "font-weight",
+          "font-size",
+          "line-height",
+          "letter-spacing",
+          "text-align",
+          "text-indent",
+          "vertical-align"
+        ]
+      },
+      {
+        "groupName": "Text",
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "properties": ["text-decoration", "text-align", "vertical-align"]
+      },
+      {
+        "groupName": "ETC",
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "properties": ["white-space"]
+      }
+    ]
+  }
+}
