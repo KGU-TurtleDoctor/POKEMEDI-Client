@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-const globalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 
     ${reset}
     * {
@@ -31,8 +31,6 @@ const globalStyle = createGlobalStyle`
         margin: 0 auto;
 
         font-size: 62.5%;
-
-        background-color: ${theme.colors.backGroundGray};
     }
 
     input {
@@ -59,4 +57,4 @@ const globalStyle = createGlobalStyle`
     }
 `;
 
-export default globalStyle;
+export default GlobalStyle;
