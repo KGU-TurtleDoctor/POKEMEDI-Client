@@ -50,6 +50,7 @@ const GlobalStyle = createGlobalStyle`
         background: none;
         cursor: pointer;
         border: none;
+        padding: 0;
     }
 
     select {
