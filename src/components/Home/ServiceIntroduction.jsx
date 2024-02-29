@@ -1,13 +1,8 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import back1 from '../../assets/img/background1.jpeg';
 import back2 from '../../assets/img/background2.jpeg';
 
 function ServiceIntroduction() {
-  const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
-  const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
   return (
     <ServiceintroductionWrapper>
       <ServiceIntroMessage>
@@ -22,9 +17,6 @@ function ServiceIntroduction() {
         <FirstServiceImage src={back1} />
         <SecondServiceImage src={back2} />
       </ServiceImageContainer>
-      {/* <button onClick={() => (window.location.href = kakaoURL)}>
-        카카오 로그인버튼
-      </button> */}
     </ServiceintroductionWrapper>
   );
 }
