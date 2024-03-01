@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
+import MenuIntroduction from '../components/Home/MenuIntroduction';
 import ServiceIntroduction from '../components/Home/ServiceIntroduction';
 
 function Home() {
@@ -9,6 +10,7 @@ function Home() {
       <Header />
       <HomePageBodyWrapper>
         <ServiceIntroduction />
+        <MenuIntroduction />
       </HomePageBodyWrapper>
     </HomePageWrapper>
   );
