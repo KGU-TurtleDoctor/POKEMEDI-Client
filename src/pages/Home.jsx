@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Footer from '../components/Common/Footer';
 import Header from '../components/Common/Header';
@@ -6,9 +6,6 @@ import MenuIntroduction from '../components/Home/MenuIntroduction';
 import ServiceIntroduction from '../components/Home/ServiceIntroduction';
 
 function Home() {
-  const topRef = useRef(null);
-  const bottomRef = useRef(null);
-
   return (
     <HomePageWrapper>
       <Header />
@@ -24,8 +21,6 @@ function Home() {
 export default Home;
 
 const HomePageWrapper = styled.div`
-  position: relative;
-
   width: 100%;
 `;
 
