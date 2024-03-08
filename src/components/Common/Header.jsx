@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcLogo } from '../../assets/svg/icon';
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <HeaderWrapper>
       <HeaderLeftButton>
@@ -11,7 +14,7 @@ function Header() {
       </HeaderLeftButton>
       <HeaderNavigator>
         <NavigatorList>
-          <NavigatorItem>AI 진단</NavigatorItem>
+          <NavigatorItem onClick={() => navigate('/aichat')}>AI 진단</NavigatorItem>
           <NavigatorItem>커뮤니티</NavigatorItem>
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
