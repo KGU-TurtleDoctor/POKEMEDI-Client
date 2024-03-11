@@ -6,15 +6,25 @@ import { IcLogo } from '../../assets/svg/icon';
 function Header() {
   const navigate = useNavigate();
 
+  const handleClickLogoButton = () => {
+    navigate('/');
+  };
+
+  const handleClickAIChatButton = () => {
+    navigate('/aichat');
+  };
+
   return (
     <HeaderWrapper>
-      <HeaderLeftButton>
+      <HeaderLeftButton onClick={handleClickLogoButton}>
         <IcLogo />
         <HeaderTitle>POKEMEDI</HeaderTitle>
       </HeaderLeftButton>
       <HeaderNavigator>
         <NavigatorList>
-          <NavigatorItem onClick={() => navigate('/aichat')}>AI 진단</NavigatorItem>
+          <NavigatorItem onClick={handleClickAIChatButton}>
+            AI 진단
+          </NavigatorItem>
           <NavigatorItem>커뮤니티</NavigatorItem>
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
