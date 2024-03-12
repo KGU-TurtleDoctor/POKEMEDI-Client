@@ -23,8 +23,8 @@ const MyChat = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 3rem;
-  width: 20rem;
+  height: 3.75rem;
+  width: 25rem;
 
   background-color: red;
 `;
@@ -34,8 +34,8 @@ const ChatBoxContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 3rem;
-  width: 20rem;
+  height: 3.75rem;
+  width: 25rem;
 
   background-color: red;
 `;

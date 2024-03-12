@@ -21,7 +21,7 @@ const FooterWrapper = styled.div`
   justify-content: center;
 
   width: 100%;
-  height: 13rem;
+  height: 16.25rem;
 
   background-color: #f2f4f6;
 
@@ -29,16 +29,16 @@ const FooterWrapper = styled.div`
 `;
 
 const FooterSubText = styled.p`
-  font-size: 1.1rem;
+  font-size: 1.37rem;
   color: #868b94;
 `;
 
 const FooterMainText = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #868b94;
 
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 
-  line-height: 1.4rem;
+  line-height: 1.75rem;
 `;

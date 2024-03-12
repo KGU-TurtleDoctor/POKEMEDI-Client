@@ -62,12 +62,12 @@ const MenuBoxWrapper = styled.div`
   flex-direction: row;
   align-items: center;
 
-  width: 75rem;
-  height: 28rem;
-  padding: 2rem;
+  width: 94rem;
+  height: 35rem;
+  padding: 2.5rem;
 
-  border: 1px solid rgb(226 232 240 / 0.4);
-  border-radius: 1.8rem;
+  border: 0.1rem solid rgb(226 232 240 / 0.4);
+  border-radius: 2.25rem;
   box-shadow: rgba(0, 0, 33, 0.03) 0px 16px 22.4px 4.8px,
     rgba(0, 0, 33, 0.03) 0px 3.2px 16px 0px,
     rgba(0, 0, 33, 0.03) 0px 0px 1px 0px;
@@ -98,41 +98,41 @@ const ImgContainer = styled.div`
 
 const DescriptionContainer = styled.div`
   width: 50%;
-  margin-left: ${(props) => (props.type === 1 ? '0' : '6rem')};
+  margin-left: ${(props) => (props.type === 1 ? '0' : '7.5rem')};
 `;
 
 const DescriptionContainerTitle = styled.h2`
-  font-size: 3.5rem;
+  font-size: 4.4rem;
   font-weight: 600;
 `;
 
 const Description = styled.p`
-  margin-top: 3rem;
-  padding-right: ${(props) => (props.type === 1 ? '2rem' : '0')};
+  margin-top: 3.75rem;
+  padding-right: ${(props) => (props.type === 1 ? '2.5rem' : '0')};
 
-  font-size: 1.8rem;
+  font-size: 2.25rem;
   font-weight: 400;
 
-  line-height: 2.5rem;
+  line-height: 3.1rem;
 `;
 
 const MenuImg = styled.img`
-  width: 27rem;
+  width: 33.75rem;
 `;
 
 const LinkButton = styled.button`
   display: flex;
 
-  margin-top: 2rem;
-  padding: 1rem 1.5rem;
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.875rem;
 
   color: white;
   background-color: #04293f;
 
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   font-weight: 500;
 
-  border-radius: 0.8rem;
+  border-radius: 1rem;
 `;
 
 export default MenuBox;
