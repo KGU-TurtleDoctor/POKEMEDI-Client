@@ -25,5 +25,5 @@ const HomePageWrapper = styled.div`
 `;
 
 const HomePageBodyWrapper = styled.div`
-  margin-top: 13.75rem;
+  margin-top: 22.5rem;
 `;
