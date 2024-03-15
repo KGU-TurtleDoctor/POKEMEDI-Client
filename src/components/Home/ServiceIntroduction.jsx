@@ -54,7 +54,7 @@ const fadein = keyframes`
 `;
 
 const ServiceIntroMessage = styled.h1`
-  font-size: 5.5rem;
+  font-size: 6.875rem;
   font-weight: 700;
   line-height: 1.3;
 
@@ -63,9 +63,9 @@ const ServiceIntroMessage = styled.h1`
 `;
 
 const ServiceIntroSubMessage = styled.h2`
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 
-  font-size: 2.2rem;
+  font-size: 2.75rem;
   font-weight: 500;
   color: #8898a7;
 
@@ -77,9 +77,9 @@ const ServiceIntroSubMessage = styled.h2`
 const ServiceImageContainer = styled.div`
   position: relative;
 
-  width: 75rem;
-  height: 39rem;
-  margin-top: 7rem;
+  width: 93.75rem;
+  height: 48.75rem;
+  margin-top: 8.75rem;
 `;
 
 const FirstServiceImage = styled.img`
@@ -87,10 +87,10 @@ const FirstServiceImage = styled.img`
   top: 0;
   left: 0;
 
-  width: 50rem;
-  height: 32rem;
+  width: 62.5rem;
+  height: 40rem;
 
-  border-radius: 1.2rem;
+  border-radius: 1.5rem;
 
   opacity: 0; /* 초기에는 숨김 */
   animation: ${fadein} 0.8s ease forwards; /* forwards 옵션은 애니메이션 종료 후 상태를 유지하도록 합니다. */
@@ -103,17 +103,12 @@ const SecondServiceImage = styled.img`
   right: 0;
   z-index: 1;
 
-  width: 50rem;
-  height: 32rem;
+  width: 62.5rem;
+  height: 40rem;
 
-  border-radius: 1.2rem;
+  border-radius: 1.5rem;
 
   opacity: 0; /* 초기에는 숨김 */
   animation: ${fadein} 0.8s ease forwards; /* forwards 옵션은 애니메이션 종료 후 상태를 유지하도록 합니다. */
   animation-delay: 2.3s;
-`;
-
-const GIFIMG = styled.img`
-  width: 32rem;
-  height: 24rem;
 `;

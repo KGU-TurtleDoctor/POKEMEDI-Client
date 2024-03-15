@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IcSend } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
 
 function AIChat() {
+  const [chatList, setChatList] = useState([
+    { id: 1, text: '테스트1' },
+    { id: 2, text: '테스트2' },
+    { id: 1, text: '테스트3' },
+  ]);
+  const [chat, setChat] = useState();
+
+  const handleChangeChat = (e) => {
+    setChat(e.target.value);
+  };
+
+  const handleClickSendButton = () => {
+    setChatList([...chatList, { id: 1, text: chat }]);
+    setChat('');
+  };
+
   return (
     <AIChatPageWrapper>
       <Header />
       <AIChatPageBodyWrapper>
-        <ChatScreen />
+        <ChatScreen chatList={chatList} />
       </AIChatPageBodyWrapper>
       <ChattingInputBox>
-        <ChattingInput />
-        <button>
+        <ChattingInput value={chat} onChange={handleChangeChat} />
+        <button onClick={handleClickSendButton}>
           <IcSend />
         </button>
       </ChattingInputBox>
@@ -30,8 +46,9 @@ const AIChatPageWrapper = styled.div`
 
 const AIChatPageBodyWrapper = styled.div`
   width: 100%;
-  height: calc(100vh - 6.4rem);
-  padding: 0 30rem;
+  height: calc(100vh - 8rem);
+  padding: 0 37.5rem;
+  margin-top: 8rem;
 
   background-color: #f1f5f9;
 `;
@@ -43,21 +60,21 @@ const ChattingInputBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 3rem;
+  column-gap: 3.75rem;
 
   width: 100%;
-  height: 6rem;
+  height: 7.5rem;
   background-color: #04293f;
 `;
 
 const ChattingInput = styled.input`
   width: 65%;
-  height: 3.8rem;
+  height: 4.75rem;
   padding: 0 1.5rem;
 
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   font-weight: 500;
 
   border: 0.1rem solid rgb(211, 211, 211);
-  border-radius: 0.8rem;
+  border-radius: 1rem;
 `;

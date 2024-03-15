@@ -6,15 +6,25 @@ import { IcLogo } from '../../assets/svg/icon';
 function Header() {
   const navigate = useNavigate();
 
+  const handleClickLogoButton = () => {
+    navigate('/');
+  };
+
+  const handleClickAIChatButton = () => {
+    navigate('/aichat');
+  };
+
   return (
     <HeaderWrapper>
-      <HeaderLeftButton>
+      <HeaderLeftButton onClick={handleClickLogoButton}>
         <IcLogo />
         <HeaderTitle>POKEMEDI</HeaderTitle>
       </HeaderLeftButton>
       <HeaderNavigator>
         <NavigatorList>
-          <NavigatorItem onClick={() => navigate('/aichat')}>AI 진단</NavigatorItem>
+          <NavigatorItem onClick={handleClickAIChatButton}>
+            AI 진단
+          </NavigatorItem>
           <NavigatorItem>커뮤니티</NavigatorItem>
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
@@ -26,21 +36,27 @@ function Header() {
 export default Header;
 
 const HeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 3;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
-  height: 6.4rem;
-  padding: 0 10rem;
+  height: 8rem;
+  padding: 0 12.5rem;
 
   border-bottom: 0.1rem solid rgb(211, 211, 211);
+
+  background-color: white;
 `;
 
 const HeaderTitle = styled.p`
-  font-size: 2.2rem;
+  font-size: 2.75rem;
   font-weight: 700;
-  padding-top: 0.3rem;
+  padding-top: 0.35rem;
 `;
 
 const HeaderNavigator = styled.div`
@@ -60,9 +76,9 @@ const NavigatorList = styled.ul`
 
 const NavigatorItem = styled.button`
   height: 100%;
-  padding: 0 2.5rem;
+  padding: 0 3rem;
 
-  font-size: 1.4rem;
+  font-size: 1.75rem;
   font-weight: 600;
 
   &:hover {
@@ -71,13 +87,13 @@ const NavigatorItem = styled.button`
 `;
 
 const LoginButton = styled.button`
-  width: 7rem;
-  height: 3rem;
-  margin-left: 7.7rem;
+  width: 8.75rem;
+  height: 3.75rem;
+  margin-left: 9.5rem;
 
   border-radius: 0.7rem;
 
-  font-size: 1.4rem;
+  font-size: 1.75rem;
   font-weight: 500;
 
   background-color: #04293f;

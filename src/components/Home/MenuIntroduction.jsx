@@ -37,9 +37,9 @@ const MenuIntroductionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 8rem;
+  row-gap: 10rem;
 
   width: 100%;
-  margin-top: 15rem;
-  padding-bottom: 15rem;
+  margin-top: 18.75rem;
+  padding-bottom: 18.75rem;
 `;
