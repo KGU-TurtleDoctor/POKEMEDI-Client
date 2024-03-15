@@ -59,10 +59,13 @@ const MyChat = styled.div`
 
   border-radius: 1.2rem 1.2rem 0 1.2rem;
 
-  background-color: red;
+  /* background-color: #f1f5f9; */
+  background-color: #f1f5f9;
 
   font-size: 1.7rem;
   font-weight: 500;
+
+  white-space: pre-wrap;
 `;
 
 const DoctorChat = styled.div`
@@ -76,10 +79,14 @@ const DoctorChat = styled.div`
 
   border-radius: 1.2rem 1.2rem 1.2rem 0;
 
-  background-color: blue;
+  background-color: #dde5ee;
 
   font-size: 1.7rem;
   font-weight: 500;
+
+  white-space: pre-wrap;
+
+  line-height: 130%;
 `;
 
 const ChatWrapper = styled.div`

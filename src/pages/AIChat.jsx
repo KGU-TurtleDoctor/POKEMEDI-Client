@@ -6,6 +6,10 @@ import Header from '../components/Common/Header';
 
 function AIChat() {
   const [chatList, setChatList] = useState([
+    {
+      id: 2,
+      text: '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
+    },
     { id: 1, text: '테스트1' },
     { id: 2, text: '테스트2' },
     { id: 1, text: '테스트3' },
