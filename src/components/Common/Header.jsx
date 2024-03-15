@@ -36,6 +36,10 @@ function Header() {
 export default Header;
 
 const HeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 3;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,6 +49,8 @@ const HeaderWrapper = styled.div`
   padding: 0 12.5rem;
 
   border-bottom: 0.1rem solid rgb(211, 211, 211);
+
+  background-color: white;
 `;
 
 const HeaderTitle = styled.p`

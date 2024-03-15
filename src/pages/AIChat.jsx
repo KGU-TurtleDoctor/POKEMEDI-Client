@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IcSend } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
 
 function AIChat() {
+  const [chatList, setChatList] = useState([
+    { id: 1, text: '테스트1' },
+    { id: 2, text: '테스트2' },
+    { id: 1, text: '테스트3' },
+  ]);
+  const [chat, setChat] = useState();
+
+  const handleChangeChat = (e) => {
+    setChat(e.target.value);
+  };
+
+  const handleClickSendButton = () => {
+    setChatList([...chatList, { id: 1, text: chat }]);
+    setChat('');
+  };
+
   return (
     <AIChatPageWrapper>
       <Header />
       <AIChatPageBodyWrapper>
-        <ChatScreen />
+        <ChatScreen chatList={chatList} />
       </AIChatPageBodyWrapper>
       <ChattingInputBox>
-        <ChattingInput />
-        <button>
+        <ChattingInput value={chat} onChange={handleChangeChat} />
+        <button onClick={handleClickSendButton}>
           <IcSend />
         </button>
       </ChattingInputBox>
@@ -32,6 +48,7 @@ const AIChatPageBodyWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 8rem);
   padding: 0 37.5rem;
+  margin-top: 8rem;
 
   background-color: #f1f5f9;
 `;

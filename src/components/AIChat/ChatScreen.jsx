@@ -1,21 +1,51 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-function ChatScreen() {
+function ChatScreen({ chatList }) {
+  console.log(chatList);
   return (
     <ChatScreenWrapper>
-      <MyChat>dkssud</MyChat>
+      <ChatLogDisplay>
+        {chatList.map((chat) => (
+          <ChatWrapper chatId={chat.id}>
+            {chat.id === 1 ? (
+              <MyChat>{chat.text}</MyChat>
+            ) : (
+              <DoctorChat>{chat.text}</DoctorChat>
+            )}
+          </ChatWrapper>
+        ))}
+      </ChatLogDisplay>
     </ChatScreenWrapper>
   );
 }
 
 export default ChatScreen;
 
+const chatup = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+`;
+
 const ChatScreenWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: calc(100% - 7.5rem);
+
+  position: relative;
 
   background-color: #ffffff;
+`;
+
+const ChatLogDisplay = styled.div`
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  padding: 0 5rem;
 `;
 
 const MyChat = styled.div`
@@ -23,19 +53,44 @@ const MyChat = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 3.75rem;
-  width: 25rem;
+  width: 30rem;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+
+  border-radius: 1.2rem 1.2rem 0 1.2rem;
 
   background-color: red;
+
+  font-size: 1.7rem;
+  font-weight: 500;
 `;
 
-const ChatBoxContainer = styled.div`
+const DoctorChat = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  height: 3.75rem;
-  width: 25rem;
+  width: 30rem;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
 
-  background-color: red;
+  border-radius: 1.2rem 1.2rem 1.2rem 0;
+
+  background-color: blue;
+
+  font-size: 1.7rem;
+  font-weight: 500;
+`;
+
+const ChatWrapper = styled.div`
+  position: relative;
+
+  display: flex;
+  justify-content: ${(props) =>
+    props.chatId === 2 ? 'flex-start' : 'flex-end'};
+
+  width: 100%;
+
+  animation-name: ${chatup};
+  transition: chatup 1s ease;
 `;
