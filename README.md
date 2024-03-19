@@ -29,14 +29,20 @@
 | Formatting           | ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E) ![StyleLint](https://img.shields.io/badge/stylelint-E0EFEF?style=for-the-badge&logo=stylelint&logoColor=000) |
 | Package Manager      | ![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)                                                                                                                                                                                                                                 |
 | Version Control      | ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)                                                                                                                |
-| Deployment           | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)                                                                                                                                                                                                                           |
+| Deployment           | ![Docker](https://img.shields.io/badge/Docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)                                                                                                                                                                                                                           |
 
 </div>
 
 <br/>
 
+<h2> 🏛️ Service Architecture </h2>
 
-<h2> 📁 폴더 구조 </h2>
+![architecture](https://github.com/jungwoo3490/POKEMEDI-Client/assets/60962533/2d1c8868-c574-4b03-9dc2-dde33df7da6e)
+
+
+<br/>
+
+<h2> 📁 Folder Structure </h2>
 
 ```
 └── 📁 src
