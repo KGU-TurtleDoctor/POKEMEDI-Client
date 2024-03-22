@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcLogo } from '../../assets/svg/icon';
-import { api } from '../../libs/api';
 
 function Header() {
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ function Header() {
   };
 
   const handleClickLoginButton = () => {
-    api.get('/oauth2/authorization/kakao');
+    window.location.href = `${import.meta.env.VITE_BASE_URL}`;
   };
 
   return (
