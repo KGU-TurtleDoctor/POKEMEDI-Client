@@ -16,7 +16,7 @@ function Header() {
 
   const handleClickLoginButton = () => {
     window.location.href = `${
-      import.meta.env.VITE_BASE_URL
+      import.meta.env.VITE_APP_BASE_URL
     }/oauth2/authorization/kakao`;
   };
 
