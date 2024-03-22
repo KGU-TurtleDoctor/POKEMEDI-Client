@@ -14,6 +14,10 @@ function Header() {
     navigate('/aichat');
   };
 
+  const handleClickCommunityButton = () => {
+    navigate('/detail');
+  };
+
   return (
     <HeaderWrapper>
       <HeaderLeftButton onClick={handleClickLogoButton}>
@@ -25,7 +29,9 @@ function Header() {
           <NavigatorItem onClick={handleClickAIChatButton}>
             AI 진단
           </NavigatorItem>
-          <NavigatorItem>커뮤니티</NavigatorItem>
+          <NavigatorItem onClick={handleClickCommunityButton}>
+            커뮤니티
+          </NavigatorItem>
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
       </HeaderNavigator>
