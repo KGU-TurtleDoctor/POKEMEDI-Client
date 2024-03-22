@@ -15,7 +15,9 @@ function Header() {
   };
 
   const handleClickLoginButton = () => {
-    window.location.href = `${import.meta.env.VITE_BASE_URL}`;
+    window.location.href = `${
+      import.meta.env.VITE_BASE_URL
+    }/oauth2/authorization/kakao`;
   };
 
   return (
