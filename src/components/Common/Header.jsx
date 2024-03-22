@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcLogo } from '../../assets/svg/icon';
+import { api } from '../../libs/api';
 
 function Header() {
   const navigate = useNavigate();
@@ -12,6 +13,10 @@ function Header() {
 
   const handleClickAIChatButton = () => {
     navigate('/aichat');
+  };
+
+  const handleClickLoginButton = () => {
+    api.get('/oauth2/authorization/kakao');
   };
 
   return (
@@ -29,7 +34,7 @@ function Header() {
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
       </HeaderNavigator>
-      <LoginButton>로그인</LoginButton>
+      <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
     </HeaderWrapper>
   );
 }
