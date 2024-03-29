@@ -8,7 +8,7 @@ function Loading() {
 
   useEffect(() => {
     api.get('/api/info', { withCredentials: true }).then((data) => {
-      sessionStorage.setItem('name', data.result.name);
+      sessionStorage.setItem('name', data.data.result.name);
       navigate('/');
     });
   }, []);
