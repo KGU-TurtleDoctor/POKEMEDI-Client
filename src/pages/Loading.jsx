@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { api } from '../libs/api';
 
 function Loading() {
-  return <LoadingWrapper>Loading</LoadingWrapper>;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    api.get('/api/info').then((data) => {
+      console.log(data);
+      navigate('/');
+    });
+  });
+
+  return <LoadingWrapper></LoadingWrapper>;
 }
 
 export default Loading;
