@@ -7,8 +7,7 @@ function Loading() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get('/api/info').then((data) => {
-      console.log(data);
+    api.get('/api/info', { withCredentials: true }).then((data) => {
       sessionStorage.setItem('name', data.result.name);
       navigate('/');
     });
