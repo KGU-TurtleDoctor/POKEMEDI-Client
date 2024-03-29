@@ -9,9 +9,10 @@ function Loading() {
   useEffect(() => {
     api.get('/api/info').then((data) => {
       console.log(data);
+      sessionStorage.setItem('name', data.result.name);
       navigate('/');
     });
-  });
+  }, []);
 
   return <LoadingWrapper></LoadingWrapper>;
 }
