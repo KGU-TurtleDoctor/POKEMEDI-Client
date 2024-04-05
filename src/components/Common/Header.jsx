@@ -18,6 +18,12 @@ function Header() {
     navigate('/detail');
   };
 
+  const handleClickLoginButton = () => {
+    window.location.href = `${
+      import.meta.env.VITE_APP_BASE_URL
+    }/oauth2/authorization/kakao`;
+  };
+
   return (
     <HeaderWrapper>
       <HeaderLeftButton onClick={handleClickLogoButton}>
@@ -35,7 +41,11 @@ function Header() {
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
       </HeaderNavigator>
-      <LoginButton>로그인</LoginButton>
+      {localStorage.getItem('nickname') ? (
+        <p>{`${localStorage.getItem('nickname')}님 안녕하세요`}</p>
+      ) : (
+        <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
+      )}
     </HeaderWrapper>
   );
 }
