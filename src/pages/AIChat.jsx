@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { postChatbotPrompt } from '../apis/AIChat/postChatbotPrompt';
 import { IcSend } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
@@ -10,9 +11,6 @@ function AIChat() {
       id: 2,
       text: '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
     },
-    { id: 1, text: '테스트1' },
-    { id: 2, text: '테스트2' },
-    { id: 1, text: '테스트3' },
   ]);
   const [chat, setChat] = useState();
 
@@ -21,7 +19,12 @@ function AIChat() {
   };
 
   const handleClickSendButton = () => {
-    setChatList([...chatList, { id: 1, text: chat }]);
+    const responseChat = postChatbotPrompt(chat);
+    setChatList([
+      ...chatList,
+      { id: 1, text: chat },
+      { id: 2, text: responseChat },
+    ]);
     setChat('');
   };
 
