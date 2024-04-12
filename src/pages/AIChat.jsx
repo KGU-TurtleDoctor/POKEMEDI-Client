@@ -21,6 +21,7 @@ function AIChat() {
   const handleClickSendButton = () => {
     postChatbotPrompt(chat, (data) => {
       setChatList([...chatList, { id: 1, text: chat }, { id: 2, text: data }]);
+      console.log('완료');
       setChat('');
     });
   };
