@@ -48,7 +48,7 @@ export default AIChat;
 
 const AIChatPageWrapper = styled.div`
   position: relative;
-  width: 100%;
+  width: 100vw;
 `;
 
 const AIChatPageBodyWrapper = styled.div`
