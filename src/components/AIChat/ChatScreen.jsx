@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 function ChatScreen({ chatList }) {
-  console.log(chatList);
   return (
     <ChatScreenWrapper>
       <ChatLogDisplay>
