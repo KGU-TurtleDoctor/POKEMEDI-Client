@@ -5,7 +5,7 @@ export const postChatbotPrompt = (chat) => {
     .post('/api/chatbot/prompt', {
       prompt: chat,
     })
-    .then((res) => {
-      return res;
+    .then((data) => {
+      return data.result.content;
     });
 };
