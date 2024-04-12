@@ -10,6 +10,8 @@ export const postChatbotPrompt = (chat) => {
       { withCredentials: true },
     )
     .then((data) => {
+      console.log(data);
+      console.log(data.result);
       return data.result.content;
     });
 };
