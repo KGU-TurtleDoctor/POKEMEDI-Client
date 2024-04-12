@@ -37,8 +37,8 @@ const ChatScreenWrapper = styled.div`
   position: relative;
 
   background-color: #ffffff;
-
-  overflow: scroll;
+  /* 
+  overflow: scroll; */
 `;
 
 const ChatLogDisplay = styled.div`
