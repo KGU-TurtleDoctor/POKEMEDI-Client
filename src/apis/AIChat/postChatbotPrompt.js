@@ -1,6 +1,6 @@
 import { api } from '../../libs/api';
 
-export const postChatbotPrompt = (chat) => {
+export const postChatbotPrompt = (chat, updateChatList) => {
   api
     .post(
       '/api/chatbot/prompt',
@@ -10,6 +10,6 @@ export const postChatbotPrompt = (chat) => {
       { withCredentials: true },
     )
     .then((data) => {
-      return data.data.result.content;
+      updateChatList(data.data.result.updateChatList);
     });
 };
