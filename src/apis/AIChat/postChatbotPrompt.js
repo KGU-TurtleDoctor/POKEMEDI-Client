@@ -10,6 +10,6 @@ export const postChatbotPrompt = (chat, updateChatList) => {
       { withCredentials: true },
     )
     .then((data) => {
-      updateChatList(data.data.result.updateChatList);
+      updateChatList(data.data.result.content);
     });
 };
