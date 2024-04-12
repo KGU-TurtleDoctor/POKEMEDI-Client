@@ -54,18 +54,20 @@ const MyChat = styled.div`
   align-items: center;
 
   width: 30rem;
-  padding: 1.5rem 0;
+  padding: 1.5rem 2rem;
   margin-bottom: 2rem;
 
   border-radius: 1.2rem 1.2rem 0 1.2rem;
 
-  /* background-color: #f1f5f9; */
   background-color: #f1f5f9;
 
   font-size: 1.7rem;
   font-weight: 500;
 
+  word-break: break-all;
   white-space: pre-wrap;
+
+  line-height: 130%;
 `;
 
 const DoctorChat = styled.div`
@@ -74,7 +76,7 @@ const DoctorChat = styled.div`
   align-items: center;
 
   width: 30rem;
-  padding: 1.5rem 0;
+  padding: 1.5rem 2rem;
   margin-bottom: 2rem;
 
   border-radius: 1.2rem 1.2rem 1.2rem 0;
@@ -84,6 +86,7 @@ const DoctorChat = styled.div`
   font-size: 1.7rem;
   font-weight: 500;
 
+  word-break: break-all;
   white-space: pre-wrap;
 
   line-height: 130%;
