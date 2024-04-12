@@ -18,8 +18,8 @@ function AIChat() {
     setChat(e.target.value);
   };
 
-  const handleClickSendButton = async () => {
-    const responseChat = await postChatbotPrompt(chat);
+  const handleClickSendButton = () => {
+    const responseChat = postChatbotPrompt(chat);
     setChatList([
       ...chatList,
       { id: 1, text: chat },
