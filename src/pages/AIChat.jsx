@@ -21,9 +21,9 @@ function AIChat() {
   const handleClickSendButton = () => {
     setChatList((prevChatList) => [...prevChatList, { id: 1, text: chat }]);
 
-    postChatbotPrompt(chat, setChatList);
-
     setChat('');
+
+    postChatbotPrompt(chat, setChatList);
   };
 
   const handlePressEnterKey = (e) => {
