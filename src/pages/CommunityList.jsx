@@ -10,9 +10,13 @@ function CommunityList() {
   const [list, setList] = useState([]);
 
   const [searchText, setSearchText] = useState('');
+
   useEffect(() => {
     api.get('api/community/list', { withCredentials: true }).then((res) => {
-      setList([]);
+      console.log(res);
+      if (Array.isArray(res.data.result)) {
+        setList(res.data.result);
+      }
     });
   }, []);
 
@@ -20,10 +24,24 @@ function CommunityList() {
     setSearchText(e.target.value);
   };
 
-  console.log(searchText);
+  const getSearchList = () => {
+    api
+      .get(`api/community/search/${searchText}`, { withCredentials: true })
+      .then((res) => {
+        if (Array.isArray(res.data.result)) {
+          setList(res.data.result);
+        }
+      });
+  };
+
+  const handlePressEnterKey = (e) => {
+    if (e.key === 'Enter' && searchText.length !== 0) {
+      getSearchList();
+    }
+  };
 
   return (
-    <CommunityListWrapper>
+    <CommunityListWrapper onKeyDown={handlePressEnterKey}>
       <Header />
       <CommunityListBodyWrapper>
         <CommunityListBoxWrapper>
