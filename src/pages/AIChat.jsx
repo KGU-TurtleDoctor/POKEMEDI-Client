@@ -42,6 +42,7 @@ function AIChat() {
       </AIChatPageBodyWrapper>
       <ChattingInputBox>
         <ChattingInput
+          placeholder="메시지를 입력해주세요."
           value={chat}
           onChange={handleChangeChat}
           onKeyDown={handlePressEnterKey}
