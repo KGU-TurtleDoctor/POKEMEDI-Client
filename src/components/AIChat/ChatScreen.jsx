@@ -31,20 +31,19 @@ const chatup = keyframes`
 `;
 
 const ChatScreenWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   width: 100%;
   height: calc(100% - 7.5rem);
 
-  position: relative;
-
   background-color: #ffffff;
-  /* 
-  overflow: scroll; */
+
+  overflow-y: auto;
 `;
 
 const ChatLogDisplay = styled.div`
-  position: absolute;
-  bottom: 0;
-
   width: 100%;
   padding: 0 5rem;
 `;

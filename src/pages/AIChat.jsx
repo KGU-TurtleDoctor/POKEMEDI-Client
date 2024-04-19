@@ -53,7 +53,7 @@ const AIChatPageWrapper = styled.div`
 const AIChatPageBodyWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 8rem);
-  padding: 0 37.5rem;
+  padding: 0 calc((100% - 76.2rem) / 2);
   margin-top: 8rem;
 
   background-color: #f1f5f9;
