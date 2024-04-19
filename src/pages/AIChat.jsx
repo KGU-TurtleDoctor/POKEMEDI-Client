@@ -12,18 +12,20 @@ function AIChat() {
       text: '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
     },
   ]);
-  const [chat, setChat] = useState();
+  const [chat, setChat] = useState('');
 
   const handleChangeChat = (e) => {
     setChat(e.target.value);
   };
 
   const handleClickSendButton = () => {
-    setChatList((prevChatList) => [...prevChatList, { id: 1, text: chat }]);
+    if (chat.length !== 0) {
+      setChatList((prevChatList) => [...prevChatList, { id: 1, text: chat }]);
 
-    setChat('');
+      setChat('');
 
-    postChatbotPrompt(chat, setChatList);
+      postChatbotPrompt(chat, setChatList);
+    }
   };
 
   const handlePressEnterKey = (e) => {
