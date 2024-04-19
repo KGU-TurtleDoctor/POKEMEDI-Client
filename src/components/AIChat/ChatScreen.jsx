@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 function ChatScreen({ chatList }) {
+  const messageEndRef = useRef(null);
+
+  useEffect(() => {
+    messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [chatList]);
+
   return (
     <ChatScreenWrapper>
       <ChatLogDisplay>
@@ -14,6 +20,7 @@ function ChatScreen({ chatList }) {
             )}
           </ChatWrapper>
         ))}
+        <div ref={messageEndRef}></div>
       </ChatLogDisplay>
     </ChatScreenWrapper>
   );
