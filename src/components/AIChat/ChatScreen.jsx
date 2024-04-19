@@ -39,13 +39,18 @@ const ChatScreenWrapper = styled.div`
   height: calc(100% - 7.5rem);
 
   background-color: #ffffff;
-
-  overflow-y: auto;
 `;
 
 const ChatLogDisplay = styled.div`
   width: 100%;
   padding: 0 5rem;
+
+  overflow-y: auto;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MyChat = styled.div`
