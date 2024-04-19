@@ -14,6 +14,10 @@ function Header() {
     navigate('/aichat');
   };
 
+  const handleClickListButton = () => {
+    navigate('/community-list');
+  };
+
   const handleClickLoginButton = () => {
     window.location.href = `${
       import.meta.env.VITE_APP_BASE_URL
@@ -31,7 +35,9 @@ function Header() {
           <NavigatorItem onClick={handleClickAIChatButton}>
             AI 진단
           </NavigatorItem>
-          <NavigatorItem>커뮤니티</NavigatorItem>
+          <NavigatorItem onClick={handleClickListButton}>
+            커뮤니티
+          </NavigatorItem>
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
       </HeaderNavigator>
