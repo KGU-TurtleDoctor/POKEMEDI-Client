@@ -18,13 +18,21 @@ function AIChat() {
     setChat(e.target.value);
   };
 
+  // const handleClickSendButton = () => {
+  //   setChatList((prevChatList) => [...prevChatList, { id: 1, text: chat }]);
+
+  //   postChatbotPrompt(chat, (data) => {
+  //     setChatList((prevChatList) => [...prevChatList, { id: 2, text: data }]);
+  //     setChat('');
+  //   });
+  // };
+
   const handleClickSendButton = () => {
     setChatList((prevChatList) => [...prevChatList, { id: 1, text: chat }]);
 
-    postChatbotPrompt(chat, (data) => {
-      setChatList((prevChatList) => [...prevChatList, { id: 2, text: data }]);
-      setChat('');
-    });
+    postChatbotPrompt(chat, setChatList);
+
+    setChat('');
   };
 
   const handlePressEnterKey = (e) => {
