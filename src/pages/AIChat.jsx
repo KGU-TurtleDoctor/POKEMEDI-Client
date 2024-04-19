@@ -27,6 +27,12 @@ function AIChat() {
     });
   };
 
+  const handlePressEnterKey = (e) => {
+    if (e.key === 'Enter') {
+      handleClickSendButton();
+    }
+  };
+
   return (
     <AIChatPageWrapper>
       <Header />
@@ -34,7 +40,11 @@ function AIChat() {
         <ChatScreen chatList={chatList} />
       </AIChatPageBodyWrapper>
       <ChattingInputBox>
-        <ChattingInput value={chat} onChange={handleChangeChat} />
+        <ChattingInput
+          value={chat}
+          onChange={handleChangeChat}
+          onKeyDown={handlePressEnterKey}
+        />
         <button onClick={handleClickSendButton}>
           <IcSend />
         </button>
