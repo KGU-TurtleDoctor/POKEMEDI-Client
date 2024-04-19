@@ -6,7 +6,7 @@ function ChatScreen({ chatList }) {
     <ChatScreenWrapper>
       <ChatLogDisplay>
         {chatList.map((chat) => (
-          <ChatWrapper chatId={chat.id}>
+          <ChatWrapper $chatId={chat.id}>
             {chat.id === 1 ? (
               <MyChat>{chat.text}</MyChat>
             ) : (
