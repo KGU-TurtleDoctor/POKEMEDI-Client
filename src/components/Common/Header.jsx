@@ -41,8 +41,8 @@ function Header() {
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
       </HeaderNavigator>
-      {localStorage.getItem('nickname') ? (
-        <p>{`${localStorage.getItem('nickname')}님 안녕하세요`}</p>
+      {sessionStorage.getItem('name') ? (
+        <p>{`${JSON.parse(sessionStorage.getItem('name'))}님 안녕하세요`}</p>
       ) : (
         <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
       )}
