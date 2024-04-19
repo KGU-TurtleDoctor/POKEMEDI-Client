@@ -19,8 +19,10 @@ function AIChat() {
   };
 
   const handleClickSendButton = () => {
+    setChatList([...chatList, { id: 1, text: chat }]);
+
     postChatbotPrompt(chat, (data) => {
-      setChatList([...chatList, { id: 1, text: chat }, { id: 2, text: data }]);
+      setChatList([...chatList, { id: 2, text: data }]);
       setChat('');
     });
   };
