@@ -32,8 +32,8 @@ const chatup = keyframes`
 
 const ChatScreenWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
 
   width: 100%;
   height: calc(100% - 7.5rem);
