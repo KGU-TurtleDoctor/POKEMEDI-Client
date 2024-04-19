@@ -37,6 +37,7 @@ const ChatScreenWrapper = styled.div`
 
   width: 100%;
   height: calc(100% - 7.5rem);
+  padding-top: 2rem;
 
   background-color: #ffffff;
 `;
