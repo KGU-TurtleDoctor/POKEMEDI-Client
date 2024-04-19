@@ -5,7 +5,7 @@ function ChatScreen({ chatList }) {
   const messageEndRef = useRef(null);
 
   useEffect(() => {
-    messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    messageEndRef.current.scrollIntoView();
   }, [chatList]);
 
   return (
