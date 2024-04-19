@@ -102,7 +102,7 @@ const ChatWrapper = styled.div`
 
   display: flex;
   justify-content: ${(props) =>
-    props.chatId === 2 ? 'flex-start' : 'flex-end'};
+    props.$chatId === 2 ? 'flex-start' : 'flex-end'};
 
   width: 100%;
 
