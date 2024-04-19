@@ -12,7 +12,7 @@ function CommunityList() {
   const [searchText, setSearchText] = useState('');
   useEffect(() => {
     api.get('api/community/list', { withCredentials: true }).then((res) => {
-      setList(res.data.result);
+      setList([]);
     });
   }, []);
 
