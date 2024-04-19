@@ -57,6 +57,7 @@ const CommunityListBodyWrapper = styled.div`
   justify-content: center;
 
   width: 100%;
+  height: calc(100vh - 8rem);
   padding: 0 37.5rem;
   margin-top: 8rem;
 
