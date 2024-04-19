@@ -13,6 +13,7 @@ function AIChat() {
     },
   ]);
   const [chat, setChat] = useState('');
+  const [chatHistoryId, setChatHistoryId] = useState(-1);
 
   const handleChangeChat = (e) => {
     setChat(e.target.value);
@@ -24,7 +25,7 @@ function AIChat() {
 
       setChat('');
 
-      postChatbotPrompt(chat, setChatList);
+      postChatbotPrompt(chat, setChatList, chatHistoryId, setChatHistoryId);
     }
   };
 
