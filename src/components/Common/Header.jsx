@@ -42,7 +42,7 @@ function Header() {
         </NavigatorList>
       </HeaderNavigator>
       {sessionStorage.getItem('name') ? (
-        <p>{`${JSON.parse(sessionStorage.getItem('name'))}님 안녕하세요`}</p>
+        <p>{`${sessionStorage.getItem('name')}님 안녕하세요`}</p>
       ) : (
         <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
       )}
