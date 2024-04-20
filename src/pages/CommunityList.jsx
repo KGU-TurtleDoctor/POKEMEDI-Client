@@ -117,8 +117,6 @@ const SearchBox = styled.div`
   align-items: center;
   padding: 2rem;
   gap: 2rem;
-
-  //margin-bottom: 3rem;
 `;
 
 const StyledIcSearch = styled(IcSearch)`
