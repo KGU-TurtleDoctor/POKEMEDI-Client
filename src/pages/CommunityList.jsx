@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import ListItem from '../components/CommunityList/ListItem';
@@ -7,6 +8,7 @@ import { api } from '../libs/api';
 import { IcSearch } from '../assets/svg/icon';
 
 function CommunityList() {
+  const navigate = useNavigate();
   const [list, setList] = useState([]);
 
   const [searchText, setSearchText] = useState('');
@@ -40,6 +42,10 @@ function CommunityList() {
     }
   };
 
+  const handleClickWritingButton = () => {
+    navigate('/community-post');
+  };
+
   return (
     <CommunityListWrapper onKeyDown={handlePressEnterKey}>
       <Header />
@@ -55,7 +61,9 @@ function CommunityList() {
             />
           </SearchBox>
           <WritingBox>
-            <WritingButton>글쓰기</WritingButton>
+            <WritingButton onClick={handleClickWritingButton}>
+              글쓰기
+            </WritingButton>
           </WritingBox>
           {list.map((item) => {
             return <ListItem key={item.id} {...item} />;
