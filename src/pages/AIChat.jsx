@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { postChatbotPrompt } from '../apis/AIChat/postChatbotPrompt';
 import { IcSend } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
@@ -10,19 +11,28 @@ function AIChat() {
       id: 2,
       text: '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
     },
-    { id: 1, text: '테스트1' },
-    { id: 2, text: '테스트2' },
-    { id: 1, text: '테스트3' },
   ]);
-  const [chat, setChat] = useState();
+  const [chat, setChat] = useState('');
+  const [chatHistoryId, setChatHistoryId] = useState(-1);
 
   const handleChangeChat = (e) => {
     setChat(e.target.value);
   };
 
   const handleClickSendButton = () => {
-    setChatList([...chatList, { id: 1, text: chat }]);
-    setChat('');
+    if (chat.length !== 0) {
+      setChatList((prevChatList) => [...prevChatList, { id: 1, text: chat }]);
+
+      setChat('');
+
+      postChatbotPrompt(chat, setChatList, chatHistoryId, setChatHistoryId);
+    }
+  };
+
+  const handlePressEnterKey = (e) => {
+    if (e.key === 'Enter') {
+      handleClickSendButton();
+    }
   };
 
   return (
@@ -32,7 +42,12 @@ function AIChat() {
         <ChatScreen chatList={chatList} />
       </AIChatPageBodyWrapper>
       <ChattingInputBox>
-        <ChattingInput value={chat} onChange={handleChangeChat} />
+        <ChattingInput
+          placeholder="메시지를 입력해주세요."
+          value={chat}
+          onChange={handleChangeChat}
+          onKeyDown={handlePressEnterKey}
+        />
         <button onClick={handleClickSendButton}>
           <IcSend />
         </button>
@@ -45,13 +60,13 @@ export default AIChat;
 
 const AIChatPageWrapper = styled.div`
   position: relative;
-  width: 100%;
+  width: 100vw;
 `;
 
 const AIChatPageBodyWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 8rem);
-  padding: 0 37.5rem;
+  padding: 0 calc((100% - 76.2rem) / 2);
   margin-top: 8rem;
 
   background-color: #f1f5f9;
