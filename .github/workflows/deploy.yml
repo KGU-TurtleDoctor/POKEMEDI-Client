@@ -17,28 +17,13 @@ jobs:
         with:
           node-version: lts/Hydrogen
 
-	  # push할 때마다 npm을 install 해야할까? 아니다.
-      # 해당 프로젝트의 node_modules가 변했는지 안 변했는지를 이용해서
-      # 모듈 변화가 있을 때만 npm install을 해줄 수도 있다.
       - name: Cache node modules
-      	# 그걸 제공하는 Action도 있다.
         uses: actions/cache@v2.1.8
-        # 해당 step을 대표하는 id를 설정할 수도 있다. 해당 값은 뒤의 step에서 사용한다.
         id: cache
         with:
-          # node_modules라는 폴더를 검사하여
           path: node_modules
-          # 아래 키값으로 cache가 돼있는지 확인한다.
           key: npm-packages-${{ hashFiles('**/yarn.lock') }}
-
-        # 위 step에서 node_modules에 대한 cache 검사를 했다.
-        # 만약 모듈에 변한 게 있다면 `npm install`을 실행하고 아니면 해당 step을 건너뛰게 된다.
-        # if 키워드는 해당 스텝을 실행할지 말지를 결정할 수 있는 키워드이다.
-        # 위 step에서 정했던 cache라는 id를 steps.cache로 가져올 수 있다.
-        # cache라는 id 값을 가진 step에서는 cache-hit라는 output을 내뱉는다. 
-        # 그걸로 cache가 hit 됐는지 안 됐는지를 알 수 있다.
-        # 그 값이 true가 아닐 때만 npm install을 한다.
-        # https://fe-developers.kakaoent.com/2022/220106-github-actions/
+	  
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
@@ -46,8 +31,6 @@ jobs:
       - name: Build
         run: yarn build
 
-	  # Docker에 연결하여 이미지를 빌드하고 Hub에 푸시한다.
-      # https://docs.docker.com/build/ci/github-actions/#step-three-define-the-workflow-steps
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -65,7 +48,6 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/jmdb
 
-	  # 마지막으로 ssh로 인스턴스에 연결하여 이미지를 Pull하고 컨테이너를 재시작한다.
       - name: Pull and restart Docker Container
         uses: appleboy/ssh-action@master
         with:
