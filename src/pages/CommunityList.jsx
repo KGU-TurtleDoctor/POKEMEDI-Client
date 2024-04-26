@@ -111,7 +111,7 @@ const SearchBox = styled.div`
 
   background-color: #f1f5f9;
   border-radius: 2rem;
-  border: 1px solid grey;
+  border: 0.05rem solid #9e9e9e;
 
   display: flex;
   align-items: center;
