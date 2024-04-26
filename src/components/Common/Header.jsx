@@ -14,8 +14,8 @@ function Header() {
     navigate('/aichat');
   };
 
-  const handleClickCommunityButton = () => {
-    navigate('/detail');
+  const handleClickListButton = () => {
+    navigate('/community-list');
   };
 
   const handleClickLoginButton = () => {
@@ -35,14 +35,14 @@ function Header() {
           <NavigatorItem onClick={handleClickAIChatButton}>
             AI 진단
           </NavigatorItem>
-          <NavigatorItem onClick={handleClickCommunityButton}>
+          <NavigatorItem onClick={handleClickListButton}>
             커뮤니티
           </NavigatorItem>
           <NavigatorItem>마이페이지</NavigatorItem>
         </NavigatorList>
       </HeaderNavigator>
-      {localStorage.getItem('nickname') ? (
-        <p>{`${localStorage.getItem('nickname')}님 안녕하세요`}</p>
+      {sessionStorage.getItem('name') ? (
+        <p>{`${sessionStorage.getItem('name')}님 안녕하세요`}</p>
       ) : (
         <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
       )}

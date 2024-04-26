@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 function ChatScreen({ chatList }) {
-  console.log(chatList);
+  const messageEndRef = useRef(null);
+
+  useEffect(() => {
+    messageEndRef.current.scrollIntoView();
+  }, [chatList]);
+
   return (
     <ChatScreenWrapper>
       <ChatLogDisplay>
-        {chatList.map((chat) => (
-          <ChatWrapper chatId={chat.id}>
+        {chatList.map((chat, idx) => (
+          <ChatWrapper key={idx} $chatId={chat.id}>
             {chat.id === 1 ? (
               <MyChat>{chat.text}</MyChat>
             ) : (
@@ -15,6 +20,7 @@ function ChatScreen({ chatList }) {
             )}
           </ChatWrapper>
         ))}
+        <div ref={messageEndRef}></div>
       </ChatLogDisplay>
     </ChatScreenWrapper>
   );
@@ -32,20 +38,27 @@ const chatup = keyframes`
 `;
 
 const ChatScreenWrapper = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+
   width: 100%;
   height: calc(100% - 7.5rem);
-
-  position: relative;
+  padding-top: 2rem;
 
   background-color: #ffffff;
 `;
 
 const ChatLogDisplay = styled.div`
-  position: absolute;
-  bottom: 0;
-
   width: 100%;
   padding: 0 5rem;
+
+  overflow-y: auto;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MyChat = styled.div`
@@ -54,18 +67,20 @@ const MyChat = styled.div`
   align-items: center;
 
   width: 30rem;
-  padding: 1.5rem 0;
+  padding: 1.5rem 2rem;
   margin-bottom: 2rem;
 
   border-radius: 1.2rem 1.2rem 0 1.2rem;
 
-  /* background-color: #f1f5f9; */
   background-color: #f1f5f9;
 
   font-size: 1.7rem;
   font-weight: 500;
 
+  word-break: break-all;
   white-space: pre-wrap;
+
+  line-height: 130%;
 `;
 
 const DoctorChat = styled.div`
@@ -74,7 +89,7 @@ const DoctorChat = styled.div`
   align-items: center;
 
   width: 30rem;
-  padding: 1.5rem 0;
+  padding: 1.5rem 2rem;
   margin-bottom: 2rem;
 
   border-radius: 1.2rem 1.2rem 1.2rem 0;
@@ -84,6 +99,7 @@ const DoctorChat = styled.div`
   font-size: 1.7rem;
   font-weight: 500;
 
+  word-break: break-all;
   white-space: pre-wrap;
 
   line-height: 130%;
@@ -94,7 +110,7 @@ const ChatWrapper = styled.div`
 
   display: flex;
   justify-content: ${(props) =>
-    props.chatId === 2 ? 'flex-start' : 'flex-end'};
+    props.$chatId === 2 ? 'flex-start' : 'flex-end'};
 
   width: 100%;
 
