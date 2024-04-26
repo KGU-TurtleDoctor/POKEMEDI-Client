@@ -6,11 +6,11 @@ function PostContainer() {
   return (
     <PostContainerWrapper>
       <PostHeader>
-        <PostTitle>어떤 약을 복용해야 할까요...?</PostTitle>
+        <PostTitle>어떤 약을 복용해야 하숑...?</PostTitle>
         <PostInfo>
           <PostUser>
             <IcUser />
-            <PostUserName>테스트</PostUserName>
+            <PostUserName>이세숑</PostUserName>
           </PostUser>
           <PostDate>
             <IcCalendar />
@@ -19,8 +19,9 @@ function PostContainer() {
         </PostInfo>
       </PostHeader>
       <PostBody>
-        테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
-        테스트테스트테스트테스트테스트테스트
+        오늘 압빠가 만들어준 초밥을 먹엇숑 . 군데 갑자기 배가 슬슬
+        아파오는거숑!!! 쇼옹이한테 문제가 생긴것같숑. 어떤 약을 먹어야 하숑???
+        쇼옹이에게 댓글로 말해주숑. 기다리겟숑
       </PostBody>
     </PostContainerWrapper>
   );
@@ -102,6 +103,18 @@ const PostDateText = styled.p`
 `;
 
 const PostBody = styled.section`
+  width: 90%;
+  padding: 5rem 0;
+
+  font-size: 2rem;
+  font-weight: 400;
+
+  line-height: 140%;
+
+  border-top: 0.1rem solid rgb(211, 211, 211);
+`;
+
+const CommentWrapper = styled.article`
   width: 90%;
   padding: 5rem 0;
 
