@@ -22,12 +22,11 @@ const CommunityDetailPageWrapper = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 100vh;
 `;
 
 const CommunityDetailPageBodyWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 8rem);
   margin-top: 8rem;
   padding: 0 calc((100% - 81.2rem) / 2);
 
