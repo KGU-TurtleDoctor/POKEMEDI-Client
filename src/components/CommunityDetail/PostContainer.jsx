@@ -27,19 +27,19 @@ function PostContainer() {
   return (
     <PostContainerWrapper>
       <PostHeader>
-        <PostTitle>{postData.title}</PostTitle>
+        <PostTitle>{postData?.title}</PostTitle>
         <PostInfo>
           <PostUser>
             <IcUser />
-            <PostUserName>{postData.nickname}</PostUserName>
+            <PostUserName>{postData?.nickname}</PostUserName>
           </PostUser>
           <PostDate>
             <IcCalendar />
-            <PostDateText>{postData.date}</PostDateText>
+            <PostDateText>{postData?.date}</PostDateText>
           </PostDate>
         </PostInfo>
       </PostHeader>
-      <PostBody>{postData.content}</PostBody>
+      <PostBody>{postData?.content}</PostBody>
       <CommentSectionWrapper>
         <CommentCount>{`댓글 ${commentList.length}개`}</CommentCount>
         <CommentListWrapper>
