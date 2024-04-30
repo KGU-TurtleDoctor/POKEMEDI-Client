@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
+import { api } from '../../libs/api';
 import CommentContainer from './CommentContainer';
 
 function PostContainer() {
