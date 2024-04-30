@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import ListItem from '../components/CommunityList/ListItem';
-import axios from 'axios';
 import { api } from '../libs/api';
 import { IcSearch } from '../assets/svg/icon';
 
@@ -11,7 +10,7 @@ function CommunityList() {
   const navigate = useNavigate();
   const [list, setList] = useState([]);
 
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(''); // 1
 
   useEffect(() => {
     api.get('api/community/list', { withCredentials: true }).then((res) => {
@@ -22,9 +21,9 @@ function CommunityList() {
     });
   }, []);
 
-  const handleChangeInput = (e) => {
+  const handleChangeSearchInput = (e) => {
     setSearchText(e.target.value);
-  };
+  }; // 2
 
   const getSearchList = () => {
     api
@@ -56,9 +55,9 @@ function CommunityList() {
             <SearchInput
               type="text"
               placeholder="검색어를 입력하세요."
-              onChange={handleChangeInput}
+              onChange={handleChangeSearchInput}
               value={searchText}
-            />
+            />{' '}
           </SearchBox>
           <WritingBox>
             <WritingButton onClick={handleClickWritingButton}>
