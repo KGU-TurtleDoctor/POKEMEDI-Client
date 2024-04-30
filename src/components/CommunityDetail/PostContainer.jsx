@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
 import CommentContainer from './CommentContainer';
