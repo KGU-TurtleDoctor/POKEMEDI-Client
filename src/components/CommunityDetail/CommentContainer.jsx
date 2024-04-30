@@ -3,42 +3,44 @@ import styled from 'styled-components';
 import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
 import Reply from './Reply';
 
-function CommentContainer() {
+function CommentContainer({ nickName, body, time, isPostWriter, replies }) {
   const [isReplyMode, setIsReplyMode] = useState(false);
 
   const handleClickReplyButton = () => {
     setIsReplyMode(!isReplyMode);
   };
 
-  const replies = [
-    {
-      replyId: 3,
-      body: '첫 답글입니다.',
-      time: '2024.04.16 20:48',
-      nickName: '김태완',
-      isWriter: true,
-      isPostWriter: false,
-    },
-    {
-      replyId: 4,
-      body: '두번째 답글입니다.',
-      time: '2024.04.16 20:48',
-      nickName: '김태완',
-      isWriter: false,
-      isPostWriter: false,
-    },
-  ];
+  // const replies = [
+  //   {
+  //     replyId: 3,
+  //     body: '첫 답글입니다.',
+  //     time: '2024.04.16 20:48',
+  //     nickName: '김태완',
+  //     isWriter: true,
+  //     isPostWriter: false,
+  //   },
+  //   {
+  //     replyId: 4,
+  //     body: '두번째 답글입니다.',
+  //     time: '2024.04.16 20:48',
+  //     nickName: '김태완',
+  //     isWriter: false,
+  //     isPostWriter: false,
+  //   },
+  // ];
 
   return (
     <CommentContainerWrapper>
       <CommentWrapper>
-        <CommentTrashButton>
-          <StyledIcTrashCan />
-        </CommentTrashButton>
-        <CommentWriter>모찌</CommentWriter>
-        <CommentContent>세숑아 괜찮아...?? ㅠㅠㅠ</CommentContent>
+        {isPostWriter && (
+          <CommentTrashButton>
+            <StyledIcTrashCan />
+          </CommentTrashButton>
+        )}
+        <CommentWriter>{nickName}</CommentWriter>
+        <CommentContent>{body}</CommentContent>
         <BottomContainer>
-          <CommentDate>2019. 12. 10</CommentDate>
+          <CommentDate>{time}</CommentDate>
           <ReplyButton onClick={handleClickReplyButton}>
             {isReplyMode ? '취소' : '답글 달기'}
           </ReplyButton>

@@ -3,33 +3,58 @@ import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
 import CommentContainer from './CommentContainer';
 
-const commentList = [
+const data = [
   {
     commentId: 12,
     nickName: '김태완',
     body: '새로 작성한 댓글입니다.',
     time: '2024.04.16 20:45',
+    isWriter: true,
+    isPostWriter: true,
     replies: [
       {
         replyId: 3,
         body: '첫 답글입니다.',
         time: '2024.04.16 20:48',
         nickName: '김태완',
+        isWriter: true,
+        isPostWriter: false,
       },
       {
         replyId: 4,
         body: '두번째 답글입니다.',
         time: '2024.04.16 20:48',
         nickName: '김태완',
+        isWriter: false,
+        isPostWriter: false,
       },
     ],
   },
   {
     commentId: 13,
     nickName: '김태완',
-    body: '두번째 작성한 댓글입니다.',
-    time: '2024.04.16 20:46',
-    replies: [],
+    body: '새로 작성한 댓글입니다.',
+    time: '2024.04.16 20:45',
+    isWriter: true,
+    isPostWriter: true,
+    replies: [
+      {
+        replyId: 5,
+        body: '첫 답글입니다.',
+        time: '2024.04.16 20:48',
+        nickName: '김태완',
+        isWriter: true,
+        isPostWriter: false,
+      },
+      {
+        replyId: 6,
+        body: '두번째 답글입니다.',
+        time: '2024.04.16 20:48',
+        nickName: '김태완',
+        isWriter: false,
+        isPostWriter: false,
+      },
+    ],
   },
 ];
 
@@ -55,9 +80,11 @@ function PostContainer() {
         쇼옹이에게 댓글로 말해주숑. 기다리겟숑
       </PostBody>
       <CommentSectionWrapper>
-        <CommentCount>{`댓글 ${commentList.length}개`}</CommentCount>
+        <CommentCount>{`댓글 ${data.length}개`}</CommentCount>
         <CommentListWrapper>
-          <CommentContainer />
+          {data.map((comment) => (
+            <CommentContainer key={comment.length} {...comment} />
+          ))}
         </CommentListWrapper>
       </CommentSectionWrapper>
     </PostContainerWrapper>
