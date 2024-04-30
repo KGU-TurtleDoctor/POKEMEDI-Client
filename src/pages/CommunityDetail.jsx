@@ -1,31 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IcCalendar, IcUser } from '../assets/svg/icon';
+import { IcSendBlack } from '../assets/svg/icon';
 import Header from '../components/Common/Header';
+import PostContainer from '../components/CommunityDetail/PostContainer';
 
 function CommunityDetail() {
   return (
     <CommunityDetailPageWrapper>
       <Header />
       <CommunityDetailPageBodyWrapper>
-        <PostHeader>
-          <PostTitle>어떤 약을 복용해야 할까요...?</PostTitle>
-          <PostInfo>
-            <PostUser>
-              <IcUser />
-              <PostUserName>테스트</PostUserName>
-            </PostUser>
-            <PostDate>
-              <IcCalendar />
-              <PostDateText>2024. 03. 14</PostDateText>
-            </PostDate>
-          </PostInfo>
-        </PostHeader>
-        <PostBody>
-          테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
-          테스트테스트테스트테스트테스트테스트
-        </PostBody>
+        <PostContainer />
       </CommunityDetailPageBodyWrapper>
+      <CommentInputContainer>
+        <CommentInputWrapper>
+          <CommentInput placeholder="댓글을 입력해주세요" />
+          <CommentSendButton>
+            <IcSendBlack />
+          </CommentSendButton>
+        </CommentInputWrapper>
+      </CommentInputContainer>
     </CommunityDetailPageWrapper>
   );
 }
@@ -38,91 +31,56 @@ const CommunityDetailPageWrapper = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 100vh;
-  background-color: #f1f5f9;
 `;
 
 const CommunityDetailPageBodyWrapper = styled.div`
+  width: 100%;
+  min-height: calc(100vh - 8rem);
+  margin-top: 8rem;
+  padding: 0 calc((100% - 81.2rem) / 2);
+
+  background-color: #f1f5f9;
+`;
+
+const CommentInputContainer = styled.section`
+  position: fixed;
+  bottom: 0;
+
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 
-  width: calc(100% - 70rem);
-  height: 100vh;
+  width: 81.2rem;
+  height: 7rem;
+
+  background-color: #04293f;
+`;
+
+const CommentInputWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 90%;
+  height: 5rem;
+  padding: 0 1rem 0 2rem;
+
+  border-radius: 0.8rem;
 
   background-color: #ffffff;
 `;
 
-const PostHeader = styled.div`
+const CommentInput = styled.input`
   width: 90%;
-  padding: 17rem 0 2rem 0;
+  height: 100%;
 
-  /* border-bottom: 0.1rem solid rgb(211, 211, 211); */
+  font-size: 1.5rem;
 
-  /* border: 1px solid red; */
+  border: none;
 `;
 
-const PostTitle = styled.h1`
-  font-size: 4rem;
-  font-weight: 600;
-
-  /* border: 1px solid green; */
-`;
-
-const PostInfo = styled.div`
-  display: flex;
-  column-gap: 3rem;
-
-  margin-top: 2.5rem;
-  /* padding-left: 1rem; */
-  /* border: 1px solid green; */
-`;
-
-const PostUser = styled.div`
-  display: flex;
-  align-items: center;
-  column-gap: 1rem;
-`;
-
-const PostUserName = styled.p`
-  padding-top: 0.2rem;
-
-  color: #8898a7;
-
-  font-size: 1.8rem;
-  font-weight: 400;
-`;
-
-const PostDate = styled.p`
-  display: flex;
-  align-items: center;
-  column-gap: 1rem;
-
-  padding-bottom: 0.2rem;
-
-  color: #8898a7;
-
-  font-size: 1.8rem;
-  font-weight: 400;
-`;
-
-const PostDateText = styled.p`
-  padding-top: 0.4rem;
-
-  color: #8898a7;
-
-  font-size: 1.8rem;
-  font-weight: 400;
-`;
-
-const PostBody = styled.section`
-  width: 90%;
-  padding: 5rem 0;
-
-  font-size: 2rem;
-  font-weight: 400;
-
-  line-height: 140%;
-
-  border-top: 0.1rem solid rgb(211, 211, 211);
+const CommentSendButton = styled.button`
+  width: 4rem;
+  height: 4rem;
+  padding-top: 0.3rem;
 `;
