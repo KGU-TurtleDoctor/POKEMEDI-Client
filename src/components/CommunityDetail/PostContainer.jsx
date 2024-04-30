@@ -12,10 +12,7 @@ function PostContainer() {
     api
       .get('/api/community/detail/8', { withCredentials: true })
       .then((res) => {
-        console.log(res);
-        if (postData) {
-          setPostData(postData);
-        }
+        setPostData(res.data.result);
       });
     api
       .get('/api/community/posts/8/comments', { withCredentials: true })
@@ -30,23 +27,19 @@ function PostContainer() {
   return (
     <PostContainerWrapper>
       <PostHeader>
-        <PostTitle>어떤 약을 복용해야 하숑...?</PostTitle>
+        <PostTitle>{postData.title}</PostTitle>
         <PostInfo>
           <PostUser>
             <IcUser />
-            <PostUserName>이세숑</PostUserName>
+            <PostUserName>{postData.nickname}</PostUserName>
           </PostUser>
           <PostDate>
             <IcCalendar />
-            <PostDateText>2024. 03. 14</PostDateText>
+            <PostDateText>{postData.date}</PostDateText>
           </PostDate>
         </PostInfo>
       </PostHeader>
-      <PostBody>
-        오늘 압빠가 만들어준 초밥을 먹엇숑 . 군데 갑자기 배가 슬슬
-        아파오는거숑!!! 쇼옹이한테 문제가 생긴것같숑. 어떤 약을 먹어야 하숑???
-        쇼옹이에게 댓글로 말해주숑. 기다리겟숑
-      </PostBody>
+      <PostBody>{postData.content}</PostBody>
       <CommentSectionWrapper>
         <CommentCount>{`댓글 ${commentList.length}개`}</CommentCount>
         <CommentListWrapper>
