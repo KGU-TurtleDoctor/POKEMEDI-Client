@@ -8,6 +8,8 @@ import PostContainer from '../components/CommunityDetail/PostContainer';
 function CommunityDetail() {
   const { id } = useParams();
 
+  console.log(id);
+
   return (
     <CommunityDetailPageWrapper>
       <Header />
