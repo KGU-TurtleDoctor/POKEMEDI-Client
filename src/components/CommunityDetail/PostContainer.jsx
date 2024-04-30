@@ -15,7 +15,7 @@ function PostContainer() {
           setCommentList(res.data.result);
         }
       });
-  });
+  }, []);
 
   return (
     <PostContainerWrapper>
