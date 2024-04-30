@@ -38,10 +38,10 @@ function PostContainer() {
         쇼옹이에게 댓글로 말해주숑. 기다리겟숑
       </PostBody>
       <CommentSectionWrapper>
-        <CommentCount>{`댓글 ${data.length}개`}</CommentCount>
+        <CommentCount>{`댓글 ${commentList.length}개`}</CommentCount>
         <CommentListWrapper>
           {commentList.map((comment) => (
-            <CommentContainer key={comment.length} {...comment} />
+            <CommentContainer key={comment.commentId} {...comment} />
           ))}
         </CommentListWrapper>
       </CommentSectionWrapper>
