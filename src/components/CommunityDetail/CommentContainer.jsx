@@ -10,25 +10,6 @@ function CommentContainer({ nickName, body, time, isPostWriter, replies }) {
     setIsReplyMode(!isReplyMode);
   };
 
-  // const replies = [
-  //   {
-  //     replyId: 3,
-  //     body: '첫 답글입니다.',
-  //     time: '2024.04.16 20:48',
-  //     nickName: '김태완',
-  //     isWriter: true,
-  //     isPostWriter: false,
-  //   },
-  //   {
-  //     replyId: 4,
-  //     body: '두번째 답글입니다.',
-  //     time: '2024.04.16 20:48',
-  //     nickName: '김태완',
-  //     isWriter: false,
-  //     isPostWriter: false,
-  //   },
-  // ];
-
   return (
     <CommentContainerWrapper>
       <CommentWrapper>

@@ -1,64 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
+import { api } from '../../libs/api';
 import CommentContainer from './CommentContainer';
 
-const data = [
-  {
-    commentId: 12,
-    nickName: '김태완',
-    body: '새로 작성한 댓글입니다.',
-    time: '2024.04.16 20:45',
-    isWriter: true,
-    isPostWriter: true,
-    replies: [
-      {
-        replyId: 3,
-        body: '첫 답글입니다.',
-        time: '2024.04.16 20:48',
-        nickName: '김태완',
-        isWriter: true,
-        isPostWriter: false,
-      },
-      {
-        replyId: 4,
-        body: '두번째 답글입니다.',
-        time: '2024.04.16 20:48',
-        nickName: '김태완',
-        isWriter: false,
-        isPostWriter: false,
-      },
-    ],
-  },
-  {
-    commentId: 13,
-    nickName: '김태완',
-    body: '새로 작성한 댓글입니다.',
-    time: '2024.04.16 20:45',
-    isWriter: true,
-    isPostWriter: true,
-    replies: [
-      {
-        replyId: 5,
-        body: '첫 답글입니다.',
-        time: '2024.04.16 20:48',
-        nickName: '김태완',
-        isWriter: true,
-        isPostWriter: false,
-      },
-      {
-        replyId: 6,
-        body: '두번째 답글입니다.',
-        time: '2024.04.16 20:48',
-        nickName: '김태완',
-        isWriter: false,
-        isPostWriter: false,
-      },
-    ],
-  },
-];
-
 function PostContainer() {
+  const [commentList, setCommentList] = useState([]);
+
+  useEffect(() => {
+    api
+      .get('/api/community/posts/8/comments', { withCredentials: true })
+      .then((res) => {
+        if (Array.isArray(res.data.result)) {
+          setCommentList(res.data.result);
+        }
+      });
+  });
+
   return (
     <PostContainerWrapper>
       <PostHeader>
@@ -82,7 +40,7 @@ function PostContainer() {
       <CommentSectionWrapper>
         <CommentCount>{`댓글 ${data.length}개`}</CommentCount>
         <CommentListWrapper>
-          {data.map((comment) => (
+          {commentList.map((comment) => (
             <CommentContainer key={comment.length} {...comment} />
           ))}
         </CommentListWrapper>
