@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
-import { api } from '../../libs/api';
 import CommentContainer from './CommentContainer';
 
 function PostContainer() {
@@ -11,6 +10,7 @@ function PostContainer() {
     api
       .get('/api/community/posts/8/comments', { withCredentials: true })
       .then((res) => {
+        console.log(res);
         if (Array.isArray(res.data.result)) {
           setCommentList(res.data.result);
         }
