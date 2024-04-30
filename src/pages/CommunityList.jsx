@@ -10,7 +10,7 @@ function CommunityList() {
   const navigate = useNavigate();
   const [list, setList] = useState([]);
 
-  const [searchText, setSearchText] = useState(''); // 1
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     api.get('api/community/list', { withCredentials: true }).then((res) => {
@@ -23,7 +23,7 @@ function CommunityList() {
 
   const handleChangeSearchInput = (e) => {
     setSearchText(e.target.value);
-  }; // 2
+  };
 
   const getSearchList = () => {
     api
