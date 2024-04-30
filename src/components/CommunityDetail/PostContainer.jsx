@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
   IcCalendar,
   IcSendBlack,
+  IcTrashCan,
   IcTurnUp,
   IcUser,
 } from '../../assets/svg/icon';
@@ -69,6 +70,9 @@ function PostContainer() {
         <CommentListWrapper>
           <Comment>
             <CommentWrapper>
+              <CommentTrashButton>
+                <StyledIcTrashCan />
+              </CommentTrashButton>
               <CommentWriter>모찌</CommentWriter>
               <CommentContent>세숑아 괜찮아...?? ㅠㅠㅠ</CommentContent>
               <BottomContainer>
@@ -93,6 +97,9 @@ function PostContainer() {
               <ReplyContainer>
                 <IcTurnRight />
                 <ReplyWrapper>
+                  <ReplyTrashButton>
+                    <StyledIcTrashCan />
+                  </ReplyTrashButton>
                   <ReplyWriter>쭈카</ReplyWriter>
                   <ReplyContent>랑곰이 말이 마댜</ReplyContent>
                   <ReplyDate>2019. 12. 10</ReplyDate>
@@ -110,7 +117,7 @@ function PostContainer() {
                 <IcTurnRight />
                 <ReplyWrapper>
                   <ReplyWriter>숑맘</ReplyWriter>
-                  <ReplyContent></ReplyContent>
+                  <ReplyContent>세숑아 압빠가 잘못해따 구치!!!</ReplyContent>
                   <ReplyDate>2019. 12. 10</ReplyDate>
                 </ReplyWrapper>
               </ReplyContainer>
@@ -118,7 +125,9 @@ function PostContainer() {
                 <IcTurnRight />
                 <ReplyWrapper>
                   <ReplyWriter>숑빠</ReplyWriter>
-                  <ReplyContent></ReplyContent>
+                  <ReplyContent>
+                    누우가 그래쑝!!! 우리 쇼옹이한테엑!!!!
+                  </ReplyContent>
                   <ReplyDate>2019. 12. 10</ReplyDate>
                 </ReplyWrapper>
               </ReplyContainer>
@@ -218,10 +227,10 @@ const PostBody = styled.section`
   /* min-height: 40rem; */
   padding: 5rem 1rem;
 
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 400;
 
-  line-height: 140%;
+  line-height: 150%;
 
   border-top: 0.1rem solid rgb(211, 211, 211);
   border-bottom: 0.1rem solid rgb(211, 211, 211);
@@ -254,11 +263,26 @@ const CommentWrapper = styled.li`
   justify-content: center;
   row-gap: 1.2rem;
 
+  position: relative;
+
   width: 100%;
   padding: 2.5rem 2rem 2rem 2rem;
 
   border-radius: 1rem;
   background-color: #f1f5f9;
+`;
+
+const CommentTrashButton = styled.button`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  width: 1.8rem;
+  height: 1.8rem;
+`;
+
+const StyledIcTrashCan = styled(IcTrashCan)`
+  fill: #04293f;
 `;
 
 const CommentWriter = styled.h3`
@@ -322,12 +346,23 @@ const ReplyWrapper = styled.li`
   justify-content: center;
   row-gap: 1.2rem;
 
+  position: relative;
+
   width: 85%;
 
   padding: 2rem 2rem 1.5rem 2rem;
 
   border-radius: 1rem;
   background-color: #f1f5f9;
+`;
+
+const ReplyTrashButton = styled.button`
+  position: absolute;
+  top: 1.7rem;
+  right: 1.7rem;
+
+  width: 1.5rem;
+  height: 1.5rem;
 `;
 
 const ReplyWriter = styled.h3`
