@@ -6,8 +6,17 @@ import CommentContainer from './CommentContainer';
 
 function PostContainer() {
   const [commentList, setCommentList] = useState([]);
+  const [postData, setPostData] = useState();
 
   useEffect(() => {
+    api
+      .get('/api/community/detail/8', { withCredentials: true })
+      .then((res) => {
+        console.log(res);
+        if (postData) {
+          setPostData(postData);
+        }
+      });
     api
       .get('/api/community/posts/8/comments', { withCredentials: true })
       .then((res) => {
