@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { IcSearch } from '../assets/svg/icon';
 import Header from '../components/Common/Header';
 import ListItem from '../components/CommunityList/ListItem';
-import axios from 'axios';
 import { api } from '../libs/api';
-import { IcSearch } from '../assets/svg/icon';
 
 function CommunityList() {
   const navigate = useNavigate();

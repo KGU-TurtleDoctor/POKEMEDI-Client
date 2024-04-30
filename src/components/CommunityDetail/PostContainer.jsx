@@ -8,14 +8,14 @@ function PostContainer() {
   const [commentList, setCommentList] = useState([]);
   const [postData, setPostData] = useState();
 
-  useEffect(() => {
+  useEffect(({ postId }) => {
     api
-      .get('/api/community/detail/8', { withCredentials: true })
+      .get(`/api/community/detail/${postId}`, { withCredentials: true })
       .then((res) => {
         setPostData(res.data.result);
       });
     api
-      .get('/api/community/posts/8/comments', { withCredentials: true })
+      .get(`/api/community/posts/${postId}/comments`, { withCredentials: true })
       .then((res) => {
         console.log(res);
         if (Array.isArray(res.data.result)) {

@@ -1,15 +1,18 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcSendBlack } from '../assets/svg/icon';
 import Header from '../components/Common/Header';
 import PostContainer from '../components/CommunityDetail/PostContainer';
 
 function CommunityDetail() {
+  const { id } = useParams();
+
   return (
     <CommunityDetailPageWrapper>
       <Header />
       <CommunityDetailPageBodyWrapper>
-        <PostContainer />
+        <PostContainer postId={id} />
       </CommunityDetailPageBodyWrapper>
       <CommentInputContainer>
         <CommentInputWrapper>
