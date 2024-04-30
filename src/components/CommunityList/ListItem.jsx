@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function ListItem({ postId, title, content, nickname, date }) {
+function ListItem({ id, title, content, nickname, date }) {
   const navigate = useNavigate();
 
   const handleClickListItem = () => {
-    navigate(`/community/post/${postId}`);
+    navigate(`/community/post/${id}`);
   };
 
   return (

@@ -4,7 +4,7 @@ import { IcCalendar, IcUser } from '../../assets/svg/icon';
 import { api } from '../../libs/api';
 import CommentContainer from './CommentContainer';
 
-function PostContainer() {
+function PostContainer({ postId }) {
   const [commentList, setCommentList] = useState([]);
   const [postData, setPostData] = useState();
 
