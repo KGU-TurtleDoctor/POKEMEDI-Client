@@ -8,7 +8,7 @@ function PostContainer({ postId }) {
   const [commentList, setCommentList] = useState([]);
   const [postData, setPostData] = useState();
 
-  useEffect(({ postId }) => {
+  useEffect(() => {
     api
       .get(`/api/community/detail/${postId}`, { withCredentials: true })
       .then((res) => {
