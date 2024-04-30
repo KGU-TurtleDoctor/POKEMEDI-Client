@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
-import ReplyList from './ReplyList';
+import Reply from './Reply';
 
 function CommentContainer() {
   const [isReplyMode, setIsReplyMode] = useState(false);
@@ -9,6 +9,25 @@ function CommentContainer() {
   const handleClickReplyButton = () => {
     setIsReplyMode(!isReplyMode);
   };
+
+  const replies = [
+    {
+      replyId: 3,
+      body: '첫 답글입니다.',
+      time: '2024.04.16 20:48',
+      nickName: '김태완',
+      isWriter: true,
+      isPostWriter: false,
+    },
+    {
+      replyId: 4,
+      body: '두번째 답글입니다.',
+      time: '2024.04.16 20:48',
+      nickName: '김태완',
+      isWriter: false,
+      isPostWriter: false,
+    },
+  ];
 
   return (
     <CommentContainerWrapper>
@@ -35,7 +54,11 @@ function CommentContainer() {
           </ReplyInputWrapper>
         </ReplyInputContainer>
       )}
-      <ReplyList />
+      <ReplyListWrapper>
+        {replies.map((reply) => (
+          <Reply key={reply.replyId} {...reply} />
+        ))}
+      </ReplyListWrapper>
     </CommentContainerWrapper>
   );
 }
@@ -136,3 +159,12 @@ const ReplySendButton = styled.button`
 `;
 
 export default CommentContainer;
+
+const ReplyListWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2rem;
+
+  width: 100%;
+  margin-top: 2rem;
+`;
