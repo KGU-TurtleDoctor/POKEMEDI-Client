@@ -82,6 +82,16 @@ function PostContainer() {
                 </ReplyButton>
               </BottomContainer>
             </CommentWrapper>
+            {isReplyMode && (
+              <ReplyInputContainer>
+                <ReplyInputWrapper>
+                  <ReplyInput placeholder="답글을 입력해주세요" />
+                  <ReplySendButton>
+                    <IcSendBlack />
+                  </ReplySendButton>
+                </ReplyInputWrapper>
+              </ReplyInputContainer>
+            )}
             <ReplyListWrapper>
               <ReplyContainer>
                 <IcTurnRight />
@@ -132,14 +142,6 @@ function PostContainer() {
                 </ReplyWrapper>
               </ReplyContainer>
             </ReplyListWrapper>
-            {isReplyMode && (
-              <ReplyInputWrapper>
-                <ReplyInput placeholder="답글을 입력해주세요" />
-                <SendButton>
-                  <IcSendBlack />
-                </SendButton>
-              </ReplyInputWrapper>
-            )}
           </Comment>
         </CommentListWrapper>
       </CommentSectionWrapper>
@@ -385,15 +387,22 @@ const ReplyDate = styled.p`
   font-size: 1.2rem;
 `;
 
+const ReplyInputContainer = styled.section`
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+  margin-top: 3rem;
+`;
+
 const ReplyInputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  width: 100%;
+  width: 85%;
   height: 5rem;
   padding: 0 1rem 0 2rem;
-  margin-top: 3rem;
 
   border: 0.1rem solid black;
   border-radius: 0.8rem;
@@ -408,7 +417,7 @@ const ReplyInput = styled.input`
   border: none;
 `;
 
-const SendButton = styled.button`
+const ReplySendButton = styled.button`
   width: 4rem;
   height: 4rem;
   padding-top: 0.3rem;
