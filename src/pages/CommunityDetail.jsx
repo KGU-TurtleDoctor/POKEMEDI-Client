@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcSendBlack } from '../assets/svg/icon';
@@ -8,6 +8,7 @@ import { api } from '../libs/api';
 
 function CommunityDetail() {
   const { postId } = useParams();
+  const commentEndRef = useRef(null);
 
   const [commentList, setCommentList] = useState([]);
   const [postData, setPostData] = useState();
@@ -43,7 +44,7 @@ function CommunityDetail() {
           },
           { withCredentials: true },
         )
-        .then(() =>
+        .then(() => {
           api
             .get(`/api/community/posts/${postId}/comments`, {
               withCredentials: true,
@@ -52,8 +53,9 @@ function CommunityDetail() {
               if (Array.isArray(res.data.result)) {
                 setCommentList(res.data.result);
               }
-            }),
-        );
+            });
+          commentEndRef.current.scrollIntoView();
+        });
     }
   };
 
@@ -62,6 +64,7 @@ function CommunityDetail() {
       <Header />
       <CommunityDetailPageBodyWrapper>
         <PostContainer commentList={commentList} postData={postData} />
+        <div ref={commentEndRef}></div>
       </CommunityDetailPageBodyWrapper>
       <CommentInputContainer>
         <CommentInputWrapper>
