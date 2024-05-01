@@ -52,9 +52,9 @@ function CommunityDetail() {
             .then((res) => {
               if (Array.isArray(res.data.result)) {
                 setCommentList(res.data.result);
+                commentEndRef.current.scrollIntoView();
               }
             });
-          commentEndRef.current.scrollIntoView();
           setCommentText('');
         });
     }
