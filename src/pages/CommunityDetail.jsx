@@ -1,23 +1,76 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcSendBlack } from '../assets/svg/icon';
 import Header from '../components/Common/Header';
 import PostContainer from '../components/CommunityDetail/PostContainer';
+import { api } from '../libs/api';
 
 function CommunityDetail() {
-  const { id } = useParams();
+  const { postId } = useParams();
+
+  const [commentList, setCommentList] = useState([]);
+  const [postData, setPostData] = useState();
+  const [commentText, setCommentText] = useState('');
+
+  useEffect(() => {
+    api
+      .get(`/api/community/detail/${postId}`, { withCredentials: true })
+      .then((res) => {
+        setPostData(res.data.result);
+      });
+
+    api
+      .get(`/api/community/posts/${postId}/comments`, { withCredentials: true })
+      .then((res) => {
+        if (Array.isArray(res.data.result)) {
+          setCommentList(res.data.result);
+        }
+      });
+  }, []);
+
+  const handleChangeCommentInput = (e) => {
+    setCommentText(e.target.value);
+  };
+
+  const handleClickCommentSendButton = () => {
+    if (commentText.length !== 0) {
+      api
+        .post(
+          `/api/community/posts/${postId}/comments`,
+          {
+            body: commentText,
+          },
+          { withCredentials: true },
+        )
+        .then(() =>
+          api
+            .get(`/api/community/posts/${postId}/comments`, {
+              withCredentials: true,
+            })
+            .then((res) => {
+              if (Array.isArray(res.data.result)) {
+                setCommentList(res.data.result);
+              }
+            }),
+        );
+    }
+  };
 
   return (
     <CommunityDetailPageWrapper>
       <Header />
       <CommunityDetailPageBodyWrapper>
-        <PostContainer postId={id} />
+        <PostContainer commentList={commentList} postData={postData} />
       </CommunityDetailPageBodyWrapper>
       <CommentInputContainer>
         <CommentInputWrapper>
-          <CommentInput placeholder="댓글을 입력해주세요" />
-          <CommentSendButton>
+          <CommentInput
+            placeholder="댓글을 입력해주세요"
+            onChange={handleChangeCommentInput}
+            value={commentText}
+          />
+          <CommentSendButton onClick={handleClickCommentSendButton}>
             <IcSendBlack />
           </CommentSendButton>
         </CommentInputWrapper>

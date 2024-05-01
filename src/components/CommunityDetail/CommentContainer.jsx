@@ -4,11 +4,18 @@ import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
 import Reply from './Reply';
 
 function CommentContainer({ nickName, body, time, isPostWriter, replies }) {
+  const [replyText, setReplyText] = useState('');
   const [isReplyMode, setIsReplyMode] = useState(false);
+
+  const handleChangeReplyInput = (e) => {
+    setReplyText(e.target.value);
+  };
 
   const handleClickReplyButton = () => {
     setIsReplyMode(!isReplyMode);
   };
+
+  const handleClickReplySendButton = () => {};
 
   return (
     <CommentContainerWrapper>
@@ -30,8 +37,12 @@ function CommentContainer({ nickName, body, time, isPostWriter, replies }) {
       {isReplyMode && (
         <ReplyInputContainer>
           <ReplyInputWrapper>
-            <ReplyInput placeholder="답글을 입력해주세요" />
-            <ReplySendButton>
+            <ReplyInput
+              placeholder="답글을 입력해주세요"
+              onChange={handleChangeReplyInput}
+              value={replyText}
+            />
+            <ReplySendButton onClick={handleClickReplySendButton}>
               <IcSendBlack />
             </ReplySendButton>
           </ReplyInputWrapper>

@@ -1,29 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
-import { api } from '../../libs/api';
 import CommentContainer from './CommentContainer';
 
-function PostContainer({ postId }) {
-  const [commentList, setCommentList] = useState([]);
-  const [postData, setPostData] = useState();
-
-  useEffect(() => {
-    api
-      .get(`/api/community/detail/${postId}`, { withCredentials: true })
-      .then((res) => {
-        setPostData(res.data.result);
-      });
-    api
-      .get(`/api/community/posts/${postId}/comments`, { withCredentials: true })
-      .then((res) => {
-        console.log(res);
-        if (Array.isArray(res.data.result)) {
-          setCommentList(res.data.result);
-        }
-      });
-  }, []);
-
+function PostContainer({ commentList, postData }) {
   return (
     <PostContainerWrapper>
       <PostHeader>
