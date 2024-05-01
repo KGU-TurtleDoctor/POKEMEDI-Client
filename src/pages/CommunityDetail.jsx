@@ -55,6 +55,7 @@ function CommunityDetail() {
               }
             });
           commentEndRef.current.scrollIntoView();
+          setCommentText('');
         });
     }
   };
