@@ -13,6 +13,7 @@ function CommunityDetail() {
   const [commentList, setCommentList] = useState([]);
   const [postData, setPostData] = useState();
   const [commentText, setCommentText] = useState('');
+  const [prevCommentCount, setPrevCommentCount] = useState(0);
 
   useEffect(() => {
     api
@@ -26,9 +27,19 @@ function CommunityDetail() {
       .then((res) => {
         if (Array.isArray(res.data.result)) {
           setCommentList(res.data.result);
+          setPrevCommentCount(res.data.result.length);
         }
       });
   }, []);
+
+  useEffect(() => {
+    if (commentList.length > prevCommentCount) {
+      if (commentEndRef.current) {
+        commentEndRef.current.scrollIntoView();
+      }
+    }
+    setPrevCommentCount(commentList.length);
+  }, [commentList]);
 
   const handleChangeCommentInput = (e) => {
     setCommentText(e.target.value);
