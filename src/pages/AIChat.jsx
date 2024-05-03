@@ -93,6 +93,7 @@ const ChattingInput = styled.input`
 
   font-size: 1.875rem;
   font-weight: 500;
+  line-height: 2rem;
 
   border: 0.1rem solid rgb(211, 211, 211);
   border-radius: 1rem;

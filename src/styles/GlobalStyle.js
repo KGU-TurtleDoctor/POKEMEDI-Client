@@ -31,8 +31,13 @@ const GlobalStyle = createGlobalStyle`
         margin: 0 auto;
 
         font-size: 62.5%;
-    }
 
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none;    }
+    
+    body::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+    }
     input {
         outline: none;
     }
