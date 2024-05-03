@@ -95,12 +95,14 @@ function CommentContainer({
         <CommentContent>{body}</CommentContent>
         <BottomContainer>
           <CommentDate>{time}</CommentDate>
-          <ReplyButton onClick={handleClickReplyButton}>
-            {isReplyMode ? '취소' : '답글 달기'}
-          </ReplyButton>
+          {replies.length !== 0 && (
+            <ReplyButton onClick={handleClickReplyButton}>
+              {isReplyMode ? '닫기' : '답글 열기'}
+            </ReplyButton>
+          )}
         </BottomContainer>
       </CommentWrapper>
-      {isReplyMode && (
+      {/* {isReplyMode && (
         <ReplyInputContainer>
           <ReplyInputWrapper>
             <ReplyInput
@@ -113,13 +115,26 @@ function CommentContainer({
             </ReplySendButton>
           </ReplyInputWrapper>
         </ReplyInputContainer>
+      )} */}
+      {isReplyMode && (
+        <ReplyListWrapper $isReplyMode={isReplyMode}>
+          {replies.map((reply) => (
+            <Reply key={reply.replyId} {...reply} />
+          ))}
+          <ReplyInputContainer>
+            <ReplyInputWrapper>
+              <ReplyInput
+                placeholder="답글을 입력해주세요"
+                onChange={handleChangeReplyInput}
+                value={replyText}
+              />
+              <ReplySendButton onClick={handleClickReplySendButton}>
+                <IcSendBlack />
+              </ReplySendButton>
+            </ReplyInputWrapper>
+          </ReplyInputContainer>
+        </ReplyListWrapper>
       )}
-      <ReplyListWrapper $repliesLength={replies.length}>
-        {replies.map((reply) => (
-          <Reply key={reply.replyId} {...reply} />
-        ))}
-      </ReplyListWrapper>
-      {/* <div ref={replyEndRef}></div> */}
     </CommentContainerWrapper>
   );
 }
@@ -190,7 +205,7 @@ const ReplyInputContainer = styled.section`
   justify-content: flex-end;
 
   width: 100%;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 `;
 
 const ReplyInputWrapper = styled.div`
