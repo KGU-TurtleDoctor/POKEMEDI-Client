@@ -230,6 +230,6 @@ const ReplyListWrapper = styled.ul`
 
   width: 100%;
   margin-top: ${({ $repliesLength }) => {
-    $repliesLength !== 0 && '2rem';
+    $repliesLength !== 0 ? '2rem' : '0';
   }};
 `;
