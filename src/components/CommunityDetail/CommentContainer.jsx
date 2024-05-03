@@ -82,11 +82,13 @@ function CommentContainer({
         <CommentContent>{body}</CommentContent>
         <BottomContainer>
           <CommentDate>{time}</CommentDate>
-          {replies.length !== 0 && (
-            <ReplyButton onClick={handleClickReplyButton}>
-              {isReplyMode ? '닫기' : '답글 열기'}
-            </ReplyButton>
-          )}
+          <ReplyButton onClick={handleClickReplyButton}>
+            {isReplyMode
+              ? '닫기'
+              : replies.length !== 0
+              ? '답글 열기'
+              : '새 답글 달기'}
+          </ReplyButton>
         </BottomContainer>
       </CommentWrapper>
       {isReplyMode && (
