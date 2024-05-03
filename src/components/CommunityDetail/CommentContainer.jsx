@@ -229,5 +229,7 @@ const ReplyListWrapper = styled.ul`
   row-gap: 1.2rem;
 
   width: 100%;
-  margin-top: ${({ $replyLength }) => $replyLength !== 0 && '2rem'};
+  margin-top: ${({ $repliesLength }) => {
+    $repliesLength !== 0 && '2rem';
+  }};
 `;
