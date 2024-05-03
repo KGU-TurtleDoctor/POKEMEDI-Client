@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
 import Reply from './Reply';
 
-function CommentContainer({ nickName, body, time, isPostWriter, replies }) {
+function CommentContainer({ nickName, body, time, isWriter, replies }) {
   const [replyText, setReplyText] = useState('');
   const [isReplyMode, setIsReplyMode] = useState(false);
 
@@ -20,7 +20,7 @@ function CommentContainer({ nickName, body, time, isPostWriter, replies }) {
   return (
     <CommentContainerWrapper>
       <CommentWrapper>
-        {isPostWriter && (
+        {isWriter && (
           <CommentTrashButton>
             <StyledIcTrashCan />
           </CommentTrashButton>
