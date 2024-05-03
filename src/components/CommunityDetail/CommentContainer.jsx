@@ -61,6 +61,7 @@ function CommentContainer({
               }
             });
           setReplyText('');
+          isReplyMode(false);
         });
     }
   };
