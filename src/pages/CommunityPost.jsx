@@ -10,6 +10,23 @@ function CommunityPost() {
 
   const [isSatisfied, setIsSatisfied] = useState(false);
 
+  const handleClickWritingDoneButton = () => {
+    if (isSatisfied) {
+      api
+        .post(
+          'api/community/create',
+          {
+            title: TitleWriting,
+            body: PostWriting,
+          },
+          { withCredentials: true },
+        )
+        .then(() => {
+          navigate('/community-list');
+        });
+    }
+  };
+
   const handleChangeTitleInput = (e) => {
     setTitleWriting(e.target.value);
   };
@@ -42,11 +59,6 @@ function CommunityPost() {
     }
   }, [TitleWriting, PostWriting]);
 
-  const handleClickWritingDoneButton = () => {
-    if (isSatisfied) {
-      navigate('/community-list');
-    }
-  };
   return (
     <CommunityPostWrapper>
       <Header />
@@ -103,17 +115,16 @@ const CommunityPostWrapper = styled.div`
 
 const CommunityPostBodyWrapper = styled.div`
   width: 100%;
-
-  padding: 0 37.5rem;
+  min-height: calc(100vh - 8rem);
+  padding: 0 calc((100% - 81.2rem) / 2);
   margin-top: 8rem;
 
   background-color: #f1f5f9;
 `;
 
 const CommunityPostBoxWrapper = styled.div`
-  width: calc(100vw - 75rem);
-  min-height: calc(100vh - 8rem);
-  padding: 8rem 18rem 8rem 18rem;
+  width: 81.2rem;
+  padding: 8rem 10rem;
 
   background-color: white;
   font-size: 2rem;
