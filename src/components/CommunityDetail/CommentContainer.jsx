@@ -16,19 +16,8 @@ function CommentContainer({
 }) {
   const [replyText, setReplyText] = useState('');
   const [isReplyMode, setIsReplyMode] = useState(false);
-  // const [prevReplyCount, setPrevReplyCount] = useState(0);
-  // const replyEndRef = useRef(null);
 
   const { postId } = useParams();
-
-  // useEffect(() => {
-  //   if (replies.length > prevReplyCount) {
-  //     if (replyEndRef.current) {
-  //       replyEndRef.current.scrollIntoView();
-  //     }
-  //   }
-  //   setPrevReplyCount(replies.length);
-  // }, [replies]);
 
   const handleChangeReplyInput = (e) => {
     setReplyText(e.target.value);
@@ -56,11 +45,9 @@ function CommentContainer({
             .then((res) => {
               if (Array.isArray(res.data.result)) {
                 setCommentList(res.data.result);
-                // replyEndRef.current.scrollIntoView();
               }
             });
           setReplyText('');
-          setIsReplyMode(false);
         });
     }
   };
@@ -102,20 +89,6 @@ function CommentContainer({
           )}
         </BottomContainer>
       </CommentWrapper>
-      {/* {isReplyMode && (
-        <ReplyInputContainer>
-          <ReplyInputWrapper>
-            <ReplyInput
-              placeholder="답글을 입력해주세요"
-              onChange={handleChangeReplyInput}
-              value={replyText}
-            />
-            <ReplySendButton onClick={handleClickReplySendButton}>
-              <IcSendBlack />
-            </ReplySendButton>
-          </ReplyInputWrapper>
-        </ReplyInputContainer>
-      )} */}
       {isReplyMode && (
         <ReplyListWrapper $isReplyMode={isReplyMode}>
           {replies.map((reply) => (
@@ -205,7 +178,6 @@ const ReplyInputContainer = styled.section`
   justify-content: flex-end;
 
   width: 100%;
-  /* margin-top: 2rem; */
 `;
 
 const ReplyInputWrapper = styled.div`
@@ -242,5 +214,5 @@ const ReplyListWrapper = styled.ul`
   row-gap: 1.2rem;
 
   width: 100%;
-  margin-top: ${({ $repliesLength }) => $repliesLength !== 0 && '2rem'};
+  margin-top: ${({ $isReplyMode }) => $isReplyMode && '2rem'};
 `;
