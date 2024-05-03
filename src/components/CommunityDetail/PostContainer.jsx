@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
 import CommentContainer from './CommentContainer';
 
-function PostContainer({ commentList, postData }) {
+function PostContainer({
+  commentList,
+  postData,
+  setCommentList,
+  setPrevCommentCount,
+}) {
   return (
     <PostContainerWrapper>
       <PostHeader>
@@ -24,7 +29,12 @@ function PostContainer({ commentList, postData }) {
         <CommentCount>{`댓글 ${commentList.length}개`}</CommentCount>
         <CommentListWrapper>
           {commentList.map((comment) => (
-            <CommentContainer key={comment.commentId} {...comment} />
+            <CommentContainer
+              key={comment.commentId}
+              {...comment}
+              setCommentList={setCommentList}
+              setPrevCommentCount={setPrevCommentCount}
+            />
           ))}
         </CommentListWrapper>
       </CommentSectionWrapper>

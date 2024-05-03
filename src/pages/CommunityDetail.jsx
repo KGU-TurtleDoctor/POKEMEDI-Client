@@ -75,7 +75,12 @@ function CommunityDetail() {
     <CommunityDetailPageWrapper>
       <Header />
       <CommunityDetailPageBodyWrapper>
-        <PostContainer commentList={commentList} postData={postData} />
+        <PostContainer
+          commentList={commentList}
+          postData={postData}
+          setCommentList={setCommentList}
+          setPrevCommentCount={setPrevCommentCount}
+        />
         <div ref={commentEndRef}></div>
       </CommunityDetailPageBodyWrapper>
       <CommentInputContainer>

@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
+import { api } from '../../libs/api';
 import Reply from './Reply';
 
-function CommentContainer({ nickName, body, time, isWriter, replies }) {
+function CommentContainer({
+  commentId,
+  nickName,
+  body,
+  time,
+  isWriter,
+  replies,
+  setCommentList,
+  setPrevCommentCount,
+}) {
   const [replyText, setReplyText] = useState('');
   const [isReplyMode, setIsReplyMode] = useState(false);
+
+  const { postId } = useParams();
 
   const handleChangeReplyInput = (e) => {
     setReplyText(e.target.value);
@@ -17,11 +30,28 @@ function CommentContainer({ nickName, body, time, isWriter, replies }) {
 
   const handleClickReplySendButton = () => {};
 
+  const handleClickDeleteCommentButton = () => {
+    api
+      .delete(`/api/community/posts/${postId}/comments/${commentId}`)
+      .then(() => {
+        api
+          .get(`/api/community/posts/${postId}/comments`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            if (Array.isArray(res.data.result)) {
+              setCommentList(res.data.result);
+              setPrevCommentCount(res.data.result.length);
+            }
+          });
+      });
+  };
+
   return (
     <CommentContainerWrapper>
       <CommentWrapper>
         {isWriter && (
-          <CommentTrashButton>
+          <CommentTrashButton onClick={handleClickDeleteCommentButton}>
             <StyledIcTrashCan />
           </CommentTrashButton>
         )}
