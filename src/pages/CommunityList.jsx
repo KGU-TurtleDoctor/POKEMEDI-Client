@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import ListItem from '../components/CommunityList/ListItem';
-import axios from 'axios';
 import { api } from '../libs/api';
 import { IcSearch } from '../assets/svg/icon';
 
 function CommunityList() {
+  const navigate = useNavigate();
   const [list, setList] = useState([]);
 
   const [searchText, setSearchText] = useState('');
@@ -20,7 +21,7 @@ function CommunityList() {
     });
   }, []);
 
-  const handleChangeInput = (e) => {
+  const handleChangeSearchInput = (e) => {
     setSearchText(e.target.value);
   };
 
@@ -35,9 +36,13 @@ function CommunityList() {
   };
 
   const handlePressEnterKey = (e) => {
-    if (e.key === 'Enter' && searchText.length !== 0) {
+    if (e.key === 'Enter') {
       getSearchList();
     }
+  };
+
+  const handleClickWritingButton = () => {
+    navigate('/community-post');
   };
 
   return (
@@ -50,10 +55,15 @@ function CommunityList() {
             <SearchInput
               type="text"
               placeholder="검색어를 입력하세요."
-              onChange={handleChangeInput}
+              onChange={handleChangeSearchInput}
               value={searchText}
-            />
+            />{' '}
           </SearchBox>
+          <WritingBox>
+            <WritingButton onClick={handleClickWritingButton}>
+              글쓰기
+            </WritingButton>
+          </WritingBox>
           {list.map((item) => {
             return <ListItem key={item.id} {...item} />;
           })}
@@ -71,20 +81,21 @@ const CommunityListWrapper = styled.div`
 `;
 
 const CommunityListBodyWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-
   width: 100%;
-  height: calc(100vh - 8rem);
-  padding: 0 37.5rem;
+  min-height: calc(100vh - 8rem);
+  padding: 0 calc((100% - 81.2rem) / 2);
   margin-top: 8rem;
 
   background-color: #f1f5f9;
+
+  display: flex;
+  justify-content: center;
 `;
 
 const CommunityListBoxWrapper = styled.div`
-  width: calc(100vw - 75rem);
-  padding: 10rem 20rem 10rem 20rem;
+  width: 81.2rem;
+  min-height: calc(100vh - 8rem);
+  padding: 10rem;
 
   background-color: white;
   font-size: 2rem;
@@ -100,14 +111,12 @@ const SearchBox = styled.div`
 
   background-color: #f1f5f9;
   border-radius: 2rem;
-  border: 1px solid grey;
+  border: 0.05rem solid #9e9e9e;
 
   display: flex;
   align-items: center;
   padding: 2rem;
   gap: 2rem;
-
-  margin-bottom: 3rem;
 `;
 
 const StyledIcSearch = styled(IcSearch)`
@@ -117,10 +126,31 @@ const StyledIcSearch = styled(IcSearch)`
 
 const SearchInput = styled.input`
   width: 100%;
-  height: 5rem;
+  height: 4rem;
 
   background-color: #f1f5f9;
   border: none;
   font-size: 2rem;
   border-radius: 2rem;
+`;
+
+const WritingBox = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+const WritingButton = styled.button`
+  width: 8.75rem;
+  height: 3.75rem;
+
+  border-radius: 0.7rem;
+
+  font-size: 1.75rem;
+  font-weight: 500;
+
+  background-color: #04293f;
+  color: white;
 `;

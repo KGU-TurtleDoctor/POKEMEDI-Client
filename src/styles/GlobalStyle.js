@@ -62,6 +62,14 @@ const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
+    body{
+        -ms-overflow-style: none;
+    }
+ 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
     @font-face {
     font-family: Pretendard;
     src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css')
