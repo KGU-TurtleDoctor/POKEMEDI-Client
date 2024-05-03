@@ -94,7 +94,12 @@ function CommentContainer({
       {isReplyMode && (
         <ReplyListWrapper $isReplyMode={isReplyMode}>
           {replies.map((reply) => (
-            <Reply key={reply.replyId} {...reply} commentId={commentId} />
+            <Reply
+              key={reply.replyId}
+              {...reply}
+              commentId={commentId}
+              setCommentList={setCommentList}
+            />
           ))}
           <ReplyInputContainer>
             <ReplyInputWrapper>
