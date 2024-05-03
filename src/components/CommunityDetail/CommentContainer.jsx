@@ -32,7 +32,9 @@ function CommentContainer({
 
   const handleClickDeleteCommentButton = () => {
     api
-      .delete(`/api/community/posts/${postId}/comments/${commentId}`)
+      .delete(`/api/community/posts/${postId}/comments/${commentId}`, {
+        withCredentials: true,
+      })
       .then(() => {
         api
           .get(`/api/community/posts/${postId}/comments`, {
