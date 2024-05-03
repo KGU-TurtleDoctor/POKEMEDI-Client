@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import ListItem from '../components/CommunityList/ListItem';
-import axios from 'axios';
 import { api } from '../libs/api';
 import { IcSearch } from '../assets/svg/icon';
 
@@ -22,7 +21,7 @@ function CommunityList() {
     });
   }, []);
 
-  const handleChangeInput = (e) => {
+  const handleChangeSearchInput = (e) => {
     setSearchText(e.target.value);
   };
 
@@ -56,9 +55,9 @@ function CommunityList() {
             <SearchInput
               type="text"
               placeholder="검색어를 입력하세요."
-              onChange={handleChangeInput}
+              onChange={handleChangeSearchInput}
               value={searchText}
-            />
+            />{' '}
           </SearchBox>
           <WritingBox>
             <WritingButton onClick={handleClickWritingButton}>
@@ -82,19 +81,20 @@ const CommunityListWrapper = styled.div`
 `;
 
 const CommunityListBodyWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-
   width: 100%;
-  height: calc(100vh - 8rem);
+
   padding: 0 37.5rem;
   margin-top: 8rem;
 
   background-color: #f1f5f9;
+
+  display: flex;
+  justify-content: center;
 `;
 
 const CommunityListBoxWrapper = styled.div`
   width: calc(100vw - 75rem);
+  min-height: calc(100vh - 8rem);
   padding: 10rem 20rem 10rem 20rem;
 
   background-color: white;
@@ -111,7 +111,7 @@ const SearchBox = styled.div`
 
   background-color: #f1f5f9;
   border-radius: 2rem;
-  border: 1px solid grey;
+  border: 0.05rem solid #9e9e9e;
 
   display: flex;
   align-items: center;
@@ -126,7 +126,7 @@ const StyledIcSearch = styled(IcSearch)`
 
 const SearchInput = styled.input`
   width: 100%;
-  height: 5rem;
+  height: 4rem;
 
   background-color: #f1f5f9;
   border: none;
