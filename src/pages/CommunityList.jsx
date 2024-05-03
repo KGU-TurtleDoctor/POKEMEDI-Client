@@ -36,7 +36,7 @@ function CommunityList() {
   };
 
   const handlePressEnterKey = (e) => {
-    if (e.key === 'Enter' && searchText.length !== 0) {
+    if (e.key === 'Enter') {
       getSearchList();
     }
   };
