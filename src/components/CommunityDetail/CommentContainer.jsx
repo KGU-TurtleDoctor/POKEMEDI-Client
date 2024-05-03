@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
@@ -17,8 +17,19 @@ function CommentContainer({
 }) {
   const [replyText, setReplyText] = useState('');
   const [isReplyMode, setIsReplyMode] = useState(false);
+  const [prevReplyCount, setPrevReplyCount] = useState(0);
+  const replyEndRef = useRef(null);
 
   const { postId } = useParams();
+
+  useEffect(() => {
+    if (replies.length > prevReplyCount) {
+      if (replyEndRef.current) {
+        replyEndRef.current.scrollIntoView();
+      }
+    }
+    setPrevReplyCount(replies.length);
+  }, [replies]);
 
   const handleChangeReplyInput = (e) => {
     setReplyText(e.target.value);
@@ -28,7 +39,31 @@ function CommentContainer({
     setIsReplyMode(!isReplyMode);
   };
 
-  const handleClickReplySendButton = () => {};
+  const handleClickReplySendButton = () => {
+    if (replyText.length !== 0) {
+      api
+        .post(
+          `/api/community/posts/${postId}/comments/${commentId}/replies`,
+          {
+            body: replyText,
+          },
+          { withCredentials: true },
+        )
+        .then(() => {
+          api
+            .get(`/api/community/posts/${postId}/comments`, {
+              withCredentials: true,
+            })
+            .then((res) => {
+              if (Array.isArray(res.data.result)) {
+                setCommentList(res.data.result);
+                replyEndRef.current.scrollIntoView();
+              }
+            });
+          setReplyText('');
+        });
+    }
+  };
 
   const handleClickDeleteCommentButton = () => {
     api
@@ -85,6 +120,7 @@ function CommentContainer({
           <Reply key={reply.replyId} {...reply} />
         ))}
       </ReplyListWrapper>
+      <div ref={replyEndRef}></div>
     </CommentContainerWrapper>
   );
 }
