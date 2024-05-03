@@ -1,20 +1,80 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
+import { api } from '../../libs/api';
 import Reply from './Reply';
 
-function CommentContainer({ nickName, body, time, isPostWriter, replies }) {
+function CommentContainer({
+  commentId,
+  nickName,
+  body,
+  time,
+  isWriter,
+  replies,
+  setCommentList,
+}) {
+  const [replyText, setReplyText] = useState('');
   const [isReplyMode, setIsReplyMode] = useState(false);
+
+  const { postId } = useParams();
+
+  const handleChangeReplyInput = (e) => {
+    setReplyText(e.target.value);
+  };
 
   const handleClickReplyButton = () => {
     setIsReplyMode(!isReplyMode);
   };
 
+  const handleClickReplySendButton = () => {
+    if (replyText.length !== 0) {
+      api
+        .post(
+          `/api/community/posts/${postId}/comments/${commentId}/replies`,
+          {
+            body: replyText,
+          },
+          { withCredentials: true },
+        )
+        .then(() => {
+          api
+            .get(`/api/community/posts/${postId}/comments`, {
+              withCredentials: true,
+            })
+            .then((res) => {
+              if (Array.isArray(res.data.result)) {
+                setCommentList(res.data.result);
+              }
+            });
+          setReplyText('');
+        });
+    }
+  };
+
+  const handleClickDeleteCommentButton = () => {
+    api
+      .delete(`/api/community/posts/${postId}/comments/${commentId}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        api
+          .get(`/api/community/posts/${postId}/comments`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            if (Array.isArray(res.data.result)) {
+              setCommentList(res.data.result);
+            }
+          });
+      });
+  };
+
   return (
     <CommentContainerWrapper>
       <CommentWrapper>
-        {isPostWriter && (
-          <CommentTrashButton>
+        {isWriter && (
+          <CommentTrashButton onClick={handleClickDeleteCommentButton}>
             <StyledIcTrashCan />
           </CommentTrashButton>
         )}
@@ -23,25 +83,38 @@ function CommentContainer({ nickName, body, time, isPostWriter, replies }) {
         <BottomContainer>
           <CommentDate>{time}</CommentDate>
           <ReplyButton onClick={handleClickReplyButton}>
-            {isReplyMode ? '취소' : '답글 달기'}
+            {isReplyMode
+              ? '닫기'
+              : replies.length !== 0
+              ? '답글 열기'
+              : '새 답글 달기'}
           </ReplyButton>
         </BottomContainer>
       </CommentWrapper>
       {isReplyMode && (
-        <ReplyInputContainer>
-          <ReplyInputWrapper>
-            <ReplyInput placeholder="답글을 입력해주세요" />
-            <ReplySendButton>
-              <IcSendBlack />
-            </ReplySendButton>
-          </ReplyInputWrapper>
-        </ReplyInputContainer>
+        <ReplyListWrapper $isReplyMode={isReplyMode}>
+          {replies.map((reply) => (
+            <Reply
+              key={reply.replyId}
+              {...reply}
+              commentId={commentId}
+              setCommentList={setCommentList}
+            />
+          ))}
+          <ReplyInputContainer>
+            <ReplyInputWrapper>
+              <ReplyInput
+                placeholder="답글을 입력해주세요"
+                onChange={handleChangeReplyInput}
+                value={replyText}
+              />
+              <ReplySendButton onClick={handleClickReplySendButton}>
+                <IcSendBlack />
+              </ReplySendButton>
+            </ReplyInputWrapper>
+          </ReplyInputContainer>
+        </ReplyListWrapper>
       )}
-      <ReplyListWrapper>
-        {replies.map((reply) => (
-          <Reply key={reply.replyId} {...reply} />
-        ))}
-      </ReplyListWrapper>
     </CommentContainerWrapper>
   );
 }
@@ -112,7 +185,6 @@ const ReplyInputContainer = styled.section`
   justify-content: flex-end;
 
   width: 100%;
-  margin-top: 2rem;
 `;
 
 const ReplyInputWrapper = styled.div`
@@ -149,5 +221,5 @@ const ReplyListWrapper = styled.ul`
   row-gap: 1.2rem;
 
   width: 100%;
-  margin-top: 2rem;
+  margin-top: ${({ $isReplyMode }) => $isReplyMode && '2rem'};
 `;

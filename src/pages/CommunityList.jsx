@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { IcSearch } from '../assets/svg/icon';
 import Header from '../components/Common/Header';
 import ListItem from '../components/CommunityList/ListItem';
-import axios from 'axios';
 import { api } from '../libs/api';
-import { IcSearch } from '../assets/svg/icon';
 
 function CommunityList() {
+  const navigate = useNavigate();
   const [list, setList] = useState([]);
 
   const [searchText, setSearchText] = useState('');
@@ -40,6 +41,10 @@ function CommunityList() {
     }
   };
 
+  const handleClickWritingButton = () => {
+    navigate('/community-post');
+  };
+
   return (
     <CommunityListWrapper onKeyDown={handlePressEnterKey}>
       <Header />
@@ -54,6 +59,11 @@ function CommunityList() {
               value={searchText}
             />
           </SearchBox>
+          <WritingBox>
+            <WritingButton onClick={handleClickWritingButton}>
+              글쓰기
+            </WritingButton>
+          </WritingBox>
           {list.map((item) => {
             return <ListItem key={item.id} {...item} />;
           })}
@@ -106,8 +116,6 @@ const SearchBox = styled.div`
   align-items: center;
   padding: 2rem;
   gap: 2rem;
-
-  margin-bottom: 3rem;
 `;
 
 const StyledIcSearch = styled(IcSearch)`
@@ -123,4 +131,25 @@ const SearchInput = styled.input`
   border: none;
   font-size: 2rem;
   border-radius: 2rem;
+`;
+
+const WritingBox = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+const WritingButton = styled.button`
+  width: 8.75rem;
+  height: 3.75rem;
+
+  border-radius: 0.7rem;
+
+  font-size: 1.75rem;
+  font-weight: 500;
+
+  background-color: #04293f;
+  color: white;
 `;

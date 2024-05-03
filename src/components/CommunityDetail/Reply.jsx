@@ -1,14 +1,47 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcTrashCan, IcTurnUp } from '../../assets/svg/icon';
+import { api } from '../../libs/api';
 
-function Reply({ body, time, nickName, isWriter }) {
+function Reply({
+  commentId,
+  setCommentList,
+  replyId,
+  body,
+  time,
+  nickName,
+  isWriter,
+}) {
+  const { postId } = useParams();
+
+  const handleClickReplyDeleteButton = () => {
+    api
+      .delete(
+        `/api/community/posts/${postId}/comments/${commentId}/replies/${replyId}`,
+        {
+          withCredentials: true,
+        },
+      )
+      .then(() => {
+        api
+          .get(`/api/community/posts/${postId}/comments`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            if (Array.isArray(res.data.result)) {
+              setCommentList(res.data.result);
+            }
+          });
+      });
+  };
+
   return (
     <ReplyContainerWrapper>
       <IcTurnRight />
       <ReplyWrapper>
         {isWriter && (
-          <ReplyTrashButton>
+          <ReplyTrashButton onClick={handleClickReplyDeleteButton}>
             <StyledIcTrashCan />
           </ReplyTrashButton>
         )}

@@ -1,47 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
-import { api } from '../../libs/api';
 import CommentContainer from './CommentContainer';
 
-function PostContainer() {
-  const [commentList, setCommentList] = useState([]);
-
-  useEffect(() => {
-    api
-      .get('/api/community/posts/8/comments', { withCredentials: true })
-      .then((res) => {
-        if (Array.isArray(res.data.result)) {
-          setCommentList(res.data.result);
-        }
-      });
-  });
-
+function PostContainer({ commentList, postData, setCommentList }) {
   return (
     <PostContainerWrapper>
       <PostHeader>
-        <PostTitle>어떤 약을 복용해야 하숑...?</PostTitle>
+        <PostTitle>{postData?.title}</PostTitle>
         <PostInfo>
           <PostUser>
             <IcUser />
-            <PostUserName>이세숑</PostUserName>
+            <PostUserName>{postData?.nickname}</PostUserName>
           </PostUser>
           <PostDate>
             <IcCalendar />
-            <PostDateText>2024. 03. 14</PostDateText>
+            <PostDateText>{postData?.date}</PostDateText>
           </PostDate>
         </PostInfo>
       </PostHeader>
-      <PostBody>
-        오늘 압빠가 만들어준 초밥을 먹엇숑 . 군데 갑자기 배가 슬슬
-        아파오는거숑!!! 쇼옹이한테 문제가 생긴것같숑. 어떤 약을 먹어야 하숑???
-        쇼옹이에게 댓글로 말해주숑. 기다리겟숑
-      </PostBody>
+      <PostBody>{postData?.content}</PostBody>
       <CommentSectionWrapper>
-        <CommentCount>{`댓글 ${data.length}개`}</CommentCount>
+        <CommentCount>{`댓글 ${commentList.length}개`}</CommentCount>
         <CommentListWrapper>
           {commentList.map((comment) => (
-            <CommentContainer key={comment.length} {...comment} />
+            <CommentContainer
+              key={comment.commentId}
+              {...comment}
+              setCommentList={setCommentList}
+            />
           ))}
         </CommentListWrapper>
       </CommentSectionWrapper>
@@ -142,7 +129,7 @@ const CommentCount = styled.h2`
 const CommentListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
-  row-gap: 3rem;
+  row-gap: 2rem;
 
   width: 100%;
   padding: 5rem 3rem;

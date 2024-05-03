@@ -14,7 +14,7 @@ function Router() {
         <Route path="/aichat" element={<AIChat />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/community-list" element={<CommunityList />} />
-        <Route path="/detail" element={<CommunityDetail />} />
+        <Route path="/community/post/:postId" element={<CommunityDetail />} />
       </Routes>
     </BrowserRouter>
   );
