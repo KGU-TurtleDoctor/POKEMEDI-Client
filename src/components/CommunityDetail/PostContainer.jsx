@@ -135,6 +135,7 @@ const CommentCount = styled.h2`
 const CommentListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
+  row-gap: 2rem;
 
   width: 100%;
   padding: 5rem 3rem;

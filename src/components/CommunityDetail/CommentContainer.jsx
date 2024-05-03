@@ -116,7 +116,7 @@ function CommentContainer({
           </ReplyInputWrapper>
         </ReplyInputContainer>
       )}
-      <ReplyListWrapper>
+      <ReplyListWrapper $repliesLength={replies.length}>
         {replies.map((reply) => (
           <Reply key={reply.replyId} {...reply} />
         ))}
@@ -229,5 +229,5 @@ const ReplyListWrapper = styled.ul`
   row-gap: 1.2rem;
 
   width: 100%;
-  margin-top: 2rem;
+  margin-top: ${({ $replyLength }) => $replyLength !== 0 && '2rem'};
 `;
