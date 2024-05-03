@@ -13,9 +13,9 @@ function Reply({
   nickName,
   isWriter,
 }) {
-  const handleClickReplyDeleteButton = () => {
-    const { postId } = useParams();
+  const { postId } = useParams();
 
+  const handleClickReplyDeleteButton = () => {
     api
       .delete(
         `/api/community/posts/${postId}/comments/${commentId}/replies/${replyId}`,
