@@ -36,7 +36,7 @@ function CommunityList() {
   };
 
   const handlePressEnterKey = (e) => {
-    if (e.key === 'Enter' && searchText.length !== 0) {
+    if (e.key === 'Enter') {
       getSearchList();
     }
   };
@@ -82,8 +82,8 @@ const CommunityListWrapper = styled.div`
 
 const CommunityListBodyWrapper = styled.div`
   width: 100%;
-
-  padding: 0 37.5rem;
+  min-height: calc(100vh - 8rem);
+  padding: 0 calc((100% - 81.2rem) / 2);
   margin-top: 8rem;
 
   background-color: #f1f5f9;
@@ -93,9 +93,9 @@ const CommunityListBodyWrapper = styled.div`
 `;
 
 const CommunityListBoxWrapper = styled.div`
-  width: calc(100vw - 75rem);
+  width: 81.2rem;
   min-height: calc(100vh - 8rem);
-  padding: 10rem 20rem 10rem 20rem;
+  padding: 10rem;
 
   background-color: white;
   font-size: 2rem;
