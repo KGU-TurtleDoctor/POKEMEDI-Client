@@ -3,12 +3,7 @@ import styled from 'styled-components';
 import { IcCalendar, IcUser } from '../../assets/svg/icon';
 import CommentContainer from './CommentContainer';
 
-function PostContainer({
-  commentList,
-  postData,
-  setCommentList,
-  setPrevCommentCount,
-}) {
+function PostContainer({ commentList, postData, setCommentList }) {
   return (
     <PostContainerWrapper>
       <PostHeader>
@@ -33,7 +28,6 @@ function PostContainer({
               key={comment.commentId}
               {...comment}
               setCommentList={setCommentList}
-              setPrevCommentCount={setPrevCommentCount}
             />
           ))}
         </CommentListWrapper>

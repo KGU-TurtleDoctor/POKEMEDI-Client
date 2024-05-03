@@ -79,7 +79,6 @@ function CommunityDetail() {
           commentList={commentList}
           postData={postData}
           setCommentList={setCommentList}
-          setPrevCommentCount={setPrevCommentCount}
         />
         <div ref={commentEndRef}></div>
       </CommunityDetailPageBodyWrapper>

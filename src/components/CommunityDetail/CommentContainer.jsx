@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
@@ -13,23 +13,22 @@ function CommentContainer({
   isWriter,
   replies,
   setCommentList,
-  setPrevCommentCount,
 }) {
   const [replyText, setReplyText] = useState('');
   const [isReplyMode, setIsReplyMode] = useState(false);
-  const [prevReplyCount, setPrevReplyCount] = useState(0);
-  const replyEndRef = useRef(null);
+  // const [prevReplyCount, setPrevReplyCount] = useState(0);
+  // const replyEndRef = useRef(null);
 
   const { postId } = useParams();
 
-  useEffect(() => {
-    if (replies.length > prevReplyCount) {
-      if (replyEndRef.current) {
-        replyEndRef.current.scrollIntoView();
-      }
-    }
-    setPrevReplyCount(replies.length);
-  }, [replies]);
+  // useEffect(() => {
+  //   if (replies.length > prevReplyCount) {
+  //     if (replyEndRef.current) {
+  //       replyEndRef.current.scrollIntoView();
+  //     }
+  //   }
+  //   setPrevReplyCount(replies.length);
+  // }, [replies]);
 
   const handleChangeReplyInput = (e) => {
     setReplyText(e.target.value);
@@ -57,7 +56,7 @@ function CommentContainer({
             .then((res) => {
               if (Array.isArray(res.data.result)) {
                 setCommentList(res.data.result);
-                replyEndRef.current.scrollIntoView();
+                // replyEndRef.current.scrollIntoView();
               }
             });
           setReplyText('');
@@ -79,7 +78,6 @@ function CommentContainer({
           .then((res) => {
             if (Array.isArray(res.data.result)) {
               setCommentList(res.data.result);
-              setPrevCommentCount(res.data.result.length);
             }
           });
       });
@@ -121,7 +119,7 @@ function CommentContainer({
           <Reply key={reply.replyId} {...reply} />
         ))}
       </ReplyListWrapper>
-      <div ref={replyEndRef}></div>
+      {/* <div ref={replyEndRef}></div> */}
     </CommentContainerWrapper>
   );
 }
