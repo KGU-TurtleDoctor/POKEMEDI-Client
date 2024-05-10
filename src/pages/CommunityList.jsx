@@ -65,7 +65,13 @@ function CommunityList() {
             </WritingButton>
           </WritingBox>
           {list.map((item) => {
-            return <ListItem key={item.id} {...item} />;
+            return (
+              <ListItem
+                key={item.id}
+                {...item}
+                updateList={(list) => setList(list)}
+              />
+            );
           })}
         </CommunityListBoxWrapper>
       </CommunityListBodyWrapper>
