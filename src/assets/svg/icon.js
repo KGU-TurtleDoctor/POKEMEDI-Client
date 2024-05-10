@@ -6,6 +6,7 @@ import IcSendBlack from './ic_send_black.svg?react';
 import IcTrashCan from './ic_trash_can.svg?react';
 import IcTurnUp from './ic_turn_up.svg?react';
 import IcUser from './ic_user.svg?react';
+import IcUpdate from './ic_update.svg?react';
 
 export {
   IcCalendar,
@@ -16,4 +17,5 @@ export {
   IcTrashCan,
   IcTurnUp,
   IcUser,
+  IcUpdate,
 };
