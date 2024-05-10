@@ -6,6 +6,7 @@ import CommunityList from './pages/CommunityList';
 import CommunityPost from './pages/CommunityPost';
 import Home from './pages/Home';
 import Loading from './pages/Loading';
+import MyPage from './pages/Mypage';
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
         <Route path="/community-list" element={<CommunityList />} />
         <Route path="/community/post/:postId" element={<CommunityDetail />} />
         <Route path="/community-post" element={<CommunityPost />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
   );
