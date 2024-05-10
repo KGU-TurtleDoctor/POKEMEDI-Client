@@ -4,7 +4,6 @@ import AIChat from './pages/AIChat';
 import CommunityDetail from './pages/CommunityDetail';
 import CommunityList from './pages/CommunityList';
 import CommunityPost from './pages/CommunityPost';
-import MyPostList from './pages/MyPostList';
 import MyChatList from './pages/MyChatList';
 import Home from './pages/Home';
 import Loading from './pages/Loading';
@@ -19,7 +18,6 @@ function Router() {
         <Route path="/community-list" element={<CommunityList />} />
         <Route path="/community/post/:postId" element={<CommunityDetail />} />
         <Route path="/community-post" element={<CommunityPost />} />
-        <Route path="/mypost-list" element={<MyPostList />} />
         <Route path="/mychat-list" element={<MyChatList />} />
       </Routes>
     </BrowserRouter>

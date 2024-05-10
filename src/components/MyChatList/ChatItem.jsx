@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function ChatItem({ id, title, nickname, date }) {
+function ChatItem({ id, title, name, date }) {
   const navigate = useNavigate();
 
   const handleClickPostItem = () => {
@@ -13,7 +13,7 @@ function ChatItem({ id, title, nickname, date }) {
     <PostWrapper onClick={handleClickPostItem}>
       <PostTitle>{title}</PostTitle>
       <PostInfo>
-        <PostNickname>{nickname}</PostNickname>
+        <PostNickname>{name}</PostNickname>
         <PostDate>{date}</PostDate>
       </PostInfo>
     </PostWrapper>
