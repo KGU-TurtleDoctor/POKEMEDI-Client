@@ -1,22 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { IcTrashCan, IcUpdate } from '../../assets/svg/icon';
+import { api } from '../../libs/api';
 
-function ListItem({ id, title, content, nickname, date }) {
+function ListItem({ id, title, content, nickname, date, updateList }) {
   const navigate = useNavigate();
+
+  const [isUpdated, setIsUpdated] = useState(false);
 
   const handleClickListItem = () => {
     navigate(`/community/post/${id}`);
   };
 
+  const handleClickUpdateButton = () => {
+    if (isUpdated) {
+      api
+        .put(
+          'api/community/update/${id}',
+          {
+            title: TitleWriting,
+            body: PostWriting,
+          },
+          { withCredentials: true },
+        )
+        .then(() => {
+          api
+            .get('api/community/list', { withCredentials: true })
+            .then((res) => {
+              console.log(res);
+              if (Array.isArray(res.data.result)) {
+                updateList(res.data.result);
+              }
+            });
+        });
+    }
+  };
+
+  const handleClickDeleteButton = () => {
+    api
+      .delete(`/api/community/delete/${id}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        api.get('api/community/list', { withCredentials: true }).then((res) => {
+          console.log(res);
+          if (Array.isArray(res.data.result)) {
+            updateList(res.data.result);
+          }
+        });
+      });
+  };
   return (
-    <PostWrapper onClick={handleClickListItem}>
-      <PostTitle>{title}</PostTitle>
-      <PostContent>{content}</PostContent>
-      <PostInfo>
-        <PostNickname>{nickname}</PostNickname>
-        <PostDate>{date}</PostDate>
-      </PostInfo>
+    <PostWrapper>
+      <CommentUpdateButton
+        onClick={handleClickUpdateButton}
+        isUpdated={isUpdated}
+      >
+        <StyledIcUpdate />
+      </CommentUpdateButton>
+      <CommentDeleteButton onClick={handleClickDeleteButton}>
+        <StyledIcTrashCan />
+      </CommentDeleteButton>
+      <PostContentWrapper onClick={handleClickListItem}>
+        <PostTitle>{title}</PostTitle>
+        <PostContent>{content}</PostContent>
+        <PostInfo>
+          <PostNickname>{nickname}</PostNickname>
+          <PostDate>{date}</PostDate>
+        </PostInfo>
+      </PostContentWrapper>
     </PostWrapper>
   );
 }
@@ -24,6 +77,8 @@ function ListItem({ id, title, content, nickname, date }) {
 export default ListItem;
 
 const PostWrapper = styled.div`
+  position: relative;
+
   width: 100%;
   padding: 3.2rem 3.2rem;
 
@@ -37,6 +92,11 @@ const PostWrapper = styled.div`
   &:hover {
     background-color: #ddd;
   }
+`;
+
+const PostContentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 const PostTitle = styled.div`
@@ -67,6 +127,7 @@ const PostInfo = styled.div`
   margin-top: 2rem;
 
   display: flex;
+  align-items: center;
 `;
 
 const PostNickname = styled.div`
@@ -77,4 +138,33 @@ const PostNickname = styled.div`
 const PostDate = styled.div`
   font-size: 1.5rem;
   color: #777;
+
+  margin-right: 17rem;
+`;
+
+const StyledIcUpdate = styled(IcUpdate)`
+  width: 2.5rem;
+  height: 2.5rem;
+`;
+
+const StyledIcTrashCan = styled(IcTrashCan)`
+  fill: #04293f;
+`;
+
+const CommentUpdateButton = styled.button`
+  position: absolute;
+  bottom: 2.3rem;
+  right: 6rem;
+
+  width: 1.8rem;
+  height: 1.8rem;
+`;
+
+const CommentDeleteButton = styled.button`
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+
+  width: 1.8rem;
+  height: 1.8rem;
 `;
