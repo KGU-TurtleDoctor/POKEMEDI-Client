@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function ChatItem({ id, title, name, date }) {
+function ChatItem({ chatHistoryId, title, name, date }) {
   const navigate = useNavigate();
 
   const handleClickPostItem = () => {
-    navigate(`/community/aichat/${id}`);
+    navigate(`/community/aichat/${chatHistoryId}`);
   };
 
   return (

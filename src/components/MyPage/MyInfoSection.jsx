@@ -6,7 +6,8 @@ function MyInfoSection() {
     <MyInfoSectionWrapper>
       <UserImg src={ImgUser} />
       <UserInfoContainer>
-        <UserName>{sessionStorage.getItem('name')}</UserName>
+        {/* <UserName>{sessionStorage.getItem('name')}</UserName> */}
+        <UserName>이정우</UserName>
         <UserRole>* 일반회원</UserRole>
       </UserInfoContainer>
     </MyInfoSectionWrapper>
@@ -24,12 +25,12 @@ const MyInfoSectionWrapper = styled.div`
 `;
 
 const UserImg = styled.img`
-  width: 15rem;
-  height: 15rem;
+  width: 13rem;
+  height: 13rem;
 `;
 
 const UserName = styled.h1`
-  font-size: 4.3rem;
+  font-size: 4rem;
   font-weight: 600;
 `;
 
@@ -44,7 +45,7 @@ const UserInfoContainer = styled.div`
 `;
 
 const UserRole = styled.h2`
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 500;
   margin-bottom: 2rem;
 

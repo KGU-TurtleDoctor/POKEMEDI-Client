@@ -1,15 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcMore } from '../../assets/svg/icon';
-import ListItem from '../CommunityList/ListItem';
+import PostItem from '../MyPostList/PostItem';
 
-function MyPostSection() {
+function MyPostSection({ myPost }) {
+  const navigate = useNavigate();
+
   return (
     <MyPostSectionWrapper>
-      <SectionTitle>내가 쓴 글</SectionTitle>
-      <ListItem />
+      <SectionTitle>최근 작성 글</SectionTitle>
+      <PostItem {...myPost} />
       <MoreButtonContainer>
-        <MoreButton>
+        <MoreButton onClick={() => navigate('/mypost-list')}>
           <StyledIcMore />
           더보기
         </MoreButton>
@@ -22,15 +25,14 @@ export default MyPostSection;
 
 const MyPostSectionWrapper = styled.div`
   width: 100%;
-  height: 15rem;
-  margin-top: 7rem;
+  margin-top: 4rem;
 `;
 
 const SectionTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: 600;
 
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
 const MoreButtonContainer = styled.div`

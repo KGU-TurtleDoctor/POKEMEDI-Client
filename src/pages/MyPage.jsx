@@ -1,17 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
+import MyChatSection from '../components/MyPage/MyChatSection';
 import MyInfoSection from '../components/MyPage/MyInfoSection';
 import MyPostSection from '../components/MyPage/MyPostSection';
+import { api } from '../libs/api';
 
 function MyPage() {
+  const [myPost, setMyPost] = useState({
+    id: -1,
+    title: '',
+    content: '',
+    nickname: '',
+    date: '',
+  });
+  const [myChat, setMyChat] = useState({
+    chatHistoryId: -1,
+    name: '',
+    date: '',
+    title: '',
+  });
+
+  useEffect(() => {
+    api
+      .get(`/api/community/myPost`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setMyPost(res.data.result);
+      });
+
+    api
+      .get(`api/chatbot/chathistory`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setMyChat(res.data.result);
+      });
+  }, []);
+
   return (
     <MyPageWrapper>
       <Header />
       <MyPageBodyWrapper>
         <MyPageBoxWrapper>
           <MyInfoSection />
-          <MyPostSection />
+          <MyPostSection myPost={myPost} />
+          <MyChatSection myChat={myChat} />
         </MyPageBoxWrapper>
       </MyPageBodyWrapper>
     </MyPageWrapper>
