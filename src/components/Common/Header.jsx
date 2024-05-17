@@ -18,6 +18,10 @@ function Header() {
     navigate('/community-list');
   };
 
+  const handleClickMyPageButton = () => {
+    navigate('/mypage');
+  };
+
   const handleClickLoginButton = () => {
     window.location.href = `${
       import.meta.env.VITE_APP_BASE_URL
@@ -38,7 +42,9 @@ function Header() {
           <NavigatorItem onClick={handleClickListButton}>
             커뮤니티
           </NavigatorItem>
-          <NavigatorItem>마이페이지</NavigatorItem>
+          <NavigatorItem onClick={handleClickMyPageButton}>
+            마이페이지
+          </NavigatorItem>
         </NavigatorList>
       </HeaderNavigator>
       {sessionStorage.getItem('name') ? (
