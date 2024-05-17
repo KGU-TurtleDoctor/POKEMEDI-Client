@@ -6,7 +6,7 @@ function MyInfoSection() {
     <MyInfoSectionWrapper>
       <UserImg src={ImgUser} />
       <UserInfoContainer>
-        <UserName>이정우</UserName>
+        <UserName>{sessionStorage.getItem('name')}</UserName>
         <UserRole>* 일반회원</UserRole>
       </UserInfoContainer>
     </MyInfoSectionWrapper>
