@@ -7,8 +7,8 @@ import CommunityPost from './pages/CommunityPost';
 import Home from './pages/Home';
 import Loading from './pages/Loading';
 import MyChatList from './pages/MyChatList';
+import MyPage from './pages/MyPage';
 import MyPostList from './pages/MyPostList';
-import MyPage from './pages/Mypage';
 
 function Router() {
   return (
