@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { api } from '../libs/api';
 
-function Loading() {
+function LoginLoading() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function Loading() {
   return <LoadingWrapper></LoadingWrapper>;
 }
 
-export default Loading;
+export default LoginLoading;
 
 const LoadingWrapper = styled.div`
   display: flex;

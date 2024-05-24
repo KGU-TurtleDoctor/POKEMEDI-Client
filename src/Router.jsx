@@ -7,7 +7,7 @@ import CommunityPost from './pages/CommunityPost';
 import MyPostList from './pages/MyPostList';
 import MyChatList from './pages/MyChatList';
 import Home from './pages/Home';
-import Loading from './pages/Loading';
+import LoginLoading from './pages/LoginLoading';
 
 function Router() {
   return (
@@ -15,7 +15,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aichat" element={<AIChat />} />
-        <Route path="/loading" element={<Loading />} />
+        <Route path="/login-loading" element={<LoginLoading />} />
         <Route path="/community-list" element={<CommunityList />} />
         <Route path="/community/post/:postId" element={<CommunityDetail />} />
         <Route path="/community-post" element={<CommunityPost />} />
