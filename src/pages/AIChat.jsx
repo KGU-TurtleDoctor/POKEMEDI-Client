@@ -1,40 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { getChatHistory } from '../apis/AIChat/getChatHistory';
 import { postChatbotPrompt } from '../apis/AIChat/postChatbotPrompt';
 import { IcSend } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
-import { api } from '../libs/api';
 
 function AIChat() {
   const { chatId } = useParams();
 
-  useEffect(() => {
-    setChatHistoryId(chatId ? chatId : -1);
-  }, [chatId]);
-
-  const [chatList, setChatList] = useState([
-    {
-      role: 0,
-      content:
-        '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
-    },
-  ]);
+  const [chatList, setChatList] = useState([]);
   const [chat, setChat] = useState('');
   const [chatHistoryId, setChatHistoryId] = useState(chatId ? chatId : -1);
 
-  console.log(chatHistoryId);
-
   useEffect(() => {
-    if (chatHistoryId !== -1) {
-      api
-        .get(`/api/chatbot/chathistories/${chatId}/chattexts`, {
-          withCredentials: true,
-        })
-        .then((res) => console.log(res));
-    }
-  }, []);
+    setChatHistoryId(chatId ? chatId : -1);
+    chatId
+      ? getChatHistory(setChatList, chatHistoryId)
+      : setChatList([
+          {
+            role: 0,
+            content:
+              '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
+          },
+        ]);
+  }, [chatId]);
 
   const handleChangeChat = (e) => {
     setChat(e.target.value);
