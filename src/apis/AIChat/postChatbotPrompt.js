@@ -16,7 +16,7 @@ export const postChatbotPrompt = (
     .then((response) => {
       updateChatList((prevChatList) => [
         ...prevChatList,
-        { id: 2, text: response.data.result.content },
+        { role: 0, content: response.data.result.content },
       ]);
 
       if (chatHistoryId === -1) {

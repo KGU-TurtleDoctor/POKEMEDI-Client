@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { postChatbotPrompt } from '../apis/AIChat/postChatbotPrompt';
 import { IcSend } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
+import { api } from '../libs/api';
 
 function AIChat() {
+  const { chatId } = useParams();
+
+  useEffect(() => {
+    setChatHistoryId(chatId ? chatId : -1);
+  }, [chatId]);
+
   const [chatList, setChatList] = useState([
     {
-      id: 2,
-      text: '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
+      role: 0,
+      content:
+        '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
     },
   ]);
   const [chat, setChat] = useState('');
-  const [chatHistoryId, setChatHistoryId] = useState(-1);
+  const [chatHistoryId, setChatHistoryId] = useState(chatId ? chatId : -1);
+
+  console.log(chatHistoryId);
+
+  useEffect(() => {
+    if (chatHistoryId !== -1) {
+      api
+        .get(`/api/chatbot/chathistories/${chatId}/chattexts`, {
+          withCredentials: true,
+        })
+        .then((res) => console.log(res));
+    }
+  }, []);
 
   const handleChangeChat = (e) => {
     setChat(e.target.value);
@@ -21,7 +42,10 @@ function AIChat() {
 
   const handleClickSendButton = () => {
     if (chat.length !== 0) {
-      setChatList((prevChatList) => [...prevChatList, { id: 1, text: chat }]);
+      setChatList((prevChatList) => [
+        ...prevChatList,
+        { role: 1, content: chat },
+      ]);
 
       setChat('');
 
