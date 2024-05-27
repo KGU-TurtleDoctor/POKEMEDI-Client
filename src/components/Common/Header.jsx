@@ -136,6 +136,6 @@ const LoginButton = styled.button`
 `;
 
 const SuccessLoginText = styled.p`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
 `;
