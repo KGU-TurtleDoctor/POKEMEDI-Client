@@ -29,6 +29,7 @@ function CommunityList() {
     api
       .get(`api/community/search/${searchText}`, { withCredentials: true })
       .then((res) => {
+        console.log('성공');
         if (Array.isArray(res.data.result)) {
           setList(res.data.result);
         }
@@ -57,7 +58,7 @@ function CommunityList() {
               placeholder="검색어를 입력하세요."
               onChange={handleChangeSearchInput}
               value={searchText}
-            />{' '}
+            />
           </SearchBox>
           <WritingBox>
             <WritingButton onClick={handleClickWritingButton}>

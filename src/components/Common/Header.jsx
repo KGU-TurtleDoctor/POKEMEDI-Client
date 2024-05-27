@@ -18,6 +18,10 @@ function Header() {
     navigate('/community-list');
   };
 
+  const handleClickMyPageButton = () => {
+    navigate('/mypage');
+  };
+
   const handleClickLoginButton = () => {
     window.location.href = `${
       import.meta.env.VITE_APP_BASE_URL
@@ -26,26 +30,32 @@ function Header() {
 
   return (
     <HeaderWrapper>
-      <HeaderLeftButton onClick={handleClickLogoButton}>
-        <IcLogo />
-        <HeaderTitle>POKEMEDI</HeaderTitle>
-      </HeaderLeftButton>
-      <HeaderNavigator>
-        <NavigatorList>
-          <NavigatorItem onClick={handleClickAIChatButton}>
-            AI 진단
-          </NavigatorItem>
-          <NavigatorItem onClick={handleClickListButton}>
-            커뮤니티
-          </NavigatorItem>
-          <NavigatorItem>마이페이지</NavigatorItem>
-        </NavigatorList>
-      </HeaderNavigator>
-      {sessionStorage.getItem('name') ? (
-        <p>{`${sessionStorage.getItem('name')}님 안녕하세요`}</p>
-      ) : (
-        <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
-      )}
+      <HeaderBodyWrapper>
+        <HeaderLeftButton onClick={handleClickLogoButton}>
+          <IcLogo />
+          <HeaderTitle>POKEMEDI</HeaderTitle>
+        </HeaderLeftButton>
+        <HeaderNavigator>
+          <NavigatorList>
+            <NavigatorItem onClick={handleClickAIChatButton}>
+              AI 진단
+            </NavigatorItem>
+            <NavigatorItem onClick={handleClickListButton}>
+              커뮤니티
+            </NavigatorItem>
+            <NavigatorItem onClick={handleClickMyPageButton}>
+              마이페이지
+            </NavigatorItem>
+          </NavigatorList>
+        </HeaderNavigator>
+        {sessionStorage.getItem('name') ? (
+          <SuccessLoginText>{`${sessionStorage.getItem(
+            'name',
+          )}님, 안녕하세요`}</SuccessLoginText>
+        ) : (
+          <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
+        )}
+      </HeaderBodyWrapper>
     </HeaderWrapper>
   );
 }
@@ -62,11 +72,20 @@ const HeaderWrapper = styled.div`
 
   width: 100%;
   height: 8rem;
-  padding: 0 12.5rem;
+  padding: 0 calc((100% - 126.2rem) / 2);
 
   border-bottom: 0.1rem solid rgb(211, 211, 211);
 
   background-color: white;
+`;
+
+const HeaderBodyWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 126.2rem;
+  height: 100%;
 `;
 
 const HeaderTitle = styled.p`
@@ -114,4 +133,9 @@ const LoginButton = styled.button`
 
   background-color: #04293f;
   color: white;
+`;
+
+const SuccessLoginText = styled.p`
+  font-size: 1.8rem;
+  font-weight: 700;
 `;
