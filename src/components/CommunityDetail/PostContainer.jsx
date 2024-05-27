@@ -113,6 +113,7 @@ const PostBody = styled.section`
   font-weight: 400;
 
   line-height: 150%;
+  white-space: pre-wrap;
 
   border-top: 0.1rem solid rgb(211, 211, 211);
   border-bottom: 0.1rem solid rgb(211, 211, 211);
