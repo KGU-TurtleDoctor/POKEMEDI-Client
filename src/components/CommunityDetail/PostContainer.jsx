@@ -57,6 +57,8 @@ const PostHeader = styled.div`
 const PostTitle = styled.h1`
   font-size: 4rem;
   font-weight: 600;
+
+  line-height: 130%;
 `;
 
 const PostInfo = styled.div`
@@ -111,6 +113,7 @@ const PostBody = styled.section`
   font-weight: 400;
 
   line-height: 150%;
+  white-space: pre-wrap;
 
   border-top: 0.1rem solid rgb(211, 211, 211);
   border-bottom: 0.1rem solid rgb(211, 211, 211);
