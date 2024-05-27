@@ -57,6 +57,8 @@ const PostHeader = styled.div`
 const PostTitle = styled.h1`
   font-size: 4rem;
   font-weight: 600;
+
+  line-height: 130%;
 `;
 
 const PostInfo = styled.div`
