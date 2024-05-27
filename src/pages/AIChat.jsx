@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { getChatHistory } from '../apis/AIChat/getChatHistory';
 import { postChatbotPrompt } from '../apis/AIChat/postChatbotPrompt';
 import { IcSend } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
 
 function AIChat() {
-  const [chatList, setChatList] = useState([
-    {
-      id: 2,
-      text: '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
-    },
-  ]);
+  const { chatId } = useParams();
+
+  const [chatList, setChatList] = useState([]);
   const [chat, setChat] = useState('');
-  const [chatHistoryId, setChatHistoryId] = useState(-1);
+  const [chatHistoryId, setChatHistoryId] = useState(chatId ? chatId : -1);
+
+  useEffect(() => {
+    setChatHistoryId(chatId ? chatId : -1);
+    chatId
+      ? getChatHistory(setChatList, chatHistoryId)
+      : setChatList([
+          {
+            role: 0,
+            content:
+              '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
+          },
+        ]);
+  }, [chatId]);
 
   const handleChangeChat = (e) => {
     setChat(e.target.value);
@@ -21,7 +33,10 @@ function AIChat() {
 
   const handleClickSendButton = () => {
     if (chat.length !== 0) {
-      setChatList((prevChatList) => [...prevChatList, { id: 1, text: chat }]);
+      setChatList((prevChatList) => [
+        ...prevChatList,
+        { role: 1, content: chat },
+      ]);
 
       setChat('');
 
