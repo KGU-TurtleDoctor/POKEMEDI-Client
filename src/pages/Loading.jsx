@@ -1,16 +1,54 @@
 import React from 'react';
 import svgLoading from '../assets/gif/loading.gif';
+import Header from '../components/Common/Header';
 import styled from 'styled-components';
 
 function Loading() {
   return (
-    <LoadingsvgWrapper>
-      <img src={svgLoading} alt="로딩중" width="11%" />
-    </LoadingsvgWrapper>
+    <LoadingListWrapper>
+      <Header />
+      <LoadingBodyWrapper>
+        <LoadingBoxWrapper>
+          <LoadingsvgWrapper>
+            <img src={svgLoading} alt="로딩중" width="25%" />
+          </LoadingsvgWrapper>
+        </LoadingBoxWrapper>
+      </LoadingBodyWrapper>
+    </LoadingListWrapper>
   );
 }
 
 export default Loading;
+
+const LoadingListWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const LoadingBodyWrapper = styled.div`
+  width: 100%;
+  min-height: calc(100vh - 8rem);
+  padding: 0 calc((100% - 81.2rem) / 2);
+  margin-top: 8rem;
+
+  background-color: #f1f5f9;
+
+  display: flex;
+  justify-content: center;
+`;
+
+const LoadingBoxWrapper = styled.div`
+  width: 81.2rem;
+  min-height: calc(100vh - 8rem);
+  padding: 10rem;
+
+  background-color: white;
+  font-size: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
 
 const LoadingsvgWrapper = styled.div`
   display: flex;
@@ -18,5 +56,5 @@ const LoadingsvgWrapper = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
