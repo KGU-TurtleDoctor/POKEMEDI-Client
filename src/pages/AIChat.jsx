@@ -21,8 +21,7 @@ function AIChat() {
       : setChatList([
           {
             role: 0,
-            content:
-              '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?\n\n하단 카테고리를 보고 선택해주세요!',
+            content: '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?',
           },
         ]);
   }, [chatId]);
