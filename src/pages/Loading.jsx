@@ -9,9 +9,9 @@ function Loading() {
       <Header />
       <LoadingBodyWrapper>
         <LoadingBoxWrapper>
-          <LoadingsvgWrapper>
-            <img src={svgLoading} alt="로딩중" width="25%" />
-          </LoadingsvgWrapper>
+          <LoadingSVGWrapper>
+            <LoadingSVG src={svgLoading} alt="로딩중" />
+          </LoadingSVGWrapper>
         </LoadingBoxWrapper>
       </LoadingBodyWrapper>
     </LoadingListWrapper>
@@ -50,11 +50,15 @@ const LoadingBoxWrapper = styled.div`
   gap: 2rem;
 `;
 
-const LoadingsvgWrapper = styled.div`
+const LoadingSVGWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
   width: 100%;
   height: 100%;
+`;
+
+const LoadingSVG = styled.img`
+  width: 25%;
 `;
