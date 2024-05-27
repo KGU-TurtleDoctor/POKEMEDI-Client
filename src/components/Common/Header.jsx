@@ -49,7 +49,9 @@ function Header() {
           </NavigatorList>
         </HeaderNavigator>
         {sessionStorage.getItem('name') ? (
-          <p>{`${sessionStorage.getItem('name')}님 안녕하세요`}</p>
+          <SuccessLoginText>{`${sessionStorage.getItem(
+            'name',
+          )}님, 안녕하세요`}</SuccessLoginText>
         ) : (
           <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
         )}
@@ -131,4 +133,9 @@ const LoginButton = styled.button`
 
   background-color: #04293f;
   color: white;
+`;
+
+const SuccessLoginText = styled.p`
+  font-size: 2rem;
+  font-weight: 700;
 `;
