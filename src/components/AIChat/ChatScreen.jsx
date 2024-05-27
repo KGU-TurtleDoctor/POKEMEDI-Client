@@ -12,11 +12,11 @@ function ChatScreen({ chatList }) {
     <ChatScreenWrapper>
       <ChatLogDisplay>
         {chatList.map((chat, idx) => (
-          <ChatWrapper key={idx} $chatId={chat.id}>
-            {chat.id === 1 ? (
-              <MyChat>{chat.text}</MyChat>
+          <ChatWrapper key={`chat-${idx}`} $chatRole={chat.role}>
+            {chat.role === 1 ? (
+              <MyChat>{chat.content}</MyChat>
             ) : (
-              <DoctorChat>{chat.text}</DoctorChat>
+              <DoctorChat>{chat.content}</DoctorChat>
             )}
           </ChatWrapper>
         ))}
@@ -109,8 +109,8 @@ const ChatWrapper = styled.div`
   position: relative;
 
   display: flex;
-  justify-content: ${(props) =>
-    props.$chatId === 2 ? 'flex-start' : 'flex-end'};
+  justify-content: ${({ $chatRole }) =>
+    $chatRole === 0 ? 'flex-start' : 'flex-end'};
 
   width: 100%;
 
