@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getChatHistory } from '../apis/AIChat/getChatHistory';
 import { postChatbotPrompt } from '../apis/AIChat/postChatbotPrompt';
-import { IcSend } from '../assets/svg/icon';
+import { IcSendBlack } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
 
@@ -56,17 +56,19 @@ function AIChat() {
       <AIChatPageBodyWrapper>
         <ChatScreen chatList={chatList} />
       </AIChatPageBodyWrapper>
-      <ChattingInputBox>
-        <ChattingInput
-          placeholder="메시지를 입력해주세요."
-          value={chat}
-          onChange={handleChangeChat}
-          onKeyDown={handlePressEnterKey}
-        />
-        <button onClick={handleClickSendButton}>
-          <IcSend />
-        </button>
-      </ChattingInputBox>
+      <ChattingInputContainer>
+        <ChattingInputWrapper>
+          <ChattingInput
+            placeholder="메시지를 입력해주세요."
+            value={chat}
+            onChange={handleChangeChat}
+            onKeyDown={handlePressEnterKey}
+          />
+          <MessageSendButton onClick={handleClickSendButton}>
+            <IcSendBlack />
+          </MessageSendButton>
+        </ChattingInputWrapper>
+      </ChattingInputContainer>
     </AIChatPageWrapper>
   );
 }
@@ -74,6 +76,10 @@ function AIChat() {
 export default AIChat;
 
 const AIChatPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   position: relative;
   width: 100vw;
 `;
@@ -81,13 +87,13 @@ const AIChatPageWrapper = styled.div`
 const AIChatPageBodyWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 8rem);
-  padding: 0 calc((100% - 76.2rem) / 2);
+  padding: 0 calc((100% - 81.2rem) / 2);
   margin-top: 8rem;
 
   background-color: #f1f5f9;
 `;
 
-const ChattingInputBox = styled.div`
+const ChattingInputContainer = styled.div`
   position: absolute;
   bottom: 0;
 
@@ -96,20 +102,38 @@ const ChattingInputBox = styled.div`
   align-items: center;
   column-gap: 3.75rem;
 
-  width: 100%;
-  height: 7.5rem;
+  width: 81.2rem;
+  height: 7rem;
   background-color: #04293f;
 `;
 
-const ChattingInput = styled.input`
-  width: 65%;
-  height: 4.75rem;
-  padding: 0 1.5rem;
+const ChattingInputWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  font-size: 1.875rem;
+  width: 90%;
+  height: 5rem;
+  padding: 0 1rem 0 2rem;
+
+  border-radius: 0.8rem;
+
+  background-color: #ffffff;
+`;
+
+const ChattingInput = styled.input`
+  width: 90%;
+  height: 100%;
+
+  font-size: 1.8rem;
   font-weight: 500;
   line-height: 2rem;
 
-  border: 0.1rem solid rgb(211, 211, 211);
-  border-radius: 1rem;
+  border: none;
+`;
+
+const MessageSendButton = styled.button`
+  width: 4rem;
+  height: 4rem;
+  padding-top: 0.3rem;
 `;
