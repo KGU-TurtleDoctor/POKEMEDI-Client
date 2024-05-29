@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import chatImg from '../../assets/img/chat.png';
 import communityImg from '../../assets/img/community.png';
 
 const MenuBox = ({ type }) => {
+  const navigate = useNavigate();
+
   return type === 1 ? (
     <MenuBoxWrapper>
       <ImgContainer>
@@ -15,7 +18,9 @@ const MenuBox = ({ type }) => {
           일상 속의 통증, 원인이 궁금하지 않으셨나요? AI 챗봇에게 모두
           물어보세요!
         </Description>
-        <LinkButton>AI 진단 바로가기</LinkButton>
+        <LinkButton onClick={() => navigate('/aichat')}>
+          AI 진단 바로가기
+        </LinkButton>
       </DescriptionContainer>
     </MenuBoxWrapper>
   ) : (
@@ -26,7 +31,9 @@ const MenuBox = ({ type }) => {
           의료 관련 질문을 커뮤니티에 게시해 보세요. 사람들 혹은 의사가 답변해
           줄 거예요!
         </Description>
-        <LinkButton>커뮤니티 바로가기</LinkButton>
+        <LinkButton onClick={() => navigate('/community-list')}>
+          커뮤니티 바로가기
+        </LinkButton>
       </DescriptionContainer>
       <ImgContainer>
         <MenuImg src={communityImg} />
