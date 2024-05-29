@@ -6,6 +6,12 @@ export const getChatHistory = (updateChatList, chatHistoryId) => {
       withCredentials: true,
     })
     .then((response) => {
-      updateChatList(response.data.result);
+      updateChatList([
+        {
+          role: 0,
+          content: '안녕하세요! 포켓메디입니다.\n무엇을 도와드릴까요?',
+        },
+        ...response.data.result,
+      ]);
     });
 };
