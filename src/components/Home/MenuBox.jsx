@@ -1,11 +1,11 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 import chatImg from '../../assets/img/chat.png';
 import communityImg from '../../assets/img/community.png';
 
-const MenuBox = React.forwardRef(({ isVisible, type }, ref) => {
+const MenuBox = ({ type }) => {
   return type === 1 ? (
-    <MenuBoxWrapper ref={ref} fadetype={isVisible ? 'in' : 'out'}>
+    <MenuBoxWrapper>
       <ImgContainer>
         <MenuImg src={chatImg} />
       </ImgContainer>
@@ -19,7 +19,7 @@ const MenuBox = React.forwardRef(({ isVisible, type }, ref) => {
       </DescriptionContainer>
     </MenuBoxWrapper>
   ) : (
-    <MenuBoxWrapper ref={ref} fadetype={isVisible ? 'in' : 'out'} type={type}>
+    <MenuBoxWrapper type={type}>
       <DescriptionContainer>
         <DescriptionContainerTitle>커뮤니티</DescriptionContainerTitle>
         <Description type={type}>
@@ -33,29 +33,7 @@ const MenuBox = React.forwardRef(({ isVisible, type }, ref) => {
       </ImgContainer>
     </MenuBoxWrapper>
   );
-});
-
-const fadeup = keyframes`
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
-`;
-
-const fadeout = keyframes`
-  from {
-    opacity: 1;
-    transform: translateZ(0);
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-`;
+};
 
 const MenuBoxWrapper = styled.div`
   display: flex;
@@ -73,18 +51,6 @@ const MenuBoxWrapper = styled.div`
     rgba(0, 0, 33, 0.03) 0px 0px 1px 0px;
 
   background-color: #f1f5f9;
-
-  animation-duration: 1s;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
-  ${({ fadetype }) =>
-    fadetype === 'in'
-      ? css`
-          animation-name: ${fadeup};
-        `
-      : css`
-          animation-name: ${fadeout};
-        `}
 `;
 
 const ImgContainer = styled.div`
