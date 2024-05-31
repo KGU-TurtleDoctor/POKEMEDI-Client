@@ -121,7 +121,7 @@ const PostBody = styled.section`
 
 const CommentSectionWrapper = styled.section`
   width: 90%;
-  padding: 5rem 3rem;
+  padding: 4rem 3rem;
 `;
 
 const CommentCount = styled.h2`
@@ -135,5 +135,5 @@ const CommentListWrapper = styled.ul`
   row-gap: 2rem;
 
   width: 100%;
-  padding: 5rem 3rem;
+  padding: 3rem;
 `;
