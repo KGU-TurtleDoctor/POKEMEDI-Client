@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import { api } from '../libs/api';
 
-function CommunityPost() {
+function CommunityEdit() {
+  const { postId } = useParams();
   const navigate = useNavigate();
+
   const [TitleWriting, setTitleWriting] = useState('');
   const [PostWriting, setPostWriting] = useState('');
 
   const [isSatisfied, setIsSatisfied] = useState(false);
 
-  const handleClickWritingDoneButton = () => {
+  useEffect(() => {
+    api
+      .get(`/api/community/detail/${postId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setTitleWriting(res.data.result.title);
+        setPostWriting(res.data.result.content);
+      });
+  }, []);
+
+  const handleClickEditingDoneButton = () => {
     if (isSatisfied) {
       api
-        .post(
-          'api/community/create',
+        .put(
+          `api/community/update/${postId}`,
           {
             title: TitleWriting,
             body: PostWriting,
@@ -23,16 +36,16 @@ function CommunityPost() {
           { withCredentials: true },
         )
         .then(() => {
-          navigate('/community-list');
+          navigate(`/community/post/${postId}`);
         });
     }
   };
 
-  const handleChangeTitleInput = (e) => {
+  const handleChangeEditTitleInput = (e) => {
     setTitleWriting(e.target.value);
   };
 
-  const handleChangePostInput = (e) => {
+  const handleChangeEditPostInput = (e) => {
     setPostWriting(e.target.value);
   };
 
@@ -61,60 +74,61 @@ function CommunityPost() {
   }, [TitleWriting, PostWriting]);
 
   return (
-    <CommunityPostWrapper>
+    <CommunityEditWrapper>
       <Header />
-      <CommunityPostBodyWrapper>
-        <CommunityPostBoxWrapper>
-          <PostTitleWrapper>
-            <PostTitleBox>
-              <PostTitle>제목</PostTitle>
-            </PostTitleBox>
-            <TitleDiv>
-              <TitleInput
+
+      <CommunityEditBodyWrapper>
+        <CommunityEditBoxWrapper>
+          <EditTitleWrapper>
+            <EditTitleBox>
+              <EditTitle>제목</EditTitle>
+            </EditTitleBox>
+            <EditTitleDiv>
+              <EditTitleInput
                 type="text"
                 placeholder="제목을 입력해주세요."
-                onChange={handleChangeTitleInput}
+                onChange={handleChangeEditTitleInput}
                 value={TitleWriting}
               />
-              <TextCount>{`(${TitleWriting.length} / 50)`}</TextCount>
-            </TitleDiv>
-          </PostTitleWrapper>
-          <PostTextWrapper>
-            <PostTextBox>
-              <PostText>본문</PostText>
-            </PostTextBox>
-            <PostDiv>
-              <TextInput
+              <EditTextCount>{`(${TitleWriting.length} / 50)`}</EditTextCount>
+            </EditTitleDiv>
+          </EditTitleWrapper>
+          <EditTextWrapper>
+            <EditTextBox>
+              <EditText>본문</EditText>
+            </EditTextBox>
+            <EditDiv>
+              <EditTextInput
                 type="text"
                 placeholder="본문을 입력해주세요."
-                onChange={handleChangePostInput}
+                onChange={handleChangeEditPostInput}
                 value={PostWriting}
               />
-              <TextCount>{`(${PostWriting.length} / 500)`}</TextCount>
-            </PostDiv>
-          </PostTextWrapper>
-          <WritingDoneBox>
-            <WritingDoneButton
-              onClick={handleClickWritingDoneButton}
+              <EditTextCount>{`(${PostWriting.length} / 500)`}</EditTextCount>
+            </EditDiv>
+          </EditTextWrapper>
+          <EditingDoneBox>
+            <EditingDoneButton
+              onClick={handleClickEditingDoneButton}
               isSatisfied={isSatisfied}
             >
-              작성 완료
-            </WritingDoneButton>
-          </WritingDoneBox>
-        </CommunityPostBoxWrapper>
-      </CommunityPostBodyWrapper>
-    </CommunityPostWrapper>
+              수정 완료
+            </EditingDoneButton>
+          </EditingDoneBox>
+        </CommunityEditBoxWrapper>
+      </CommunityEditBodyWrapper>
+    </CommunityEditWrapper>
   );
 }
 
-export default CommunityPost;
+export default CommunityEdit;
 
-const CommunityPostWrapper = styled.div`
+const CommunityEditWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
 
-const CommunityPostBodyWrapper = styled.div`
+const CommunityEditBodyWrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 8rem);
   padding: 0 calc((100% - 81.2rem) / 2);
@@ -123,7 +137,7 @@ const CommunityPostBodyWrapper = styled.div`
   background-color: #f1f5f9;
 `;
 
-const CommunityPostBoxWrapper = styled.div`
+const CommunityEditBoxWrapper = styled.div`
   width: 81.2rem;
   padding: 8rem 10rem;
 
@@ -135,7 +149,7 @@ const CommunityPostBoxWrapper = styled.div`
   gap: 5rem;
 `;
 
-const PostTitleWrapper = styled.div`
+const EditTitleWrapper = styled.div`
   width: 100%;
 
   display: flex;
@@ -143,7 +157,7 @@ const PostTitleWrapper = styled.div`
   gap: 2rem;
 `;
 
-const PostTextWrapper = styled.div`
+const EditTextWrapper = styled.div`
   width: 100%;
 
   display: flex;
@@ -151,7 +165,7 @@ const PostTextWrapper = styled.div`
   gap: 2rem;
 `;
 
-const PostTitleBox = styled.div`
+const EditTitleBox = styled.div`
   width: 100%;
   height: 5rem;
 
@@ -160,7 +174,7 @@ const PostTitleBox = styled.div`
   gap: 1rem;
 `;
 
-const PostTextBox = styled.div`
+const EditTextBox = styled.div`
   width: 100%;
   height: 5rem;
 
@@ -169,22 +183,22 @@ const PostTextBox = styled.div`
   gap: 1rem;
 `;
 
-const PostTitle = styled.div`
+const EditTitle = styled.div`
   font-weight: bold;
   font-size: 3rem;
 `;
 
-const PostText = styled.div`
+const EditText = styled.div`
   font-weight: bold;
   font-size: 3rem;
 `;
 
-const TextCount = styled.p`
+const EditTextCount = styled.p`
   font-size: 1.5rem;
   color: #9e9e9e;
 `;
 
-const TitleDiv = styled.div`
+const EditTitleDiv = styled.div`
   width: 100%;
   height: 5rem;
   padding: 0 2rem;
@@ -199,7 +213,7 @@ const TitleDiv = styled.div`
   align-items: center;
 `;
 
-const TitleInput = styled.input`
+const EditTitleInput = styled.input`
   width: 80%;
   height: 4.6rem;
 
@@ -209,7 +223,7 @@ const TitleInput = styled.input`
   border-radius: 2rem;
 `;
 
-const PostDiv = styled.div`
+const EditDiv = styled.div`
   width: 100%;
   height: 46.3rem;
   padding: 2rem;
@@ -225,7 +239,7 @@ const PostDiv = styled.div`
   align-items: flex-end;
 `;
 
-const TextInput = styled.textarea`
+const EditTextInput = styled.textarea`
   width: 100%;
   height: 92%;
   margin-bottom: 3%;
@@ -244,7 +258,7 @@ const TextInput = styled.textarea`
   }
 `;
 
-const WritingDoneBox = styled.div`
+const EditingDoneBox = styled.div`
   width: 100%;
 
   display: flex;
@@ -252,7 +266,7 @@ const WritingDoneBox = styled.div`
   align-items: flex-end;
 `;
 
-const WritingDoneButton = styled.button`
+const EditingDoneButton = styled.button`
   width: 10rem;
   height: 3.75rem;
 
