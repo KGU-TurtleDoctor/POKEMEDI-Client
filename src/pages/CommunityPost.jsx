@@ -237,7 +237,7 @@ const TextInput = styled.textarea`
 
   border: none;
 
-  overflow: hidd;
+  overflow: hidden;
 
   &:focus {
     outline: none;
