@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import back1 from '../../assets/img/background1.jpeg';
-import back2 from '../../assets/img/background2.jpeg';
+import ImgFirstService from '../../assets/img/img_first_service.png';
+import ImgSecondService from '../../assets/img/img_second_service.png';
 
 function ServiceIntroduction() {
   return (
@@ -14,8 +14,8 @@ function ServiceIntroduction() {
         집에서도 편리하게, 포켓메디와 함께
       </ServiceIntroSubMessage>
       <ServiceImageContainer>
-        <FirstServiceImage src={back1} />
-        <SecondServiceImage src={back2} />
+        <FirstServiceImage src={ImgFirstService} />
+        <SecondServiceImage src={ImgSecondService} />
       </ServiceImageContainer>
     </ServiceintroductionWrapper>
   );
@@ -95,6 +95,8 @@ const FirstServiceImage = styled.img`
   opacity: 0; /* 초기에는 숨김 */
   animation: ${fadein} 0.8s ease forwards; /* forwards 옵션은 애니메이션 종료 후 상태를 유지하도록 합니다. */
   animation-delay: 1.5s;
+
+  object-fit: cover;
 `;
 
 const SecondServiceImage = styled.img`
@@ -111,4 +113,6 @@ const SecondServiceImage = styled.img`
   opacity: 0; /* 초기에는 숨김 */
   animation: ${fadein} 0.8s ease forwards; /* forwards 옵션은 애니메이션 종료 후 상태를 유지하도록 합니다. */
   animation-delay: 2.3s;
+
+  object-fit: cover;
 `;
