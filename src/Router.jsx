@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ScrollToTop from './components/Common/ScrollToTop';
 import AIChat from './pages/AIChat';
 import CommunityDetail from './pages/CommunityDetail';
 import CommunityList from './pages/CommunityList';
@@ -15,6 +16,7 @@ import MyPostList from './pages/MyPostList';
 function Router() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aichat" element={<AIChat />} />

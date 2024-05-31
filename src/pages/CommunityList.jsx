@@ -14,7 +14,6 @@ function CommunityList() {
 
   useEffect(() => {
     api.get('api/community/list', { withCredentials: true }).then((res) => {
-      console.log(res);
       if (Array.isArray(res.data.result)) {
         setList(res.data.result);
       }
@@ -29,7 +28,6 @@ function CommunityList() {
     api
       .get(`api/community/search/${searchText}`, { withCredentials: true })
       .then((res) => {
-        console.log('성공');
         if (Array.isArray(res.data.result)) {
           setList(res.data.result);
         }
@@ -102,7 +100,7 @@ const CommunityListBodyWrapper = styled.div`
 const CommunityListBoxWrapper = styled.div`
   width: 81.2rem;
   min-height: calc(100vh - 8rem);
-  padding: 10rem;
+  padding: 5rem 10rem;
 
   background-color: white;
   font-size: 2rem;

@@ -86,7 +86,7 @@ function CommentContainer({
             {isReplyMode
               ? '닫기'
               : replies.length !== 0
-              ? '답글 열기'
+              ? `답글 열기 (${replies.length})`
               : '새 답글 달기'}
           </ReplyButton>
         </BottomContainer>
@@ -161,6 +161,7 @@ const CommentContent = styled.p`
 
   font-size: 1.5rem;
 
+  line-height: 140%;
   white-space: pre-wrap;
 `;
 

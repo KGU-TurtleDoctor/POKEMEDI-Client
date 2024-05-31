@@ -111,6 +111,7 @@ const ReplyContent = styled.p`
 
   font-size: 1.4rem;
 
+  line-height: 140%;
   white-space: pre-wrap;
 `;
 
