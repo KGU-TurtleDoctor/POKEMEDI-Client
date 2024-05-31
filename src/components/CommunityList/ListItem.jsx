@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { IcTrashCan, IcUpdate } from '../../assets/svg/icon';
 import { api } from '../../libs/api';
 
-function ListItem({ id, title, content, nickname, date, updateList }) {
+function ListItem({ id, title, content, nickname, date, updateList, writer }) {
   const navigate = useNavigate();
 
   const [isUpdated, setIsUpdated] = useState(false);
@@ -51,15 +51,19 @@ function ListItem({ id, title, content, nickname, date, updateList }) {
   };
   return (
     <PostWrapper>
-      <CommentUpdateButton
-        onClick={handleClickUpdateButton}
-        isUpdated={isUpdated}
-      >
-        <StyledIcUpdate />
-      </CommentUpdateButton>
-      <CommentDeleteButton onClick={handleClickDeleteButton}>
-        <StyledIcTrashCan />
-      </CommentDeleteButton>
+      {writer && (
+        <>
+          <CommentUpdateButton
+            onClick={handleClickUpdateButton}
+            isUpdated={isUpdated}
+          >
+            <StyledIcUpdate />
+          </CommentUpdateButton>
+          <CommentDeleteButton onClick={handleClickDeleteButton}>
+            <StyledIcTrashCan />
+          </CommentDeleteButton>
+        </>
+      )}
       <PostContentWrapper onClick={handleClickListItem}>
         <PostTitle>{title}</PostTitle>
         <PostContent>{content}</PostContent>
