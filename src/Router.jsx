@@ -7,6 +7,8 @@ import CommunityList from './pages/CommunityList';
 import CommunityPost from './pages/CommunityPost';
 import Home from './pages/Home';
 import Loading from './pages/Loading';
+import LoginLoading from './pages/LoginLoading';
+import LoginWarning from './pages/LoginWarning';
 import MyChatList from './pages/MyChatList';
 import MyPage from './pages/MyPage';
 import MyPostList from './pages/MyPostList';
@@ -18,6 +20,9 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aichat" element={<AIChat />} />
+        <Route path="/login-loading" element={<LoginLoading />} />
+        <Route path="/loading" element={<Loading />} />
+        <Route path="/login-warning" element={<LoginWarning />} />
         <Route path="/aichat/:chatId" element={<AIChat />} />
         <Route path="/login-loading" element={<Loading />} />
         <Route path="/community-list" element={<CommunityList />} />
