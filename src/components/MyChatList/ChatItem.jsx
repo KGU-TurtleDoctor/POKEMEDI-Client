@@ -6,7 +6,7 @@ function ChatItem({ chatHistoryId, title, name, date }) {
   const navigate = useNavigate();
 
   const handleClickPostItem = () => {
-    navigate(`/community/aichat/${chatHistoryId}`);
+    navigate(`/aichat/${chatHistoryId}`);
   };
 
   return (
