@@ -18,7 +18,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aichat" element={<AIChat />} />
-        <Route path="/community/aichat/:chatId" element={<AIChat />} />
+        <Route path="/aichat/:chatId" element={<AIChat />} />
         <Route path="/login-loading" element={<Loading />} />
         <Route path="/community-list" element={<CommunityList />} />
         <Route path="/community/post/:postId" element={<CommunityDetail />} />
