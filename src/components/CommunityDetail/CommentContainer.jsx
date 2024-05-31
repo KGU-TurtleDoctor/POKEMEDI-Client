@@ -161,6 +161,7 @@ const CommentContent = styled.p`
 
   font-size: 1.5rem;
 
+  line-height: 140%;
   white-space: pre-wrap;
 `;
 
