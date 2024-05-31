@@ -69,8 +69,8 @@ const ServiceIntroSubMessage = styled.h2`
   font-weight: 500;
   color: #8898a7;
 
-  opacity: 0; /* 초기에는 숨김 */
-  animation: ${fadeup} 0.8s ease forwards; /* forwards 옵션은 애니메이션 종료 후 상태를 유지하도록 합니다. */
+  opacity: 0;
+  animation: ${fadeup} 0.8s ease forwards;
   animation-delay: 0.8s;
 `;
 
@@ -92,8 +92,8 @@ const FirstServiceImage = styled.img`
 
   border-radius: 1.5rem;
 
-  opacity: 0; /* 초기에는 숨김 */
-  animation: ${fadein} 0.8s ease forwards; /* forwards 옵션은 애니메이션 종료 후 상태를 유지하도록 합니다. */
+  opacity: 0;
+  animation: ${fadein} 0.8s ease forwards;
   animation-delay: 1.5s;
 
   object-fit: cover;
@@ -110,8 +110,8 @@ const SecondServiceImage = styled.img`
 
   border-radius: 1.5rem;
 
-  opacity: 0; /* 초기에는 숨김 */
-  animation: ${fadein} 0.8s ease forwards; /* forwards 옵션은 애니메이션 종료 후 상태를 유지하도록 합니다. */
+  opacity: 0;
+  animation: ${fadein} 0.8s ease forwards;
   animation-delay: 2.3s;
 
   object-fit: cover;
