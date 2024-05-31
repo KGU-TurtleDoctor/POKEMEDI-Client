@@ -1,11 +1,21 @@
 import React from 'react';
 import DeleteModalPortal from './DeleteModalPortal';
 import { styled } from 'styled-components';
+import TurtleTrashcan from '../../assets/img/img_turtle_trashcan.png';
 
 function DeleteModal() {
   return (
     <DeleteModalPortal>
-      <BlurryContainer></BlurryContainer>
+      <BlurryContainer>
+        <ModalWrapper>
+          <ModalImage src={TurtleTrashcan} />
+          <ModalWarning>정말 삭제하시겠습니까?</ModalWarning>
+          <ModalButtonWrapper>
+            <YesModalButton>예</YesModalButton>
+            <NoModalButton>아니오</NoModalButton>
+          </ModalButtonWrapper>
+        </ModalWrapper>
+      </BlurryContainer>
     </DeleteModalPortal>
   );
 }
@@ -23,5 +33,62 @@ const BlurryContainer = styled.div`
 
   width: 100%;
   height: 100vh;
-  background-color: #000000bf;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 60rem;
+  height: 40rem;
+
+  background-color: white;
+  border-radius: 1rem;
+
+  padding: 2rem;
+`;
+
+const ModalImage = styled.img`
+  width: 20rem;
+  height: 20rem;
+
+  object-fit: cover;
+`;
+
+const ModalWarning = styled.div`
+  font-size: 2.5rem;
+  font-weight: 550;
+
+  margin-top: 2rem;
+`;
+
+const ModalButtonWrapper = styled.div`
+  display: flex;
+  column-gap: 5rem;
+
+  margin-top: 2rem;
+`;
+
+const YesModalButton = styled.button`
+  width: 10rem;
+  height: 5rem;
+
+  font-size: 2.5rem;
+  font-weight: 500;
+
+  border: 1px solid black;
+  border-radius: 1rem;
+`;
+
+const NoModalButton = styled.button`
+  width: 10rem;
+  height: 5rem;
+
+  font-size: 2.5rem;
+  font-weight: 500;
+
+  border: 1px solid black;
+  border-radius: 1rem;
 `;
