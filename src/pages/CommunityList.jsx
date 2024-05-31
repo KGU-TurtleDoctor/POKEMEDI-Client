@@ -102,7 +102,7 @@ const CommunityListBodyWrapper = styled.div`
 const CommunityListBoxWrapper = styled.div`
   width: 81.2rem;
   min-height: calc(100vh - 8rem);
-  padding: 10rem;
+  padding: 5rem 10rem;
 
   background-color: white;
   font-size: 2rem;
