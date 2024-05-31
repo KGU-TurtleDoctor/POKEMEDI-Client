@@ -1,10 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcLogo } from '../../assets/svg/icon';
 
 function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const handleClickLogoButton = () => {
     navigate('/');
@@ -37,13 +39,22 @@ function Header() {
         </HeaderLeftButton>
         <HeaderNavigator>
           <NavigatorList>
-            <NavigatorItem onClick={handleClickAIChatButton}>
+            <NavigatorItem
+              onClick={handleClickAIChatButton}
+              $isActive={currentPath.startsWith('/aichat')}
+            >
               AI 진단
             </NavigatorItem>
-            <NavigatorItem onClick={handleClickListButton}>
+            <NavigatorItem
+              onClick={handleClickListButton}
+              $isActive={currentPath.startsWith('/community')}
+            >
               커뮤니티
             </NavigatorItem>
-            <NavigatorItem onClick={handleClickMyPageButton}>
+            <NavigatorItem
+              onClick={handleClickMyPageButton}
+              $isActive={currentPath === '/mypage'}
+            >
               마이페이지
             </NavigatorItem>
           </NavigatorList>
@@ -116,9 +127,8 @@ const NavigatorItem = styled.button`
   font-size: 1.75rem;
   font-weight: 600;
 
-  &:hover {
-    box-shadow: inset 0 -0.25rem 0 #04293f;
-  }
+  box-shadow: ${({ $isActive }) =>
+    $isActive ? 'inset 0 -0.25rem 0 #04293f' : 'none'};
 `;
 
 const LoginButton = styled.button`
