@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import DeleteModalPortal from './DeleteModalPortal';
 import { styled } from 'styled-components';
 import TurtleTrashcan from '../../assets/img/img_turtle_trashcan.png';
 
-function DeleteModal() {
+function DeleteModal({ handleClickYesModalButton, handleClickNoModalButton }) {
+  const navigate = useNavigate();
+
   return (
     <DeleteModalPortal>
       <BlurryContainer>
@@ -11,8 +14,12 @@ function DeleteModal() {
           <ModalImage src={TurtleTrashcan} />
           <ModalWarning>정말 삭제하시겠습니까?</ModalWarning>
           <ModalButtonWrapper>
-            <YesModalButton>예</YesModalButton>
-            <NoModalButton>아니오</NoModalButton>
+            <YesModalButton onClick={handleClickYesModalButton}>
+              예
+            </YesModalButton>
+            <NoModalButton onClick={handleClickNoModalButton}>
+              아니오
+            </NoModalButton>
           </ModalButtonWrapper>
         </ModalWrapper>
       </BlurryContainer>

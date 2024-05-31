@@ -21,21 +21,34 @@ function ListItem({ id, title, content, nickname, date, updateList, writer }) {
 
   const handleClickDeleteButton = () => {
     setIsModalOpen(true);
-    // api
-    //   .delete(`/api/community/delete/${id}`, {
-    //     withCredentials: true,
-    //   })
-    //   .then(() => {
-    //     api.get('api/community/list', { withCredentials: true }).then((res) => {
-    //       if (Array.isArray(res.data.result)) {
-    //         updateList(res.data.result);
-    //       }
-    //     });
-    //   });
+  };
+
+  const handleClickYesModalButton = () => {
+    api
+      .delete(`/api/community/delete/${id}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        api.get('api/community/list', { withCredentials: true }).then((res) => {
+          if (Array.isArray(res.data.result)) {
+            updateList(res.data.result);
+          }
+        });
+      });
+  };
+
+  const handleClickNoModalButton = () => {
+    setIsModalOpen(false);
   };
   return (
     <React.Fragment>
-      {isModalOpen && <DeleteModal />}
+      {isModalOpen && (
+        <DeleteModal
+          handleClickYesModalButton={handleClickYesModalButton}
+          handleClickNoModalButton={handleClickNoModalButton}
+        />
+      )}
+
       <PostWrapper>
         {writer && (
           <>
