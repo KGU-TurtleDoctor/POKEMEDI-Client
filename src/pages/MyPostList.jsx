@@ -11,7 +11,6 @@ function MyPostList() {
     api
       .get('api/community/myPostList', { withCredentials: true })
       .then((res) => {
-        console.log(res);
         if (Array.isArray(res.data.result)) {
           setMyList(res.data.result);
         }

@@ -28,7 +28,6 @@ function ListItem({ id, title, content, nickname, date, updateList }) {
           api
             .get('api/community/list', { withCredentials: true })
             .then((res) => {
-              console.log(res);
               if (Array.isArray(res.data.result)) {
                 updateList(res.data.result);
               }
@@ -44,7 +43,6 @@ function ListItem({ id, title, content, nickname, date, updateList }) {
       })
       .then(() => {
         api.get('api/community/list', { withCredentials: true }).then((res) => {
-          console.log(res);
           if (Array.isArray(res.data.result)) {
             updateList(res.data.result);
           }

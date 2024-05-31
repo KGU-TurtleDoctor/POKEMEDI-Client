@@ -11,7 +11,6 @@ function MyChatList() {
     api
       .get('api/chatbot/chathistories', { withCredentials: true })
       .then((res) => {
-        console.log(res);
         if (Array.isArray(res.data.result)) {
           setMyChatList(res.data.result);
         }

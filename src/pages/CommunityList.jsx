@@ -14,7 +14,6 @@ function CommunityList() {
 
   useEffect(() => {
     api.get('api/community/list', { withCredentials: true }).then((res) => {
-      console.log(res);
       if (Array.isArray(res.data.result)) {
         setList(res.data.result);
       }
@@ -29,7 +28,6 @@ function CommunityList() {
     api
       .get(`api/community/search/${searchText}`, { withCredentials: true })
       .then((res) => {
-        console.log('성공');
         if (Array.isArray(res.data.result)) {
           setList(res.data.result);
         }
