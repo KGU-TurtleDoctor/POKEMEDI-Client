@@ -1,4 +1,4 @@
-import React from 'react';
+import ReactDOM from 'react-dom';
 
 function DeleteModalPortal({ children }) {
   const el = document.getElementById('delete-modal');

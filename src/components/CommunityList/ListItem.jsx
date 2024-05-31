@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcTrashCan, IcUpdate } from '../../assets/svg/icon';
 import { api } from '../../libs/api';
+import DeleteModal from '../Common/DeleteModal';
 
 function ListItem({ id, title, content, nickname, date, updateList, writer }) {
   const navigate = useNavigate();
 
   const [isUpdated, setIsUpdated] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClickListItem = () => {
     navigate(`/community/post/${id}`);
@@ -18,42 +20,46 @@ function ListItem({ id, title, content, nickname, date, updateList, writer }) {
   };
 
   const handleClickDeleteButton = () => {
-    api
-      .delete(`/api/community/delete/${id}`, {
-        withCredentials: true,
-      })
-      .then(() => {
-        api.get('api/community/list', { withCredentials: true }).then((res) => {
-          if (Array.isArray(res.data.result)) {
-            updateList(res.data.result);
-          }
-        });
-      });
+    setIsModalOpen(true);
+    // api
+    //   .delete(`/api/community/delete/${id}`, {
+    //     withCredentials: true,
+    //   })
+    //   .then(() => {
+    //     api.get('api/community/list', { withCredentials: true }).then((res) => {
+    //       if (Array.isArray(res.data.result)) {
+    //         updateList(res.data.result);
+    //       }
+    //     });
+    //   });
   };
   return (
-    <PostWrapper>
-      {writer && (
-        <>
-          <CommentUpdateButton
-            onClick={handleClickUpdateButton}
-            isUpdated={isUpdated}
-          >
-            <StyledIcUpdate />
-          </CommentUpdateButton>
-          <CommentDeleteButton onClick={handleClickDeleteButton}>
-            <StyledIcTrashCan />
-          </CommentDeleteButton>
-        </>
-      )}
-      <PostContentWrapper onClick={handleClickListItem}>
-        <PostTitle>{title}</PostTitle>
-        <PostContent>{content}</PostContent>
-        <PostInfo>
-          <PostNickname>{nickname}</PostNickname>
-          <PostDate>{date}</PostDate>
-        </PostInfo>
-      </PostContentWrapper>
-    </PostWrapper>
+    <React.Fragment>
+      {isModalOpen && <DeleteModal />}
+      <PostWrapper>
+        {writer && (
+          <>
+            <CommentUpdateButton
+              onClick={handleClickUpdateButton}
+              isUpdated={isUpdated}
+            >
+              <StyledIcUpdate />
+            </CommentUpdateButton>
+            <CommentDeleteButton onClick={handleClickDeleteButton}>
+              <StyledIcTrashCan />
+            </CommentDeleteButton>
+          </>
+        )}
+        <PostContentWrapper onClick={handleClickListItem}>
+          <PostTitle>{title}</PostTitle>
+          <PostContent>{content}</PostContent>
+          <PostInfo>
+            <PostNickname>{nickname}</PostNickname>
+            <PostDate>{date}</PostDate>
+          </PostInfo>
+        </PostContentWrapper>
+      </PostWrapper>
+    </React.Fragment>
   );
 }
 

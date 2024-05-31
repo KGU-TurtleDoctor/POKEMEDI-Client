@@ -19,10 +19,9 @@ const BlurryContainer = styled.div`
 
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 3;
 
   width: 100%;
   height: 100vh;
-
-  background-color: ${({ theme }) => theme.colors.bgColor};
+  background-color: #000000bf;
 `;
