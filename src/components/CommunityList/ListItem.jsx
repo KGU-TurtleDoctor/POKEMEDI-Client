@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcTrashCan, IcUpdate } from '../../assets/svg/icon';
 import { api } from '../../libs/api';
+import DeleteModal from '../Common/DeleteModal';
 
 function ListItem({ id, title, content, nickname, date, updateList, writer }) {
   const navigate = useNavigate();
 
   const [isUpdated, setIsUpdated] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClickListItem = () => {
     navigate(`/community/post/${id}`);
@@ -18,6 +20,10 @@ function ListItem({ id, title, content, nickname, date, updateList, writer }) {
   };
 
   const handleClickDeleteButton = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleClickYesModalButton = () => {
     api
       .delete(`/api/community/delete/${id}`, {
         withCredentials: true,
@@ -30,30 +36,43 @@ function ListItem({ id, title, content, nickname, date, updateList, writer }) {
         });
       });
   };
+
+  const handleClickNoModalButton = () => {
+    setIsModalOpen(false);
+  };
   return (
-    <PostWrapper>
-      {writer && (
-        <>
-          <CommentUpdateButton
-            onClick={handleClickUpdateButton}
-            isUpdated={isUpdated}
-          >
-            <StyledIcUpdate />
-          </CommentUpdateButton>
-          <CommentDeleteButton onClick={handleClickDeleteButton}>
-            <StyledIcTrashCan />
-          </CommentDeleteButton>
-        </>
+    <React.Fragment>
+      {isModalOpen && (
+        <DeleteModal
+          handleClickYesModalButton={handleClickYesModalButton}
+          handleClickNoModalButton={handleClickNoModalButton}
+        />
       )}
-      <PostContentWrapper onClick={handleClickListItem}>
-        <PostTitle>{title}</PostTitle>
-        <PostContent>{content}</PostContent>
-        <PostInfo>
-          <PostNickname>{nickname}</PostNickname>
-          <PostDate>{date}</PostDate>
-        </PostInfo>
-      </PostContentWrapper>
-    </PostWrapper>
+
+      <PostWrapper>
+        {writer && (
+          <>
+            <CommentUpdateButton
+              onClick={handleClickUpdateButton}
+              isUpdated={isUpdated}
+            >
+              <StyledIcUpdate />
+            </CommentUpdateButton>
+            <CommentDeleteButton onClick={handleClickDeleteButton}>
+              <StyledIcTrashCan />
+            </CommentDeleteButton>
+          </>
+        )}
+        <PostContentWrapper onClick={handleClickListItem}>
+          <PostTitle>{title}</PostTitle>
+          <PostContent>{content}</PostContent>
+          <PostInfo>
+            <PostNickname>{nickname}</PostNickname>
+            <PostDate>{date}</PostDate>
+          </PostInfo>
+        </PostContentWrapper>
+      </PostWrapper>
+    </React.Fragment>
   );
 }
 
