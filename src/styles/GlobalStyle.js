@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
 
         font-family:
-        'Pretendard Variable',
+        'Pretendard',
         Pretendard,
         -apple-system,
         BlinkMacSystemFont,
@@ -73,7 +73,7 @@ const GlobalStyle = createGlobalStyle`
     @font-face {
     font-family: Pretendard;
     src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css')
-      format('woff');
+      format ('woff');
   }
 `;
 
