@@ -14,26 +14,7 @@ function ListItem({ id, title, content, nickname, date, updateList, writer }) {
   };
 
   const handleClickUpdateButton = () => {
-    if (isUpdated) {
-      api
-        .put(
-          'api/community/update/${id}',
-          {
-            title: TitleWriting,
-            body: PostWriting,
-          },
-          { withCredentials: true },
-        )
-        .then(() => {
-          api
-            .get('api/community/list', { withCredentials: true })
-            .then((res) => {
-              if (Array.isArray(res.data.result)) {
-                updateList(res.data.result);
-              }
-            });
-        });
-    }
+    navigate(`/community/edit/${id}`);
   };
 
   const handleClickDeleteButton = () => {
