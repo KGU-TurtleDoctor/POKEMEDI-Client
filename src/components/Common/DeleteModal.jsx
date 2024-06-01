@@ -1,12 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import DeleteModalPortal from './DeleteModalPortal';
 import { styled } from 'styled-components';
 import TurtleTrashcan from '../../assets/img/img_turtle_trashcan.png';
+import DeleteModalPortal from './DeleteModalPortal';
 
 function DeleteModal({ handleClickYesModalButton, handleClickNoModalButton }) {
-  const navigate = useNavigate();
-
   return (
     <DeleteModalPortal>
       <BlurryContainer>
@@ -47,9 +44,11 @@ const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  row-gap: 2.5rem;
 
-  width: 60rem;
-  height: 40rem;
+  width: 40rem;
+  height: 35rem;
 
   background-color: white;
   border-radius: 1rem;
@@ -58,44 +57,50 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalImage = styled.img`
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
 
   object-fit: cover;
 `;
 
 const ModalWarning = styled.div`
-  font-size: 2.5rem;
-  font-weight: 550;
-
-  margin-top: 2rem;
+  font-size: 2.2rem;
+  font-weight: 600;
 `;
 
 const ModalButtonWrapper = styled.div`
   display: flex;
   column-gap: 5rem;
-
-  margin-top: 2rem;
 `;
 
 const YesModalButton = styled.button`
-  width: 10rem;
-  height: 5rem;
+  width: 8.5rem;
+  height: 4rem;
 
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 500;
 
-  border: 1px solid black;
-  border-radius: 1rem;
+  border-radius: 0.7rem;
+
+  background-color: #04293f;
+  color: white;
 `;
 
 const NoModalButton = styled.button`
-  width: 10rem;
-  height: 5rem;
+  width: 8.5rem;
+  height: 4rem;
 
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 500;
 
-  border: 1px solid black;
-  border-radius: 1rem;
+  background-color: #ff0000;
+  color: white;
+
+  border-radius: 0.7rem;
+
+  transition: 0.3s ease;
+
+  &:hover {
+    background-color: #b81414;
+  }
 `;
