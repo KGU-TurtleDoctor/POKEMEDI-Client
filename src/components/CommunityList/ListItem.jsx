@@ -8,7 +8,6 @@ import DeleteModal from '../Common/DeleteModal';
 function ListItem({ id, title, content, nickname, date, updateList, writer }) {
   const navigate = useNavigate();
 
-  const [isUpdated, setIsUpdated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClickListItem = () => {
@@ -52,10 +51,7 @@ function ListItem({ id, title, content, nickname, date, updateList, writer }) {
       <PostWrapper>
         {writer && (
           <>
-            <CommentUpdateButton
-              onClick={handleClickUpdateButton}
-              isUpdated={isUpdated}
-            >
+            <CommentUpdateButton onClick={handleClickUpdateButton}>
               <StyledIcUpdate />
             </CommentUpdateButton>
             <CommentDeleteButton onClick={handleClickDeleteButton}>
