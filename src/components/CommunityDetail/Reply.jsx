@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcTrashCan, IcTurnUp } from '../../assets/svg/icon';
 import { api } from '../../libs/api';
+import DeleteModal from '../Common/DeleteModal';
 
 function Reply({
   commentId,
@@ -14,8 +15,13 @@ function Reply({
   isWriter,
 }) {
   const { postId } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClickReplyDeleteButton = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleClickYesModalButton = () => {
     api
       .delete(
         `/api/community/posts/${postId}/comments/${commentId}/replies/${replyId}`,
@@ -36,20 +42,32 @@ function Reply({
       });
   };
 
+  const handleClickNoModalButton = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <ReplyContainerWrapper>
-      <IcTurnRight />
-      <ReplyWrapper>
-        {isWriter && (
-          <ReplyTrashButton onClick={handleClickReplyDeleteButton}>
-            <StyledIcTrashCan />
-          </ReplyTrashButton>
-        )}
-        <ReplyWriter>{nickName}</ReplyWriter>
-        <ReplyContent>{body}</ReplyContent>
-        <ReplyDate>{time}</ReplyDate>
-      </ReplyWrapper>
-    </ReplyContainerWrapper>
+    <React.Fragment>
+      {isModalOpen && (
+        <DeleteModal
+          handleClickYesModalButton={handleClickYesModalButton}
+          handleClickNoModalButton={handleClickNoModalButton}
+        />
+      )}
+      <ReplyContainerWrapper>
+        <IcTurnRight />
+        <ReplyWrapper>
+          {isWriter && (
+            <ReplyTrashButton onClick={handleClickReplyDeleteButton}>
+              <StyledIcTrashCan />
+            </ReplyTrashButton>
+          )}
+          <ReplyWriter>{nickName}</ReplyWriter>
+          <ReplyContent>{body}</ReplyContent>
+          <ReplyDate>{time}</ReplyDate>
+        </ReplyWrapper>
+      </ReplyContainerWrapper>
+    </React.Fragment>
   );
 }
 

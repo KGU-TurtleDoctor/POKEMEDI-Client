@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcSendBlack, IcTrashCan } from '../../assets/svg/icon';
 import { api } from '../../libs/api';
+import DeleteModal from '../Common/DeleteModal';
 import Reply from './Reply';
 
 function CommentContainer({
@@ -16,6 +17,7 @@ function CommentContainer({
 }) {
   const [replyText, setReplyText] = useState('');
   const [isReplyMode, setIsReplyMode] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { postId } = useParams();
 
@@ -53,6 +55,10 @@ function CommentContainer({
   };
 
   const handleClickDeleteCommentButton = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleClickYesModalButton = () => {
     api
       .delete(`/api/community/posts/${postId}/comments/${commentId}`, {
         withCredentials: true,
@@ -70,52 +76,64 @@ function CommentContainer({
       });
   };
 
+  const handleClickNoModalButton = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <CommentContainerWrapper>
-      <CommentWrapper>
-        {isWriter && (
-          <CommentTrashButton onClick={handleClickDeleteCommentButton}>
-            <StyledIcTrashCan />
-          </CommentTrashButton>
-        )}
-        <CommentWriter>{nickName}</CommentWriter>
-        <CommentContent>{body}</CommentContent>
-        <BottomContainer>
-          <CommentDate>{time}</CommentDate>
-          <ReplyButton onClick={handleClickReplyButton}>
-            {isReplyMode
-              ? '닫기'
-              : replies.length !== 0
-              ? `답글 열기 (${replies.length})`
-              : '새 답글 달기'}
-          </ReplyButton>
-        </BottomContainer>
-      </CommentWrapper>
-      {isReplyMode && (
-        <ReplyListWrapper $isReplyMode={isReplyMode}>
-          {replies.map((reply) => (
-            <Reply
-              key={reply.replyId}
-              {...reply}
-              commentId={commentId}
-              setCommentList={setCommentList}
-            />
-          ))}
-          <ReplyInputContainer>
-            <ReplyInputWrapper>
-              <ReplyInput
-                placeholder="답글을 입력해주세요"
-                onChange={handleChangeReplyInput}
-                value={replyText}
-              />
-              <ReplySendButton onClick={handleClickReplySendButton}>
-                <IcSendBlack />
-              </ReplySendButton>
-            </ReplyInputWrapper>
-          </ReplyInputContainer>
-        </ReplyListWrapper>
+    <React.Fragment>
+      {isModalOpen && (
+        <DeleteModal
+          handleClickYesModalButton={handleClickYesModalButton}
+          handleClickNoModalButton={handleClickNoModalButton}
+        />
       )}
-    </CommentContainerWrapper>
+      <CommentContainerWrapper>
+        <CommentWrapper>
+          {isWriter && (
+            <CommentTrashButton onClick={handleClickDeleteCommentButton}>
+              <StyledIcTrashCan />
+            </CommentTrashButton>
+          )}
+          <CommentWriter>{nickName}</CommentWriter>
+          <CommentContent>{body}</CommentContent>
+          <BottomContainer>
+            <CommentDate>{time}</CommentDate>
+            <ReplyButton onClick={handleClickReplyButton}>
+              {isReplyMode
+                ? '닫기'
+                : replies.length !== 0
+                ? `답글 열기 (${replies.length})`
+                : '새 답글 달기'}
+            </ReplyButton>
+          </BottomContainer>
+        </CommentWrapper>
+        {isReplyMode && (
+          <ReplyListWrapper $isReplyMode={isReplyMode}>
+            {replies.map((reply) => (
+              <Reply
+                key={reply.replyId}
+                {...reply}
+                commentId={commentId}
+                setCommentList={setCommentList}
+              />
+            ))}
+            <ReplyInputContainer>
+              <ReplyInputWrapper>
+                <ReplyInput
+                  placeholder="답글을 입력해주세요"
+                  onChange={handleChangeReplyInput}
+                  value={replyText}
+                />
+                <ReplySendButton onClick={handleClickReplySendButton}>
+                  <IcSendBlack />
+                </ReplySendButton>
+              </ReplyInputWrapper>
+            </ReplyInputContainer>
+          </ReplyListWrapper>
+        )}
+      </CommentContainerWrapper>
+    </React.Fragment>
   );
 }
 
