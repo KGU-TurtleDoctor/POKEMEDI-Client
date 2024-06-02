@@ -101,7 +101,7 @@ function CommentContainer({
             <CommentDate>{time}</CommentDate>
             <ReplyButton onClick={handleClickReplyButton}>
               {isReplyMode
-                ? '닫기'
+                ? '접기'
                 : replies.length !== 0
                 ? `답글 열기 (${replies.length})`
                 : '새 답글 달기'}

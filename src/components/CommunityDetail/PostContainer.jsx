@@ -135,5 +135,5 @@ const CommentListWrapper = styled.ul`
   row-gap: 2rem;
 
   width: 100%;
-  padding: 3rem;
+  padding: 3rem 3rem 6rem 3rem;
 `;
