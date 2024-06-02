@@ -1,7 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import svgLoading from '../assets/gif/loading.gif';
 import Header from '../components/Common/Header';
-import styled from 'styled-components';
 
 function Loading() {
   return (
@@ -9,9 +9,7 @@ function Loading() {
       <Header />
       <LoadingBodyWrapper>
         <LoadingBoxWrapper>
-          <LoadingSVGWrapper>
-            <LoadingSVG src={svgLoading} alt="로딩중" />
-          </LoadingSVGWrapper>
+          <LoadingSVG src={svgLoading} alt="로딩중" />
         </LoadingBoxWrapper>
       </LoadingBodyWrapper>
     </LoadingListWrapper>
@@ -39,26 +37,15 @@ const LoadingBodyWrapper = styled.div`
 
 const LoadingBoxWrapper = styled.div`
   width: 81.2rem;
-  min-height: calc(100vh - 8rem);
-  padding: 10rem;
-
   background-color: white;
-  font-size: 2rem;
 
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-`;
-
-const LoadingSVGWrapper = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
-
-  width: 100%;
-  height: 100%;
 `;
 
 const LoadingSVG = styled.img`
-  width: 25%;
+  width: 50rem;
+  margin-bottom: 5rem;
 `;
