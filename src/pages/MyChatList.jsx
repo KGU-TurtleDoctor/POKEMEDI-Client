@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import ChatItem from '../components/MyChatList/ChatItem';
 import { api } from '../libs/api';
+import Loading from './Loading';
 
 function MyChatList() {
-  const [myChatList, setMyChatList] = useState([]);
+  const [myChatList, setMyChatList] = useState();
 
   useEffect(() => {
     api
@@ -16,6 +17,10 @@ function MyChatList() {
         }
       });
   }, []);
+
+  if (!myChatList) {
+    return <Loading />;
+  }
 
   return (
     <MyChatListWrapper>

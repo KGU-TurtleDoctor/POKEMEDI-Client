@@ -5,10 +5,11 @@ import { IcSearch } from '../assets/svg/icon';
 import Header from '../components/Common/Header';
 import ListItem from '../components/CommunityList/ListItem';
 import { api } from '../libs/api';
+import Loading from './Loading';
 
 function CommunityList() {
   const navigate = useNavigate();
-  const [list, setList] = useState([]);
+  const [list, setList] = useState();
 
   const [searchText, setSearchText] = useState('');
 
@@ -43,6 +44,10 @@ function CommunityList() {
   const handleClickWritingButton = () => {
     navigate('/community-post');
   };
+
+  if (!list) {
+    return <Loading />;
+  }
 
   return (
     <CommunityListWrapper onKeyDown={handlePressEnterKey}>

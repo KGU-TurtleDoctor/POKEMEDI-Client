@@ -46,6 +46,5 @@ const LoadingBoxWrapper = styled.div`
 `;
 
 const LoadingSVG = styled.img`
-  width: 50rem;
-  margin-bottom: 5rem;
+  width: 15%;
 `;

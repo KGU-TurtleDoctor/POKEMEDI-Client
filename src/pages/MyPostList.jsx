@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import PostItem from '../components/MyPostList/PostItem';
 import { api } from '../libs/api';
+import Loading from './Loading';
 
 function MyPostList() {
-  const [myList, setMyList] = useState([]);
+  const [myList, setMyList] = useState();
 
   useEffect(() => {
     api
@@ -16,6 +17,10 @@ function MyPostList() {
         }
       });
   }, []);
+
+  if (!myList) {
+    return <Loading />;
+  }
 
   return (
     <MyPostListWrapper>

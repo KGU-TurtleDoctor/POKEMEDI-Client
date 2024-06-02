@@ -6,11 +6,12 @@ import { postChatbotPrompt } from '../apis/AIChat/postChatbotPrompt';
 import { IcSendBlack } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
+import Loading from './Loading';
 
 function AIChat() {
   const { chatId } = useParams();
 
-  const [chatList, setChatList] = useState([]);
+  const [chatList, setChatList] = useState();
   const [chat, setChat] = useState('');
   const [chatHistoryId, setChatHistoryId] = useState(chatId ? chatId : -1);
 
@@ -48,6 +49,10 @@ function AIChat() {
       handleClickSendButton();
     }
   };
+
+  if (!chatList) {
+    return <Loading />;
+  }
 
   return (
     <AIChatPageWrapper>

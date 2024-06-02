@@ -3,13 +3,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import { api } from '../libs/api';
+import Loading from './Loading';
 
 function CommunityEdit() {
   const { postId } = useParams();
   const navigate = useNavigate();
 
-  const [TitleWriting, setTitleWriting] = useState('');
-  const [PostWriting, setPostWriting] = useState('');
+  const [titleWriting, setTitleWriting] = useState();
+  const [postWriting, setPostWriting] = useState();
 
   const [isSatisfied, setIsSatisfied] = useState(false);
 
@@ -50,28 +51,37 @@ function CommunityEdit() {
   };
 
   useEffect(() => {
-    if (TitleWriting[0] === ' ') {
-      setTitleWriting(TitleWriting.substring(1, TitleWriting.length));
+    if (titleWriting && titleWriting[0] === ' ') {
+      setTitleWriting(titleWriting.substring(1, titleWriting.length));
     }
 
-    if (TitleWriting.length > 50) {
-      setTitleWriting(TitleWriting.substring(0, 50));
+    if (titleWriting && titleWriting.length > 50) {
+      setTitleWriting(titleWriting.substring(0, 50));
     }
 
-    if (PostWriting[0] === ' ') {
-      setPostWriting(PostWriting.substring(1, PostWriting.length));
+    if (postWriting && postWriting[0] === ' ') {
+      setPostWriting(postWriting.substring(1, postWriting.length));
     }
 
-    if (PostWriting.length > 500) {
-      setPostWriting(PostWriting.substring(0, 500));
+    if (postWriting && postWriting.length > 500) {
+      setPostWriting(postWriting.substring(0, 500));
     }
 
-    if (TitleWriting.trim().length !== 0 && PostWriting.trim().length !== 0) {
+    if (
+      titleWriting &&
+      titleWriting.trim().length !== 0 &&
+      postWriting &&
+      postWriting.trim().length !== 0
+    ) {
       setIsSatisfied(true);
     } else {
       setIsSatisfied(false);
     }
-  }, [TitleWriting, PostWriting]);
+  }, [titleWriting, postWriting]);
+
+  if (!titleWriting || !postWriting) {
+    return <Loading />;
+  }
 
   return (
     <CommunityEditWrapper>
@@ -88,9 +98,9 @@ function CommunityEdit() {
                 type="text"
                 placeholder="제목을 입력해주세요."
                 onChange={handleChangeEditTitleInput}
-                value={TitleWriting}
+                value={titleWriting}
               />
-              <EditTextCount>{`(${TitleWriting.length} / 50)`}</EditTextCount>
+              <EditTextCount>{`(${titleWriting.length} / 50)`}</EditTextCount>
             </EditTitleDiv>
           </EditTitleWrapper>
           <EditTextWrapper>
@@ -102,9 +112,9 @@ function CommunityEdit() {
                 type="text"
                 placeholder="본문을 입력해주세요."
                 onChange={handleChangeEditPostInput}
-                value={PostWriting}
+                value={postWriting}
               />
-              <EditTextCount>{`(${PostWriting.length} / 500)`}</EditTextCount>
+              <EditTextCount>{`(${postWriting.length} / 500)`}</EditTextCount>
             </EditDiv>
           </EditTextWrapper>
           <EditingDoneBox>

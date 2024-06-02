@@ -5,14 +5,15 @@ import { IcSendBlack } from '../assets/svg/icon';
 import Header from '../components/Common/Header';
 import PostContainer from '../components/CommunityDetail/PostContainer';
 import { api } from '../libs/api';
+import Loading from './Loading';
 
 function CommunityDetail() {
   const { postId } = useParams();
   const commentEndRef = useRef(null);
 
-  const [commentList, setCommentList] = useState([]);
+  const [commentList, setCommentList] = useState();
   const [postData, setPostData] = useState();
-  const [commentText, setCommentText] = useState('');
+  const [commentText, setCommentText] = useState();
   const [prevCommentCount, setPrevCommentCount] = useState(0);
 
   useEffect(() => {
@@ -33,12 +34,12 @@ function CommunityDetail() {
   }, []);
 
   useEffect(() => {
-    if (commentList.length > prevCommentCount) {
+    if (commentList?.length > prevCommentCount) {
       if (commentEndRef.current) {
         commentEndRef.current.scrollIntoView();
       }
     }
-    setPrevCommentCount(commentList.length);
+    setPrevCommentCount(commentList?.length);
   }, [commentList]);
 
   const handleChangeCommentInput = (e) => {
@@ -70,6 +71,10 @@ function CommunityDetail() {
         });
     }
   };
+
+  if (!commentList || !postData) {
+    return <Loading />;
+  }
 
   return (
     <CommunityDetailPageWrapper>

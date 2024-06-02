@@ -5,21 +5,11 @@ import MyChatSection from '../components/MyPage/MyChatSection';
 import MyInfoSection from '../components/MyPage/MyInfoSection';
 import MyPostSection from '../components/MyPage/MyPostSection';
 import { api } from '../libs/api';
+import Loading from './Loading';
 
 function MyPage() {
-  const [myPost, setMyPost] = useState({
-    id: -1,
-    title: '',
-    content: '',
-    nickname: '',
-    date: '',
-  });
-  const [myChat, setMyChat] = useState({
-    chatHistoryId: -1,
-    name: '',
-    date: '',
-    title: '',
-  });
+  const [myPost, setMyPost] = useState();
+  const [myChat, setMyChat] = useState();
 
   useEffect(() => {
     api
@@ -38,6 +28,10 @@ function MyPage() {
         setMyChat(res.data.result);
       });
   }, []);
+
+  if (!myPost || !myChat) {
+    return <Loading />;
+  }
 
   return (
     <MyPageWrapper>

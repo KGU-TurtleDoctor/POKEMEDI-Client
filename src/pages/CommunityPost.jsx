@@ -6,8 +6,8 @@ import { api } from '../libs/api';
 
 function CommunityPost() {
   const navigate = useNavigate();
-  const [TitleWriting, setTitleWriting] = useState('');
-  const [PostWriting, setPostWriting] = useState('');
+  const [titleWriting, setTitleWriting] = useState('');
+  const [postWriting, setPostWriting] = useState('');
 
   const [isSatisfied, setIsSatisfied] = useState(false);
 
@@ -17,8 +17,8 @@ function CommunityPost() {
         .post(
           'api/community/create',
           {
-            title: TitleWriting,
-            body: PostWriting,
+            title: titleWriting,
+            body: postWriting,
           },
           { withCredentials: true },
         )
@@ -37,28 +37,28 @@ function CommunityPost() {
   };
 
   useEffect(() => {
-    if (TitleWriting[0] === ' ') {
-      setTitleWriting(TitleWriting.substring(1, TitleWriting.length));
+    if (titleWriting[0] === ' ') {
+      setTitleWriting(titleWriting.substring(1, titleWriting.length));
     }
 
-    if (TitleWriting.length > 50) {
-      setTitleWriting(TitleWriting.substring(0, 50));
+    if (titleWriting.length > 50) {
+      setTitleWriting(titleWriting.substring(0, 50));
     }
 
-    if (PostWriting[0] === ' ') {
-      setPostWriting(PostWriting.substring(1, PostWriting.length));
+    if (postWriting[0] === ' ') {
+      setPostWriting(postWriting.substring(1, postWriting.length));
     }
 
-    if (PostWriting.length > 500) {
-      setPostWriting(PostWriting.substring(0, 500));
+    if (postWriting.length > 500) {
+      setPostWriting(postWriting.substring(0, 500));
     }
 
-    if (TitleWriting.trim().length !== 0 && PostWriting.trim().length !== 0) {
+    if (titleWriting.trim().length !== 0 && postWriting.trim().length !== 0) {
       setIsSatisfied(true);
     } else {
       setIsSatisfied(false);
     }
-  }, [TitleWriting, PostWriting]);
+  }, [titleWriting, postWriting]);
 
   return (
     <CommunityPostWrapper>
@@ -74,9 +74,9 @@ function CommunityPost() {
                 type="text"
                 placeholder="제목을 입력해주세요."
                 onChange={handleChangeTitleInput}
-                value={TitleWriting}
+                value={titleWriting}
               />
-              <TextCount>{`(${TitleWriting.length} / 50)`}</TextCount>
+              <TextCount>{`(${titleWriting.length} / 50)`}</TextCount>
             </TitleDiv>
           </PostTitleWrapper>
           <PostTextWrapper>
@@ -88,9 +88,9 @@ function CommunityPost() {
                 type="text"
                 placeholder="본문을 입력해주세요."
                 onChange={handleChangePostInput}
-                value={PostWriting}
+                value={postWriting}
               />
-              <TextCount>{`(${PostWriting.length} / 500)`}</TextCount>
+              <TextCount>{`(${postWriting.length} / 500)`}</TextCount>
             </PostDiv>
           </PostTextWrapper>
           <WritingDoneBox>
