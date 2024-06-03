@@ -3,9 +3,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ScrollToTop from './components/Common/ScrollToTop';
 import AIChat from './pages/AIChat';
 import CommunityDetail from './pages/CommunityDetail';
+import CommunityEdit from './pages/CommunityEdit';
 import CommunityList from './pages/CommunityList';
 import CommunityPost from './pages/CommunityPost';
-import CommunityEdit from './pages/CommunityEdit';
+import Error from './pages/Error';
 import Home from './pages/Home';
 import Loading from './pages/Loading';
 import LoginLoading from './pages/LoginLoading';
@@ -33,6 +34,7 @@ function Router() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/mypost-list" element={<MyPostList />} />
         <Route path="/mychat-list" element={<MyChatList />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
