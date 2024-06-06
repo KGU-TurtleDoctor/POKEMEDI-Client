@@ -32,7 +32,13 @@ function MyPostList() {
           </MyListBox>
           <MyPostListItemContainer>
             {myList.map((item) => {
-              return <PostItem key={item.id} {...item} />;
+              return (
+                <PostItem
+                  key={item.id}
+                  {...item}
+                  updateList={(list) => setMyList(list)}
+                />
+              );
             })}
           </MyPostListItemContainer>
         </MyPostListBoxWrapper>

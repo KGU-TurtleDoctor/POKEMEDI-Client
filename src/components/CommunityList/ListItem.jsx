@@ -32,6 +32,7 @@ function ListItem({ id, title, content, nickname, date, updateList, writer }) {
           if (Array.isArray(res.data.result)) {
             updateList(res.data.result);
           }
+          setIsModalOpen(false);
         });
       });
   };

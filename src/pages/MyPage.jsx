@@ -49,7 +49,10 @@ function MyPage() {
       <MyPageBodyWrapper>
         <MyPageBoxWrapper>
           <MyInfoSection />
-          <MyPostSection myPost={myPost} />
+          <MyPostSection
+            myPost={myPost}
+            updateList={(list) => setMyPost(list)}
+          />
           <MyChatSection myChat={myChat} />
         </MyPageBoxWrapper>
       </MyPageBodyWrapper>

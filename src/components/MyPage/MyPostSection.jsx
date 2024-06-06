@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { IcMore } from '../../assets/svg/icon';
 import PostItem from '../MyPostList/PostItem';
 
-function MyPostSection({ myPost }) {
+function MyPostSection({ myPost, updateList }) {
   const navigate = useNavigate();
 
   return (
@@ -16,7 +16,7 @@ function MyPostSection({ myPost }) {
         </EmptyTextSection>
       ) : (
         <React.Fragment>
-          <PostItem {...myPost[0]} />
+          <PostItem {...myPost[0]} updateList={updateList} />
           <MoreButtonContainer>
             {myPost.length > 1 && (
               <MoreButton onClick={() => navigate('/mypost-list')}>
