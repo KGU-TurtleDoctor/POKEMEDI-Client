@@ -6,6 +6,7 @@ import ChatItem from '../MyChatList/ChatItem';
 
 function MyChatSection({ myChat }) {
   const navigate = useNavigate();
+
   return (
     <MyChatSectionWrapper>
       <SectionTitle>최근 채팅 기록</SectionTitle>
@@ -15,12 +16,14 @@ function MyChatSection({ myChat }) {
         </EmptyTextSection>
       ) : (
         <React.Fragment>
-          <ChatItem {...myChat} />
+          <ChatItem {...myChat[0]} />
           <MoreButtonContainer>
-            <MoreButton onClick={() => navigate('/mychat-list')}>
-              <StyledIcMore />
-              더보기
-            </MoreButton>
+            {myChat.length > 1 && (
+              <MoreButton onClick={() => navigate('/mychat-list')}>
+                <StyledIcMore />
+                더보기
+              </MoreButton>
+            )}
           </MoreButtonContainer>
         </React.Fragment>
       )}
@@ -61,9 +64,10 @@ const EmptyText = styled.p`
 const MoreButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding: 0 1rem;
 
   width: 100%;
+  height: 3.6rem;
+  padding: 0 1rem;
 `;
 
 const MoreButton = styled.button`
