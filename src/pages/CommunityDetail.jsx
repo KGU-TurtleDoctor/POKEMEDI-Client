@@ -21,6 +21,9 @@ function CommunityDetail() {
       .get(`/api/community/detail/${postId}`, { withCredentials: true })
       .then((res) => {
         setPostData(res.data.result);
+      })
+      .catch(() => {
+        navigate('/login-error');
       });
 
     api

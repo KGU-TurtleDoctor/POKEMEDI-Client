@@ -14,11 +14,16 @@ function CommunityList() {
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    api.get('api/community/list', { withCredentials: true }).then((res) => {
-      if (Array.isArray(res.data.result)) {
-        setList(res.data.result);
-      }
-    });
+    api
+      .get('api/community/list', { withCredentials: true })
+      .then((res) => {
+        if (Array.isArray(res.data.result)) {
+          setList(res.data.result);
+        }
+      })
+      .catch(() => {
+        navigate('/login-error');
+      });
   }, []);
 
   const handleChangeSearchInput = (e) => {

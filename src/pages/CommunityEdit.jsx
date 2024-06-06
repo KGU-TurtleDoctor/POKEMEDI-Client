@@ -22,6 +22,9 @@ function CommunityEdit() {
       .then((res) => {
         setTitleWriting(res.data.result.title);
         setPostWriting(res.data.result.content);
+      })
+      .catch(() => {
+        navigate('/login-error');
       });
   }, []);
 

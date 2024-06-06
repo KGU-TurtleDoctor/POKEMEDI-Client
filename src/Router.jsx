@@ -14,6 +14,7 @@ import LoginWarning from './pages/LoginWarning';
 import MyChatList from './pages/MyChatList';
 import MyPage from './pages/MyPage';
 import MyPostList from './pages/MyPostList';
+import NotLogin from './pages/NotLogin';
 
 function Router() {
   return (
@@ -34,6 +35,7 @@ function Router() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/mypost-list" element={<MyPostList />} />
         <Route path="/mychat-list" element={<MyChatList />} />
+        <Route path="/login-error" element={<NotLogin />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

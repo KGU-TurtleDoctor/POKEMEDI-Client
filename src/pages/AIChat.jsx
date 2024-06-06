@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getChatHistory } from '../apis/AIChat/getChatHistory';
 import { postChatbotPrompt } from '../apis/AIChat/postChatbotPrompt';
 import { IcSendBlack } from '../assets/svg/icon';
 import ChatScreen from '../components/AIChat/ChatScreen';
 import Header from '../components/Common/Header';
+import { api } from '../libs/api';
 import Loading from './Loading';
 
 function AIChat() {
   const { chatId } = useParams();
 
+  const navigate = useNavigate();
+
+  const [isLogin, setIsLogin] = useState(false);
   const [chatList, setChatList] = useState();
   const [chat, setChat] = useState('');
   const [chatHistoryId, setChatHistoryId] = useState(chatId ? chatId : -1);
 
   useEffect(() => {
+    api
+      .get('api/community/list', { withCredentials: true })
+      .then(() => {
+        setIsLogin(true);
+      })
+      .catch(() => {
+        navigate('/login-error');
+      });
+
     setChatHistoryId(chatId ? chatId : -1);
     chatId
       ? getChatHistory(setChatList, chatHistoryId)
@@ -50,7 +63,7 @@ function AIChat() {
     }
   };
 
-  if (!chatList) {
+  if (!chatList || !isLogin) {
     return <Loading />;
   }
 

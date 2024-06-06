@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Common/Header';
 import MyChatSection from '../components/MyPage/MyChatSection';
@@ -11,6 +12,8 @@ function MyPage() {
   const [myPost, setMyPost] = useState();
   const [myChat, setMyChat] = useState();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     api
       .get(`/api/community/myPost`, {
@@ -18,6 +21,9 @@ function MyPage() {
       })
       .then((res) => {
         setMyPost(res.data.result);
+      })
+      .catch(() => {
+        navigate('/login-error');
       });
 
     api
