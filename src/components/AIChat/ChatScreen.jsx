@@ -76,6 +76,7 @@ const MyChat = styled.div`
 
   font-size: 1.7rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   word-break: break-all;
   white-space: pre-wrap;
@@ -98,6 +99,7 @@ const DoctorChat = styled.div`
 
   font-size: 1.7rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   word-break: break-all;
   white-space: pre-wrap;

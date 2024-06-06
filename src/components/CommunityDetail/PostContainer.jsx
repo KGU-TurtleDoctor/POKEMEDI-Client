@@ -57,6 +57,7 @@ const PostHeader = styled.div`
 const PostTitle = styled.h1`
   font-size: 4rem;
   font-weight: 600;
+  font-family: Pretendard;
 
   line-height: 130%;
 `;
@@ -81,6 +82,7 @@ const PostUserName = styled.p`
 
   font-size: 1.8rem;
   font-weight: 400;
+  font-family: Pretendard;
 `;
 
 const PostDate = styled.div`
@@ -94,6 +96,7 @@ const PostDate = styled.div`
 
   font-size: 1.8rem;
   font-weight: 400;
+  font-family: Pretendard;
 `;
 
 const PostDateText = styled.p`
@@ -103,6 +106,7 @@ const PostDateText = styled.p`
 
   font-size: 1.8rem;
   font-weight: 400;
+  font-family: Pretendard;
 `;
 
 const PostBody = styled.section`
@@ -111,6 +115,7 @@ const PostBody = styled.section`
 
   font-size: 1.8rem;
   font-weight: 400;
+  font-family: Pretendard;
 
   line-height: 150%;
   white-space: pre-wrap;
@@ -127,6 +132,7 @@ const CommentSectionWrapper = styled.section`
 const CommentCount = styled.h2`
   font-size: 2rem;
   font-weight: 600;
+  font-family: Pretendard;
 `;
 
 const CommentListWrapper = styled.ul`

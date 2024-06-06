@@ -42,6 +42,7 @@ const PostWrapper = styled.div`
 const PostTitle = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
+  font-family: Pretendard;
   color: #333;
 
   display: -webkit-box;
@@ -52,6 +53,7 @@ const PostTitle = styled.div`
 
 const PostContent = styled.div`
   font-size: 1.6rem;
+  font-family: Pretendard;
   margin-top: 2rem;
 
   display: -webkit-box;
@@ -71,10 +73,12 @@ const PostInfo = styled.div`
 
 const PostNickname = styled.div`
   font-size: 1.5rem;
+  font-family: Pretendard;
   color: #777;
 `;
 
 const PostDate = styled.div`
   font-size: 1.5rem;
+  font-family: Pretendard;
   color: #777;
 `;

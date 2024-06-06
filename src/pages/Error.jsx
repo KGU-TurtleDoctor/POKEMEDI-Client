@@ -61,6 +61,7 @@ const ErrorImg = styled.img`
 const ErrorText = styled.p`
   font-size: 2rem;
   font-weight: 600;
+  font-family: Pretendard;
 `;
 
 const HomeButton = styled.button`
@@ -71,6 +72,7 @@ const HomeButton = styled.button`
 
   font-size: 1.75rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   background-color: #04293f;
   color: white;

@@ -114,6 +114,7 @@ const CommunityListBoxWrapper = styled.div`
 
   background-color: white;
   font-size: 2rem;
+  font-family: Pretendard;
 
   display: flex;
   flex-direction: column;
@@ -146,6 +147,7 @@ const SearchInput = styled.input`
   background-color: #f1f5f9;
   border: none;
   font-size: 2rem;
+  font-family: Pretendard;
   border-radius: 2rem;
 `;
 
@@ -165,6 +167,7 @@ const WritingButton = styled.button`
 
   font-size: 1.75rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   background-color: #04293f;
   color: white;

@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
 
     html,
     body {
-        font-family: Pretendard;
         box-sizing: border-box; /* default */
         margin: 0 auto;
 

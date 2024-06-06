@@ -77,6 +77,7 @@ const DescriptionContainer = styled.div`
 const DescriptionContainerTitle = styled.h2`
   font-size: 4.4rem;
   font-weight: 600;
+  font-family: Pretendard;
 `;
 
 const Description = styled.p`
@@ -85,6 +86,7 @@ const Description = styled.p`
 
   font-size: 2.25rem;
   font-weight: 400;
+  font-family: Pretendard;
 
   line-height: 3.1rem;
 `;
@@ -104,6 +106,7 @@ const LinkButton = styled.button`
 
   font-size: 1.875rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   border-radius: 1rem;
 `;

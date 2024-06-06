@@ -66,6 +66,7 @@ const ModalImage = styled.img`
 const ModalWarning = styled.div`
   font-size: 2.2rem;
   font-weight: 600;
+  font-family: Pretendard;
 `;
 
 const ModalButtonWrapper = styled.div`
@@ -79,6 +80,7 @@ const YesModalButton = styled.button`
 
   font-size: 1.75rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   border-radius: 0.7rem;
 
@@ -92,6 +94,7 @@ const NoModalButton = styled.button`
 
   font-size: 1.75rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   background-color: #ff0000;
   color: white;

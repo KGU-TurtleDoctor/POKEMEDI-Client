@@ -56,6 +56,7 @@ const fadein = keyframes`
 const ServiceIntroMessage = styled.h1`
   font-size: 6.875rem;
   font-weight: 700;
+  font-family: Pretendard;
   line-height: 1.3;
 
   transition-delay: 1.2s;
@@ -67,6 +68,7 @@ const ServiceIntroSubMessage = styled.h2`
 
   font-size: 2.75rem;
   font-weight: 500;
+  font-family: Pretendard;
   color: #8898a7;
 
   opacity: 0;

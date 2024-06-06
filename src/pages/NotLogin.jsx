@@ -60,6 +60,7 @@ const NotLoginImg = styled.img`
 const NotLoginText = styled.p`
   font-size: 2rem;
   font-weight: 600;
+  font-family: Pretendard;
 `;
 
 const LoginButton = styled.button`
@@ -70,6 +71,7 @@ const LoginButton = styled.button`
 
   font-size: 1.75rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   background-color: #04293f;
   color: white;

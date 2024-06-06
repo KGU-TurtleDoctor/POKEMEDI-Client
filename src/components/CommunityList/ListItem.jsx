@@ -100,6 +100,7 @@ const PostContentWrapper = styled.div`
 const PostTitle = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
+  font-family: Pretendard;
   color: #333;
 
   display: -webkit-box;
@@ -109,32 +110,35 @@ const PostTitle = styled.div`
 `;
 
 const PostContent = styled.div`
-  font-size: 1.6rem;
-  margin-top: 2rem;
-
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
 
+  margin-top: 2rem;
+
+  font-size: 1.6rem;
+  font-family: Pretendard;
   line-height: 140%;
 `;
 
 const PostInfo = styled.div`
-  column-gap: 1.5rem;
-  margin-top: 2rem;
-
   display: flex;
   align-items: center;
+  column-gap: 1.5rem;
+
+  margin-top: 2rem;
 `;
 
 const PostNickname = styled.div`
   font-size: 1.5rem;
+  font-family: Pretendard;
   color: #777;
 `;
 
 const PostDate = styled.div`
   font-size: 1.5rem;
+  font-family: Pretendard;
   color: #777;
 
   margin-right: 17rem;

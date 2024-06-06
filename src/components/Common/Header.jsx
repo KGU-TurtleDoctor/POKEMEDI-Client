@@ -102,6 +102,7 @@ const HeaderBodyWrapper = styled.div`
 const HeaderTitle = styled.p`
   font-size: 2.75rem;
   font-weight: 700;
+  font-family: Pretendard;
   padding-top: 0.35rem;
 `;
 
@@ -126,6 +127,7 @@ const NavigatorItem = styled.button`
 
   font-size: 1.75rem;
   font-weight: 600;
+  font-family: Pretendard;
 
   box-shadow: ${({ $isActive }) =>
     $isActive ? 'inset 0 -0.25rem 0 #04293f' : 'none'};
@@ -140,6 +142,7 @@ const LoginButton = styled.button`
 
   font-size: 1.75rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   background-color: #04293f;
   color: white;
@@ -148,4 +151,5 @@ const LoginButton = styled.button`
 const SuccessLoginText = styled.p`
   font-size: 1.8rem;
   font-weight: 700;
+  font-family: Pretendard;
 `;

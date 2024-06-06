@@ -77,6 +77,7 @@ const MyPageBoxWrapper = styled.div`
 
   background-color: white;
   font-size: 2rem;
+  font-family: Pretendard;
 
   display: flex;
   flex-direction: column;

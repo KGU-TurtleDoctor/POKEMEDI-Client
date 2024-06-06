@@ -67,6 +67,7 @@ const MyChatListBoxWrapper = styled.div`
 
   background-color: white;
   font-size: 2rem;
+  font-family: Pretendard;
 
   display: flex;
   flex-direction: column;
@@ -89,6 +90,7 @@ const MyListBox = styled.div`
 const MyListTitle = styled.div`
   font-size: 3rem;
   font-weight: 600;
+  font-family: Pretendard;
   color: black;
 
   margin-bottom: 5.5rem;

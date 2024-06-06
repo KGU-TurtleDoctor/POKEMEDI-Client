@@ -31,6 +31,7 @@ const UserImg = styled.img`
 const UserName = styled.h1`
   font-size: 4rem;
   font-weight: 600;
+  font-family: Pretendard;
 `;
 
 const UserInfoContainer = styled.div`
@@ -46,6 +47,7 @@ const UserInfoContainer = styled.div`
 const UserRole = styled.h2`
   font-size: 1.7rem;
   font-weight: 500;
+  font-family: Pretendard;
   margin-bottom: 2rem;
 
   color: #777;

@@ -30,12 +30,14 @@ const FooterWrapper = styled.div`
 
 const FooterSubText = styled.p`
   font-size: 1.37rem;
+  font-family: Pretendard;
   color: #868b94;
 `;
 
 const FooterMainText = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
+  font-family: Pretendard;
   color: #868b94;
 
   margin-top: 1.25rem;

@@ -156,6 +156,7 @@ const CommunityEditBoxWrapper = styled.div`
 
   background-color: white;
   font-size: 2rem;
+  font-family: Pretendard;
 
   display: flex;
   flex-direction: column;
@@ -199,16 +200,19 @@ const EditTextBox = styled.div`
 const EditTitle = styled.div`
   font-weight: bold;
   font-size: 3rem;
+  font-family: Pretendard;
 `;
 
 const EditText = styled.div`
   font-weight: bold;
   font-size: 3rem;
+  font-family: Pretendard;
 `;
 
 const EditTextCount = styled.p`
   font-size: 1.5rem;
   color: #9e9e9e;
+  font-family: Pretendard;
 `;
 
 const EditTitleDiv = styled.div`
@@ -219,6 +223,7 @@ const EditTitleDiv = styled.div`
   background-color: #f1f5f9;
   border: 0.05rem solid #9e9e9e;
   font-size: 2rem;
+  font-family: Pretendard;
   border-radius: 1.5rem;
 
   display: flex;
@@ -233,6 +238,7 @@ const EditTitleInput = styled.input`
   background-color: #f1f5f9;
   border: none;
   font-size: 2rem;
+  font-family: Pretendard;
   border-radius: 2rem;
 `;
 
@@ -246,6 +252,7 @@ const EditDiv = styled.div`
   border-radius: 1.5rem;
 
   font-size: 2rem;
+  font-family: Pretendard;
 
   display: flex;
   flex-direction: column;
@@ -258,6 +265,7 @@ const EditTextInput = styled.textarea`
   margin-bottom: 3%;
 
   font-size: 2rem;
+  font-family: Pretendard;
   background-color: #f1f5f9;
 
   resize: none;
@@ -287,6 +295,7 @@ const EditingDoneButton = styled.button`
 
   font-size: 1.75rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   background-color: ${({ isSatisfied }) => (isSatisfied ? '#04293f' : 'grey')};
   color: white;

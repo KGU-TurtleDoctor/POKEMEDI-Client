@@ -137,6 +137,8 @@ function CommentContainer({
   );
 }
 
+export default CommentContainer;
+
 const CommentContainerWrapper = styled.div`
   width: 100%;
 `;
@@ -172,12 +174,14 @@ const StyledIcTrashCan = styled(IcTrashCan)`
 const CommentWriter = styled.h3`
   font-size: 1.8rem;
   font-weight: 600;
+  font-family: Pretendard;
 `;
 
 const CommentContent = styled.p`
   width: 100%;
 
   font-size: 1.5rem;
+  font-family: Pretendard;
 
   line-height: 140%;
   white-space: pre-wrap;
@@ -193,10 +197,12 @@ const BottomContainer = styled.div`
 const CommentDate = styled.p`
   color: #8898a7;
   font-size: 1.3rem;
+  font-family: Pretendard;
 `;
 
 const ReplyButton = styled.button`
   font-size: 1.3rem;
+  font-family: Pretendard;
 `;
 
 const ReplyInputContainer = styled.section`
@@ -222,7 +228,10 @@ const ReplyInputWrapper = styled.div`
 const ReplyInput = styled.input`
   width: 90%;
   height: 100%;
+
   font-size: 1.5rem;
+  font-family: Pretendard;
+
   border: none;
 `;
 
@@ -231,8 +240,6 @@ const ReplySendButton = styled.button`
   height: 4rem;
   padding-top: 0.3rem;
 `;
-
-export default CommentContainer;
 
 const ReplyListWrapper = styled.ul`
   display: flex;

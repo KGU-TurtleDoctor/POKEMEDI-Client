@@ -122,12 +122,14 @@ const StyledIcTrashCan = styled(IcTrashCan)`
 const ReplyWriter = styled.h3`
   font-size: 1.6rem;
   font-weight: 600;
+  font-family: Pretendard;
 `;
 
 const ReplyContent = styled.p`
   width: 100%;
 
   font-size: 1.4rem;
+  font-family: Pretendard;
 
   line-height: 140%;
   white-space: pre-wrap;
@@ -138,4 +140,5 @@ const ReplyDate = styled.p`
 
   color: #8898a7;
   font-size: 1.2rem;
+  font-family: Pretendard;
 `;

@@ -129,6 +129,7 @@ const CommunityPostBoxWrapper = styled.div`
 
   background-color: white;
   font-size: 2rem;
+  font-family: Pretendard;
 
   display: flex;
   flex-direction: column;
@@ -172,15 +173,18 @@ const PostTextBox = styled.div`
 const PostTitle = styled.div`
   font-weight: bold;
   font-size: 3rem;
+  font-family: Pretendard;
 `;
 
 const PostText = styled.div`
   font-weight: bold;
   font-size: 3rem;
+  font-family: Pretendard;
 `;
 
 const TextCount = styled.p`
   font-size: 1.5rem;
+  font-family: Pretendard;
   color: #9e9e9e;
 `;
 
@@ -192,6 +196,7 @@ const TitleDiv = styled.div`
   background-color: #f1f5f9;
   border: 0.05rem solid #9e9e9e;
   font-size: 2rem;
+  font-family: Pretendard;
   border-radius: 1.5rem;
 
   display: flex;
@@ -206,6 +211,7 @@ const TitleInput = styled.input`
   background-color: #f1f5f9;
   border: none;
   font-size: 2rem;
+  font-family: Pretendard;
   border-radius: 2rem;
 `;
 
@@ -219,6 +225,7 @@ const PostDiv = styled.div`
   border-radius: 1.5rem;
 
   font-size: 2rem;
+  font-family: Pretendard;
 
   display: flex;
   flex-direction: column;
@@ -231,6 +238,7 @@ const TextInput = styled.textarea`
   margin-bottom: 3%;
 
   font-size: 2rem;
+  font-family: Pretendard;
   background-color: #f1f5f9;
 
   resize: none;
@@ -260,6 +268,7 @@ const WritingDoneButton = styled.button`
 
   font-size: 1.75rem;
   font-weight: 500;
+  font-family: Pretendard;
 
   background-color: ${({ isSatisfied }) => (isSatisfied ? '#04293f' : 'grey')};
   color: white;

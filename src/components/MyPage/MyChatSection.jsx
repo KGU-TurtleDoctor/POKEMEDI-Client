@@ -38,6 +38,7 @@ const MyChatSectionWrapper = styled.div`
 const SectionTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: 600;
+  font-family: Pretendard;
 
   margin-bottom: 2rem;
 `;
@@ -54,6 +55,7 @@ const EmptyTextSection = styled.div`
 const EmptyText = styled.p`
   font-size: 2rem;
   font-weight: 500;
+  font-family: Pretendard;
 `;
 
 const MoreButtonContainer = styled.div`
@@ -73,6 +75,7 @@ const MoreButton = styled.button`
   margin-top: 1.5rem;
 
   font-size: 1.5rem;
+  font-family: Pretendard;
 
   border-bottom: 0.1rem solid black;
 `;

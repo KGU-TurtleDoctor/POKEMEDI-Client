@@ -144,6 +144,7 @@ const ChattingInput = styled.input`
 
   font-size: 1.8rem;
   font-weight: 500;
+  font-family: Pretendard;
   line-height: 2rem;
 
   border: none;
