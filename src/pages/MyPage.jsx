@@ -16,22 +16,26 @@ function MyPage() {
 
   useEffect(() => {
     api
-      .get(`/api/community/myPost`, {
+      .get(`/api/community/myPostList`, {
         withCredentials: true,
       })
       .then((res) => {
-        setMyPost(res.data.result);
+        if (Array.isArray(res.data.result)) {
+          setMyPost(res.data.result);
+        }
       })
       .catch(() => {
         navigate('/login-error');
       });
 
     api
-      .get(`api/chatbot/chathistory`, {
+      .get(`api/chatbot/chathistories`, {
         withCredentials: true,
       })
       .then((res) => {
-        setMyChat(res.data.result);
+        if (Array.isArray(res.data.result)) {
+          setMyChat(res.data.result);
+        }
       });
   }, []);
 
