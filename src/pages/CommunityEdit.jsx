@@ -31,8 +31,8 @@ function CommunityEdit() {
         .put(
           `api/community/update/${postId}`,
           {
-            title: TitleWriting,
-            body: PostWriting,
+            title: titleWriting,
+            body: postWriting,
           },
           { withCredentials: true },
         )
