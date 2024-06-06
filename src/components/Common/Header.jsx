@@ -101,7 +101,7 @@ const HeaderBodyWrapper = styled.div`
 
 const HeaderTitle = styled.p`
   font-size: 2.75rem;
-  font-weight: 700;
+  font-weight: 600;
   font-family: Pretendard;
   padding-top: 0.35rem;
 `;

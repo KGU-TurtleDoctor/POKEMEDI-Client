@@ -114,7 +114,7 @@ const PostBody = styled.section`
   padding: 5rem 1rem;
 
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 500;
   font-family: Pretendard;
 
   line-height: 150%;

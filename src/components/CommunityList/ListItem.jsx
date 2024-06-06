@@ -107,6 +107,7 @@ const PostTitle = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  height: 2.7rem;
 `;
 
 const PostContent = styled.div`
@@ -118,6 +119,7 @@ const PostContent = styled.div`
   margin-top: 2rem;
 
   font-size: 1.6rem;
+  font-weight: 500;
   font-family: Pretendard;
   line-height: 140%;
 `;

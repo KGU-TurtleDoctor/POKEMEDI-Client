@@ -85,7 +85,7 @@ const Description = styled.p`
   padding-right: ${(props) => (props.type === 1 ? '2.5rem' : '0')};
 
   font-size: 2.25rem;
-  font-weight: 400;
+  font-weight: 500;
   font-family: Pretendard;
 
   line-height: 3.1rem;

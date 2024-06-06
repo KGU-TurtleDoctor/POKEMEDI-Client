@@ -158,6 +158,7 @@ const CommentInput = styled.input`
   height: 100%;
 
   font-size: 1.5rem;
+  font-weight: 500;
   font-family: Pretendard;
 
   border: none;

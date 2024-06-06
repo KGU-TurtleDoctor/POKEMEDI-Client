@@ -147,6 +147,7 @@ const SearchInput = styled.input`
   background-color: #f1f5f9;
   border: none;
   font-size: 2rem;
+  font-weight: 500;
   font-family: Pretendard;
   border-radius: 2rem;
 `;

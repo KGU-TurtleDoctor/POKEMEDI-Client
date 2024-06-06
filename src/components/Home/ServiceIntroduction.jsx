@@ -55,7 +55,7 @@ const fadein = keyframes`
 
 const ServiceIntroMessage = styled.h1`
   font-size: 6.875rem;
-  font-weight: 700;
+  font-weight: 600;
   font-family: Pretendard;
   line-height: 1.3;
 
