@@ -11,8 +11,8 @@ import Home from './pages/Home';
 import Loading from './pages/Loading';
 import LoginLoading from './pages/LoginLoading';
 import MyChatList from './pages/MyChatList';
+import MyPage from './pages/MyPage';
 import MyPostList from './pages/MyPostList';
-import MyPage from './pages/Mypage';
 import NotLogin from './pages/NotLogin';
 
 function Router() {
