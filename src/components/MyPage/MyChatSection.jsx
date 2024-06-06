@@ -9,13 +9,21 @@ function MyChatSection({ myChat }) {
   return (
     <MyChatSectionWrapper>
       <SectionTitle>최근 채팅 기록</SectionTitle>
-      <ChatItem {...myChat} />
-      <MoreButtonContainer>
-        <MoreButton onClick={() => navigate('/mychat-list')}>
-          <StyledIcMore />
-          더보기
-        </MoreButton>
-      </MoreButtonContainer>
+      {myChat.length === 0 ? (
+        <EmptyTextSection>
+          <EmptyText>최근 채팅 기록이 없습니다.</EmptyText>
+        </EmptyTextSection>
+      ) : (
+        <React.Fragment>
+          <ChatItem {...myChat} />
+          <MoreButtonContainer>
+            <MoreButton onClick={() => navigate('/mychat-list')}>
+              <StyledIcMore />
+              더보기
+            </MoreButton>
+          </MoreButtonContainer>
+        </React.Fragment>
+      )}
     </MyChatSectionWrapper>
   );
 }
@@ -32,6 +40,20 @@ const SectionTitle = styled.h2`
   font-weight: 600;
 
   margin-bottom: 2rem;
+`;
+
+const EmptyTextSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 15rem;
+`;
+
+const EmptyText = styled.p`
+  font-size: 2rem;
+  font-weight: 500;
 `;
 
 const MoreButtonContainer = styled.div`

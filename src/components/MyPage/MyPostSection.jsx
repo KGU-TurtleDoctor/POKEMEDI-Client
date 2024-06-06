@@ -10,13 +10,21 @@ function MyPostSection({ myPost }) {
   return (
     <MyPostSectionWrapper>
       <SectionTitle>최근 작성 글</SectionTitle>
-      <PostItem {...myPost} />
-      <MoreButtonContainer>
-        <MoreButton onClick={() => navigate('/mypost-list')}>
-          <StyledIcMore />
-          더보기
-        </MoreButton>
-      </MoreButtonContainer>
+      {myPost.length === 0 ? (
+        <EmptyTextSection>
+          <EmptyText>최근 작성한 글이 없습니다.</EmptyText>
+        </EmptyTextSection>
+      ) : (
+        <React.Fragment>
+          <PostItem {...myPost} />
+          <MoreButtonContainer>
+            <MoreButton onClick={() => navigate('/mypost-list')}>
+              <StyledIcMore />
+              더보기
+            </MoreButton>
+          </MoreButtonContainer>
+        </React.Fragment>
+      )}
     </MyPostSectionWrapper>
   );
 }
@@ -33,6 +41,20 @@ const SectionTitle = styled.h2`
   font-weight: 600;
 
   margin-bottom: 2rem;
+`;
+
+const EmptyTextSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 15rem;
+`;
+
+const EmptyText = styled.p`
+  font-size: 2rem;
+  font-weight: 500;
 `;
 
 const MoreButtonContainer = styled.div`
