@@ -10,13 +10,13 @@ function Home() {
   const [nickname, setNickname] = useState(null);
 
   useEffect(() => {
-    api.get('/api/isLogin').then((res) => {
-      console.log(res);
-      api.get('/api/info', { withCredentials: true }).then((res) => {
-        console.log(res);
-        sessionStorage.setItem('name', res.data.result.name);
-        setNickname(res.data.result.name);
-      });
+    api.get('/api/isLogin', { withCredentials: true }).then((res) => {
+      if (res.data.result.loginStatus) {
+        api.get('/api/info', { withCredentials: true }).then((res) => {
+          sessionStorage.setItem('name', res.data.result.name);
+          setNickname(res.data.result.name);
+        });
+      }
     });
   });
 
