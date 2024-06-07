@@ -1,13 +1,28 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ImgUser from '../../assets/img/img_user.png';
+import { api } from '../../libs/api';
 
 function MyInfoSection() {
+  const navigate = useNavigate();
+
+  const handleClickLogoutButton = () => {
+    api.post('/logout', { withCredentials: true }).then((res) => {
+      navigate('/');
+    });
+  };
+
   return (
     <MyInfoSectionWrapper>
       <UserImg src={ImgUser} />
       <UserInfoContainer>
         <UserName>{sessionStorage.getItem('name')}</UserName>
-        <UserRole>* 일반회원</UserRole>
+        <BottomContainer>
+          <UserRole>* 일반회원</UserRole>
+          <LogoutButton onClick={handleClickLogoutButton}>
+            로그아웃
+          </LogoutButton>
+        </BottomContainer>
       </UserInfoContainer>
     </MyInfoSectionWrapper>
   );
@@ -44,11 +59,30 @@ const UserInfoContainer = styled.div`
   margin-left: 5rem;
 `;
 
+const BottomContainer = styled.div`
+  display: flex;
+  column-gap: 5rem;
+  align-items: center;
+`;
+
 const UserRole = styled.h2`
   font-size: 1.7rem;
   font-weight: 500;
   font-family: Pretendard;
-  margin-bottom: 2rem;
 
   color: #777;
+`;
+
+const LogoutButton = styled.button`
+  width: 8rem;
+  height: 3rem;
+
+  border-radius: 0.7rem;
+
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: Pretendard;
+
+  background-color: #04293f;
+  color: white;
 `;
