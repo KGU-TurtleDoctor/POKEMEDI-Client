@@ -7,8 +7,16 @@ import Loading from './Loading';
 
 function MyChatList() {
   const [myChatList, setMyChatList] = useState();
+  const [nickname, setNickname] = useState();
 
   useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+
     api
       .get('api/chatbot/chathistories', { withCredentials: true })
       .then((res) => {
@@ -24,7 +32,7 @@ function MyChatList() {
 
   return (
     <MyChatListWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <MyChatListBodyWrapper>
         <MyChatListBoxWrapper>
           <MyListBox>

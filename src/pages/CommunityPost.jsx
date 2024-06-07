@@ -10,6 +10,7 @@ function CommunityPost() {
   const [postWriting, setPostWriting] = useState('');
 
   const [isSatisfied, setIsSatisfied] = useState(false);
+  const [nickname, setNickname] = useState();
 
   const handleClickWritingDoneButton = () => {
     if (isSatisfied) {
@@ -37,6 +38,15 @@ function CommunityPost() {
   };
 
   useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+  }, []);
+
+  useEffect(() => {
     if (titleWriting[0] === ' ') {
       setTitleWriting(titleWriting.substring(1, titleWriting.length));
     }
@@ -62,7 +72,7 @@ function CommunityPost() {
 
   return (
     <CommunityPostWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <CommunityPostBodyWrapper>
         <CommunityPostBoxWrapper>
           <PostTitleWrapper>

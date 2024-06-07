@@ -11,12 +11,20 @@ function CommunityDetail() {
   const { postId } = useParams();
   const commentEndRef = useRef(null);
 
+  const [nickname, setNickname] = useState();
   const [commentList, setCommentList] = useState();
   const [postData, setPostData] = useState();
   const [commentText, setCommentText] = useState();
   const [prevCommentCount, setPrevCommentCount] = useState(0);
 
   useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+
     api
       .get(`/api/community/detail/${postId}`, { withCredentials: true })
       .then((res) => {
@@ -81,7 +89,7 @@ function CommunityDetail() {
 
   return (
     <CommunityDetailPageWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <CommunityDetailPageBodyWrapper>
         <PostContainer
           commentList={commentList}

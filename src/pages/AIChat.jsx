@@ -14,10 +14,20 @@ function AIChat() {
 
   const navigate = useNavigate();
 
+  const [nickname, setNickname] = useState();
   const [isLogin, setIsLogin] = useState(false);
   const [chatList, setChatList] = useState();
   const [chat, setChat] = useState('');
   const [chatHistoryId, setChatHistoryId] = useState(chatId ? chatId : -1);
+
+  useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+  }, []);
 
   useEffect(() => {
     api
@@ -69,7 +79,7 @@ function AIChat() {
 
   return (
     <AIChatPageWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <AIChatPageBodyWrapper>
         <ChatScreen chatList={chatList} />
       </AIChatPageBodyWrapper>

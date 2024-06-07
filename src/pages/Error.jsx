@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ImgError from '../assets/img/img_error.png';
 import Header from '../components/Common/Header';
+import { api } from '../libs/api';
 
 function Error() {
+  const [nickname, setNickname] = useState();
+
+  useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+  }, []);
+
   const navigate = useNavigate();
 
   const handleClickHomeButton = () => {
@@ -13,7 +25,7 @@ function Error() {
 
   return (
     <ErrorWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <ErrorBodyWrapper>
         <ErrorBoxWrapper>
           <ErrorImg src={ImgError} />

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcLogo } from '../../assets/svg/icon';
 
-function Header() {
+function Header({ nickname }) {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -63,6 +63,8 @@ function Header() {
           <SuccessLoginText>{`${sessionStorage.getItem(
             'name',
           )}님, 안녕하세요`}</SuccessLoginText>
+        ) : nickname ? (
+          <SuccessLoginText>{`${nickname}님, 안녕하세요`}</SuccessLoginText>
         ) : (
           <LoginButton onClick={handleClickLoginButton}>로그인</LoginButton>
         )}

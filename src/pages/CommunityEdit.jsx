@@ -9,12 +9,20 @@ function CommunityEdit() {
   const { postId } = useParams();
   const navigate = useNavigate();
 
+  const [nickname, setNickname] = useState();
   const [titleWriting, setTitleWriting] = useState();
   const [postWriting, setPostWriting] = useState();
 
   const [isSatisfied, setIsSatisfied] = useState(false);
 
   useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+
     api
       .get(`/api/community/detail/${postId}`, {
         withCredentials: true,
@@ -88,7 +96,7 @@ function CommunityEdit() {
 
   return (
     <CommunityEditWrapper>
-      <Header />
+      <Header nickname={nickname} />
 
       <CommunityEditBodyWrapper>
         <CommunityEditBoxWrapper>

@@ -11,10 +11,18 @@ import Loading from './Loading';
 function MyPage() {
   const [myPost, setMyPost] = useState();
   const [myChat, setMyChat] = useState();
+  const [nickname, setNickname] = useState();
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+
     api
       .get(`/api/community/myPostList`, {
         withCredentials: true,
@@ -45,7 +53,7 @@ function MyPage() {
 
   return (
     <MyPageWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <MyPageBodyWrapper>
         <MyPageBoxWrapper>
           <MyInfoSection />

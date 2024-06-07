@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import ImgError from '../assets/img/img_error.png';
 import Header from '../components/Common/Header';
+import { api } from '../libs/api';
 
 function NotLogin() {
+  const [nickname, setNickname] = useState();
+
   const handleClickLoginButton = () => {
     window.location.href = `${
       import.meta.env.VITE_APP_BASE_URL
     }/oauth2/authorization/kakao`;
   };
 
+  useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+  }, []);
+
   return (
     <NotLoginWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <NotLoginBodyWrapper>
         <NotLoginBoxWrapper>
           <NotLoginImg src={ImgError} />

@@ -7,8 +7,16 @@ import Loading from './Loading';
 
 function MyPostList() {
   const [myList, setMyList] = useState();
+  const [nickname, setNickname] = useState();
 
   useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+
     api
       .get('api/community/myPostList', { withCredentials: true })
       .then((res) => {
@@ -24,7 +32,7 @@ function MyPostList() {
 
   return (
     <MyPostListWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <MyPostListBodyWrapper>
         <MyPostListBoxWrapper>
           <MyListBox>

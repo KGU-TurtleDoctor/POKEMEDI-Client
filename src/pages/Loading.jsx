@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import svgLoading from '../assets/gif/loading.gif';
 import Header from '../components/Common/Header';
+import { api } from '../libs/api';
 
 function Loading() {
+  const [nickname, setNickname] = useState();
+
+  useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+  }, []);
+
   return (
     <LoadingListWrapper>
-      <Header />
+      <Header nickname={nickname} />
       <LoadingBodyWrapper>
         <LoadingBoxWrapper>
           <LoadingSVG src={svgLoading} alt="로딩중" />

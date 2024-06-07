@@ -10,10 +10,18 @@ import Loading from './Loading';
 function CommunityList() {
   const navigate = useNavigate();
   const [list, setList] = useState();
+  const [nickname, setNickname] = useState();
 
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
+    api.get('/api/isLogin').then(() => {
+      api.get('/api/info', { withCredentials: true }).then((res) => {
+        sessionStorage.setItem('name', res.data.result.name);
+        setNickname(res.data.result.name);
+      });
+    });
+
     api
       .get('api/community/list', { withCredentials: true })
       .then((res) => {
@@ -56,7 +64,7 @@ function CommunityList() {
 
   return (
     <CommunityListWrapper onKeyDown={handlePressEnterKey}>
-      <Header />
+      <Header nickname={nickname} />
       <CommunityListBodyWrapper>
         <CommunityListBoxWrapper>
           <SearchBox>
