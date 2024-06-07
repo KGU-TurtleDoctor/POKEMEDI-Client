@@ -11,6 +11,7 @@ function Home() {
 
   useEffect(() => {
     api.get('/api/isLogin', { withCredentials: true }).then((res) => {
+      console.log(res);
       if (res.data.result.loginStatus) {
         api.get('/api/info', { withCredentials: true }).then((res) => {
           sessionStorage.setItem('name', res.data.result.name);
