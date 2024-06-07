@@ -7,7 +7,8 @@ function MyInfoSection() {
   const navigate = useNavigate();
 
   const handleClickLogoutButton = () => {
-    api.post('/logout', { withCredentials: true }).then((res) => {
+    api.post('/logout', {}, { withCredentials: true }).then(() => {
+      sessionStorage.clear();
       navigate('/');
     });
   };
