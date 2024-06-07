@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ImgError from '../assets/img/img_error.png';
 import Header from '../components/Common/Header';
