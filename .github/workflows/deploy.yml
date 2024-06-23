@@ -1,60 +1,31 @@
 name: Deploy
+
 on:
   push:
-    branches: [develop]
-  workflow_dispatch:
+    branches:
+      - develop
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3.5.2
-        
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.5.2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          node-version: lts/Hydrogen
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Cache node modules
-        uses: actions/cache@v2.1.8
-        id: cache
-        with:
-          path: node_modules
-          key: npm-packages-${{ hashFiles('**/yarn.lock') }}
+      - name: Copy files to server
+        run: scp -r -o StrictHostKeyChecking=no . ubuntu@your_server_ip:/home/ubuntu/POKEMEDI-Client/
 
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
-
-      - name: Build
-        run: yarn build
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jmdb
-
-      - name: Pull and restart Docker Container
-        uses: appleboy/ssh-action@master
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/jmdb
-            docker stop jmdb
-            docker run -d --rm --name jmdb -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/jmdb
+      - name: Deploy application
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@your_server_ip << 'EOF'
+            cd /home/ubuntu/POKEMEDI-Client
+            yarn install
+            yarn build
+            sudo systemctl restart nginx
+          EOF
