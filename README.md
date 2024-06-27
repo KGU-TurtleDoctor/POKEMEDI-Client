@@ -32,29 +32,3 @@
 | Deployment           | ![EC2](https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=Amazon%20EC2&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=GitHub%20Actions&logoColor=white)                                                                                                                                                                                                                           |
 
 </div>
-
-<br/>
-
-<h2> 🏛️ Service Architecture </h2>
-
-![architecture](https://github.com/jungwoo3490/POKEMEDI-Client/assets/60962533/2d1c8868-c574-4b03-9dc2-dde33df7da6e)
-
-
-<br/>
-
-<h2> 📁 Folder Structure </h2>
-
-```
-└── 📁 src
-  ├── 📁 assets
-  │   └── 📁 img
-  │   └── 📁 svg
-  ├── 📁components
-  ├── 📁constants
-  ├── 📁hooks
-  ├── 📁pages
-  └── 📁styles
-
-```
-
-<br/>
