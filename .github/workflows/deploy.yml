@@ -33,7 +33,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@3.36.122.55 << 'EOF'
             cd /home/ubuntu/POKEMEDI-Client
-            yarn install
-            yarn build
+            sudo yarn install
+            sudo yarn build
             sudo systemctl restart nginx
           EOF
