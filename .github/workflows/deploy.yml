@@ -22,7 +22,7 @@ jobs:
         run: ssh -o StrictHostKeyChecking=no ubuntu@3.36.122.55 'rm -rf /home/ubuntu/POKEMEDI-Client/*'
 
       - name: Copy files to server
-        run: scp -r -o StrictHostKeyChecking=no ./ ubuntu@3.36.122.55:/home/ubuntu/POKEMEDI-Client/
+        run: scp -r -o StrictHostKeyChecking=no ./* ubuntu@3.36.122.55:/home/ubuntu/POKEMEDI-Client/
 
       - name: Create .env file on server
         run: |
