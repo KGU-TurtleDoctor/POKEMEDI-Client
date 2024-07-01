@@ -30,6 +30,6 @@ jobs:
       - name: Deploy application
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "cd /home/ubuntu/POKEMEDI-Client && \
-            sudo yarn install && \
-            sudo yarn build && \
+            yarn install && \
+            yarn build && \
             sudo systemctl restart nginx"
