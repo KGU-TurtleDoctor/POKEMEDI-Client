@@ -19,22 +19,17 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Copy files to server
-        run: scp -r -o StrictHostKeyChecking=no ./* ubuntu@3.36.122.55:/home/ubuntu/POKEMEDI-Client/
+        run: scp -r -o StrictHostKeyChecking=no ./* ubuntu@${{ secrets.SERVER_IP }}:/home/ubuntu/POKEMEDI-Client/
 
       - name: Create .env file on server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@{{ secrets.SERVER_IP }} << 'EOF'
-            echo "VITE_REDIRECT_URI=${{ secrets.VITE_REDIRECT_URI }}" > /home/ubuntu/POKEMEDI-Client/.env
-            echo "VITE_CLIENT_ID=${{ secrets.VITE_CLIENT_ID }}" >> /home/ubuntu/POKEMEDI-Client/.env
-            echo "VITE_APP_BASE_URL=${{ secrets.VITE_APP_BASE_URL }}" >> /home/ubuntu/POKEMEDI-Client/.env
-          EOF
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "echo 'VITE_REDIRECT_URI=${{ secrets.VITE_REDIRECT_URI }}' > /home/ubuntu/POKEMEDI-Client/.env && \
+            echo 'VITE_CLIENT_ID=${{ secrets.VITE_CLIENT_ID }}' >> /home/ubuntu/POKEMEDI-Client/.env && \
+            echo 'VITE_APP_BASE_URL=${{ secrets.VITE_APP_BASE_URL }}' >> /home/ubuntu/POKEMEDI-Client/.env"
 
       - name: Deploy application
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@{{ secrets.SERVER_IP }} << 'EOF'
-            cd /home/ubuntu/POKEMEDI-Client
-            sudo yarn install
-            sudo chmod -R 755 /home/ubuntu/POKEMEDI-Client/dist
-            sudo yarn build
-            sudo systemctl restart nginx
-          EOF
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "cd /home/ubuntu/POKEMEDI-Client && \
+            sudo yarn install && \
+            sudo yarn build && \
+            sudo systemctl restart nginx"
