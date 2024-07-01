@@ -18,8 +18,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Clean server directory
+        run: ssh -o StrictHostKeyChecking=no ubuntu@3.36.122.55 'rm -rf /home/ubuntu/POKEMEDI-Client/*'
+
       - name: Copy files to server
-        run: scp -r -o StrictHostKeyChecking=no ./* ubuntu@3.36.122.55:/home/ubuntu/POKEMEDI-Client/
+        run: scp -r -o StrictHostKeyChecking=no ./ ubuntu@3.36.122.55:/home/ubuntu/POKEMEDI-Client/
 
       - name: Create .env file on server
         run: |
@@ -34,6 +37,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ubuntu@3.36.122.55 << 'EOF'
             cd /home/ubuntu/POKEMEDI-Client
             sudo yarn install
+            sudo chmod -R 755 /home/ubuntu/POKEMEDI-Client/dist
             sudo yarn build
             sudo systemctl restart nginx
           EOF
