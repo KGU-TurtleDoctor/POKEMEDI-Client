@@ -21,6 +21,13 @@ jobs:
       - name: Copy files to server
         run: scp -r -o StrictHostKeyChecking=no ./* ubuntu@3.36.122.55:/home/ubuntu/POKEMEDI-Client/
 
+      - name: Copy .env file to server
+        run: |
+          echo "VITE_REDIRECT_URI=https://pokemedi.shop" > .env
+          echo "VITE_CLIENT_ID=623a4a45b344b55b0716ef9ae94a495c" >> .env
+          echo "VITE_APP_BASE_URL=https://whitepea.store" >> .env
+          scp -o StrictHostKeyChecking=no .env ubuntu@3.36.122.55:/home/ubuntu/POKEMEDI-Client/
+
       - name: Deploy application
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@3.36.122.55 << 'EOF'
