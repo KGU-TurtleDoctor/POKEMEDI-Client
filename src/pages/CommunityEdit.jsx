@@ -10,8 +10,8 @@ function CommunityEdit() {
   const navigate = useNavigate();
 
   const [nickname, setNickname] = useState();
-  const [titleWriting, setTitleWriting] = useState();
-  const [postWriting, setPostWriting] = useState();
+  const [titleWriting, setTitleWriting] = useState(null);
+  const [postWriting, setPostWriting] = useState(null);
 
   const [isSatisfied, setIsSatisfied] = useState(false);
 
@@ -90,7 +90,7 @@ function CommunityEdit() {
     }
   }, [titleWriting, postWriting]);
 
-  if (!titleWriting || !postWriting) {
+  if (titleWriting === null || postWriting === null) {
     return <Loading />;
   }
 
