@@ -9,8 +9,6 @@ import { api } from '../libs/api';
 function Home() {
   const [nickname, setNickname] = useState(null);
 
-  console.log('test');
-
   useEffect(() => {
     api.get('/api/isLogin', { withCredentials: true }).then((res) => {
       if (res.data.result.loginStatus) {
