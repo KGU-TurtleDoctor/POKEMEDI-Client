@@ -55,6 +55,6 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.USER }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/jmdb
-            docker stop jmdb
-            docker run -d --rm --name jmdb -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/jmdb
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/jmdb
+            sudo docker stop jmdb
+            sudo docker run -d --rm --name jmdb -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/jmdb
