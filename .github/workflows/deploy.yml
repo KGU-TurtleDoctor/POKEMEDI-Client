@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - develop
+      - cicd/docker-deploy
 
 jobs:
   deploy:
@@ -28,7 +28,7 @@ jobs:
             echo "VITE_CLIENT_ID=${{ secrets.VITE_CLIENT_ID }}" >> /home/ubuntu/POKEMEDI-Client/.env
             echo "VITE_APP_BASE_URL=${{ secrets.VITE_APP_BASE_URL }}" >> /home/ubuntu/POKEMEDI-Client/.env
           EOF
-          
+
       - name: Deploy application
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} << 'EOF'
