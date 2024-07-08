@@ -19,7 +19,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 COPY /etc/letsencrypt/live/pokemedi.shop/fullchain.pem /etc/nginx/cert.pem
 COPY /etc/letsencrypt/live/pokemedi.shop/privkey.pem /etc/nginx/cert.key
 
-COPY /etc/nginx/sites-available/pokemedi.conf /etc/nginx/conf.d/default.conf
+COPY config/pokemedi.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 443
 
