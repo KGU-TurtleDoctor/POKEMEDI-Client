@@ -51,7 +51,7 @@ jobs:
       - name: Pull and restart Docker Container
         uses: appleboy/ssh-action@master
         with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.USER }}
           script: |
