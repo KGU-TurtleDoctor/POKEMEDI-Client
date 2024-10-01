@@ -1,21 +1,46 @@
 import styled, { keyframes } from 'styled-components';
 import ImgFirstService from '../../assets/img/img_first_service.png';
 import ImgSecondService from '../../assets/img/img_second_service.png';
+import { motion } from 'framer-motion';
+
+const introMessageAnimation = {
+  initial: { opacity: 0, y: '100%' },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 1 },
+};
+
+const subMessageAnimation = {
+  initial: { opacity: 0, y: '100%' },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, delay: 0.8 },
+};
+
+const firstImageAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.8, delay: 1.5 },
+};
+
+const secondImageAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.8, delay: 2.3 },
+};
 
 function ServiceIntroduction() {
   return (
     <ServiceintroductionWrapper>
-      <ServiceIntroMessage>
+      <ServiceIntroMessage {...introMessageAnimation}>
         내 손 안의 의사
         <br />
         POKEMEDI
       </ServiceIntroMessage>
-      <ServiceIntroSubMessage>
+      <ServiceIntroSubMessage {...subMessageAnimation}>
         집에서도 편리하게, 포켓메디와 함께
       </ServiceIntroSubMessage>
       <ServiceImageContainer>
-        <FirstServiceImage src={ImgFirstService} />
-        <SecondServiceImage src={ImgSecondService} />
+        <FirstServiceImage src={ImgFirstService} {...firstImageAnimation} />
+        <SecondServiceImage src={ImgSecondService} {...secondImageAnimation} />
       </ServiceImageContainer>
     </ServiceintroductionWrapper>
   );
@@ -33,47 +58,20 @@ const ServiceintroductionWrapper = styled.div`
   text-align: center;
 `;
 
-const fadeup = keyframes`
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
-`;
-
-const fadein = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const ServiceIntroMessage = styled.h1`
+const ServiceIntroMessage = styled(motion.h1)`
   font-size: 6.875rem;
   font-weight: 600;
   font-family: Pretendard;
   line-height: 1.3;
-
-  transition-delay: 1.2s;
-  animation: ${fadeup} 1s ease;
 `;
 
-const ServiceIntroSubMessage = styled.h2`
+const ServiceIntroSubMessage = styled(motion.h2)`
   margin-top: 2.5rem;
 
   font-size: 2.75rem;
   font-weight: 500;
   font-family: Pretendard;
   color: #8898a7;
-
-  opacity: 0;
-  animation: ${fadeup} 0.8s ease forwards;
-  animation-delay: 0.8s;
 `;
 
 const ServiceImageContainer = styled.div`
@@ -84,7 +82,7 @@ const ServiceImageContainer = styled.div`
   margin-top: 8.75rem;
 `;
 
-const FirstServiceImage = styled.img`
+const FirstServiceImage = styled(motion.img)`
   position: absolute;
   top: 0;
   left: 0;
@@ -93,15 +91,9 @@ const FirstServiceImage = styled.img`
   height: 40rem;
 
   border-radius: 1.5rem;
-
-  opacity: 0;
-  animation: ${fadein} 0.8s ease forwards;
-  animation-delay: 1.5s;
-
-  object-fit: cover;
 `;
 
-const SecondServiceImage = styled.img`
+const SecondServiceImage = styled(motion.img)`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -111,10 +103,4 @@ const SecondServiceImage = styled.img`
   height: 40rem;
 
   border-radius: 1.5rem;
-
-  opacity: 0;
-  animation: ${fadein} 0.8s ease forwards;
-  animation-delay: 2.3s;
-
-  object-fit: cover;
 `;

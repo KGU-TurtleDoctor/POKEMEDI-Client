@@ -17,7 +17,7 @@ const MenuIntroductionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 10rem;
+  row-gap: 17rem;
 
   width: 100%;
   margin-top: 18.75rem;

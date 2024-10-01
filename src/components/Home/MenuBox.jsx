@@ -1,48 +1,61 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import chatImg from '../../assets/img/chat.png';
 import communityImg from '../../assets/img/community.png';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const MenuBox = ({ type }) => {
   const navigate = useNavigate();
+  const ref = useRef(null);
 
-  return type === 1 ? (
-    <MenuBoxWrapper>
-      <ImgContainer>
-        <MenuImg src={chatImg} />
-      </ImgContainer>
-      <DescriptionContainer type={type}>
-        <DescriptionContainerTitle>AI 진단</DescriptionContainerTitle>
-        <Description type={type}>
-          일상 속의 통증, 원인이 궁금하지 않으셨나요? AI 챗봇에게 모두
-          물어보세요!
-        </Description>
-        <LinkButton onClick={() => navigate('/aichat')}>
-          AI 진단 바로가기
-        </LinkButton>
-      </DescriptionContainer>
-    </MenuBoxWrapper>
-  ) : (
-    <MenuBoxWrapper type={type}>
-      <DescriptionContainer>
-        <DescriptionContainerTitle>커뮤니티</DescriptionContainerTitle>
-        <Description type={type}>
-          의료 관련 질문을 커뮤니티에 게시해 보세요. 사람들 혹은 의사가 답변해
-          줄 거예요!
-        </Description>
-        <LinkButton onClick={() => navigate('/community-list')}>
-          커뮤니티 바로가기
-        </LinkButton>
-      </DescriptionContainer>
-      <ImgContainer>
-        <MenuImg src={communityImg} />
-      </ImgContainer>
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+
+  return (
+    <MenuBoxWrapper ref={ref} style={{ opacity }} animate={{ opacity }}>
+      {type === 1 ? (
+        <>
+          <ImgContainer>
+            <MenuImg src={chatImg} />
+          </ImgContainer>
+          <DescriptionContainer type={type}>
+            <DescriptionContainerTitle>AI 진단</DescriptionContainerTitle>
+            <Description type={type}>
+              일상 속의 통증, 원인이 궁금하지 않으셨나요? AI 챗봇에게 모두
+              물어보세요!
+            </Description>
+            <LinkButton onClick={() => navigate('/aichat')}>
+              AI 진단 바로가기
+            </LinkButton>
+          </DescriptionContainer>
+        </>
+      ) : (
+        <>
+          <DescriptionContainer>
+            <DescriptionContainerTitle>커뮤니티</DescriptionContainerTitle>
+            <Description type={type}>
+              의료 관련 질문을 커뮤니티에 게시해 보세요. 사람들 혹은 의사가
+              답변해 줄 거예요!
+            </Description>
+            <LinkButton onClick={() => navigate('/community-list')}>
+              커뮤니티 바로가기
+            </LinkButton>
+          </DescriptionContainer>
+          <ImgContainer>
+            <MenuImg src={communityImg} />
+          </ImgContainer>
+        </>
+      )}
     </MenuBoxWrapper>
   );
 };
 
-const MenuBoxWrapper = styled.div`
+const MenuBoxWrapper = styled(motion.div)`
   display: flex;
   flex-direction: row;
   align-items: center;
